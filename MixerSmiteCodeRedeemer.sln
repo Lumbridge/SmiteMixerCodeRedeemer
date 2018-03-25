@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dolphin Script", "Dolphin Script\Dolphin Script.csproj", "{F5653194-6EFB-43AA-8947-7E7D4918EAFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MixerChatAPI", "MixerChatAPI\MixerChatAPI.csproj", "{0186126B-231D-47DB-8063-A71385FB07E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmiteMixerListener", "SmiteMixerListener\SmiteMixerListener.csproj", "{6E208121-1156-42FC-8CFB-1D12EA5998CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5653194-6EFB-43AA-8947-7E7D4918EAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5653194-6EFB-43AA-8947-7E7D4918EAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5653194-6EFB-43AA-8947-7E7D4918EAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5653194-6EFB-43AA-8947-7E7D4918EAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0186126B-231D-47DB-8063-A71385FB07E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0186126B-231D-47DB-8063-A71385FB07E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0186126B-231D-47DB-8063-A71385FB07E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0186126B-231D-47DB-8063-A71385FB07E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E208121-1156-42FC-8CFB-1D12EA5998CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E208121-1156-42FC-8CFB-1D12EA5998CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E208121-1156-42FC-8CFB-1D12EA5998CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E208121-1156-42FC-8CFB-1D12EA5998CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
