@@ -1,0 +1,13 @@
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\SmiteMixerListener.exe.config
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\obj\Release\SmiteMixerListener.exe
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\obj\Release\SmiteMixerListener.pdb
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\SmiteMixerListener.exe
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\SmiteMixerListener.pdb
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\DolphinScript.dll
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\MixerChat.dll
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\WebSocket4Net.dll
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\Newtonsoft.Json.dll
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\DolphinScript.pdb
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\MixerChat.pdb
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\bin\Release\Newtonsoft.Json.xml
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerListener\obj\Release\SmiteMixerCodeGrabberCLI.csprojResolveAssemblyReference.cache

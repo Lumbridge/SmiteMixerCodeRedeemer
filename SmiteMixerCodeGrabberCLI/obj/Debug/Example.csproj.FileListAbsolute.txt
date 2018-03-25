@@ -1,0 +1,13 @@
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\Test.exe.config
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\Test.exe
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\Test.pdb
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\MixerChat.dll
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\WebSocket4Net.dll
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\MixerChat.pdb
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\obj\Debug\Example.csprojResolveAssemblyReference.cache
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\obj\Debug\Test.exe
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\obj\Debug\Test.pdb
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\DolphinScript.exe
+C:\Users\ryans\Source\Repos\MixerChatApi\Test\bin\Debug\DolphinScript.pdb

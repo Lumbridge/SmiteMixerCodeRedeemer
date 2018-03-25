@@ -1,0 +1,9 @@
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\bin\Debug\MixerChat.dll.config
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\bin\Debug\MixerChat.dll
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\bin\Debug\MixerChat.pdb
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\bin\Debug\WebSocket4Net.dll
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\obj\Debug\MixerChat.csprojResolveAssemblyReference.cache
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\obj\Debug\MixerChat.dll
+C:\Users\ryans\Source\Repos\MixerChatApi\MixerChat\obj\Debug\MixerChat.pdb

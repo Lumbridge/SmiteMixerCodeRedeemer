@@ -1,0 +1,9 @@
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\bin\Debug\MixerChat.dll.config
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\bin\Debug\MixerChat.dll
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\bin\Debug\MixerChat.pdb
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\bin\Debug\WebSocket4Net.dll
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\obj\Debug\MixerChatAPI.csprojResolveAssemblyReference.cache
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\obj\Debug\MixerChat.dll
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\MixerChatAPI\obj\Debug\MixerChat.pdb

@@ -1,0 +1,9 @@
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\SmiteMixerCodeGrabberGUI.exe.config
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\SmiteMixerCodeGrabberGUI.exe
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\SmiteMixerCodeGrabberGUI.pdb
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.csprojResolveAssemblyReference.cache
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.MainForm.resources
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.Properties.Resources.resources
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.csproj.GenerateResource.Cache
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.exe
+C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.pdb
