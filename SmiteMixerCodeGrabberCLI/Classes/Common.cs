@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmiteMixerListener.Classes
 {
-    class Common
+    public class Common
     {
         public static void Write(string msg, bool showDateTime)
         {

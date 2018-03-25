@@ -86,7 +86,7 @@ namespace MixerChat
                             break;
                         case "WelcomeEvent":
                             Console.WriteLine("\tConnected to channel, Listening for codes...\n" + 
-                                "\tAutomatic Redemption is enabled, make sure Smite is open & in windowed mode (1920x1080).\n");
+                                "\tMake sure Smite is open & in windowed mode (1920x1080)!\n");
                             ws.Send(JsonConvert.SerializeObject(new Auth(channelId.id)));
                             break;
                         case "UserLeave":

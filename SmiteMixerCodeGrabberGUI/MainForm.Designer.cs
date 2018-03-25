@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listbox_Active = new System.Windows.Forms.ListBox();
             this.menustrip_mainForm = new System.Windows.Forms.MenuStrip();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,19 +38,16 @@
             this.button_redeemSelected = new System.Windows.Forms.Button();
             this.button_redeemAllActive = new System.Windows.Forms.Button();
             this.checkbox_whiteListOnly = new System.Windows.Forms.CheckBox();
-            this.checkbox_emailNewCodes = new System.Windows.Forms.CheckBox();
-            this.groupbox_Options = new System.Windows.Forms.GroupBox();
+            this.checkbox_showNotifications = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.button_sendTestEmail = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textbox_emailAddress = new System.Windows.Forms.TextBox();
             this.groupbox_whitelistedUsernames = new System.Windows.Forms.GroupBox();
             this.textbox_whitelistedUsernames = new System.Windows.Forms.RichTextBox();
             this.groupbox_activeCodes = new System.Windows.Forms.GroupBox();
             this.groupbox_expiredCodes = new System.Windows.Forms.GroupBox();
+            this.timer_MainForm = new System.Windows.Forms.Timer(this.components);
+            this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
             this.menustrip_mainForm.SuspendLayout();
-            this.groupbox_Options.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
             this.groupbox_activeCodes.SuspendLayout();
@@ -111,6 +109,7 @@
             this.button_redeemSelected.TabIndex = 5;
             this.button_redeemSelected.Text = "Redeem Selected Code";
             this.button_redeemSelected.UseVisualStyleBackColor = true;
+            this.button_redeemSelected.Click += new System.EventHandler(this.button_redeemSelected_Click);
             // 
             // button_redeemAllActive
             // 
@@ -120,102 +119,69 @@
             this.button_redeemAllActive.TabIndex = 6;
             this.button_redeemAllActive.Text = "Redeem All Active Codes";
             this.button_redeemAllActive.UseVisualStyleBackColor = true;
+            this.button_redeemAllActive.Click += new System.EventHandler(this.button_redeemAllActive_Click);
             // 
             // checkbox_whiteListOnly
             // 
             this.checkbox_whiteListOnly.AutoSize = true;
             this.checkbox_whiteListOnly.Location = new System.Drawing.Point(6, 19);
             this.checkbox_whiteListOnly.Name = "checkbox_whiteListOnly";
-            this.checkbox_whiteListOnly.Size = new System.Drawing.Size(217, 17);
+            this.checkbox_whiteListOnly.Size = new System.Drawing.Size(255, 17);
             this.checkbox_whiteListOnly.TabIndex = 3;
-            this.checkbox_whiteListOnly.Text = "Only Grab Codes From Whitelisted Users";
+            this.checkbox_whiteListOnly.Text = "Only grab codes from the whitelisted users below";
             this.checkbox_whiteListOnly.UseVisualStyleBackColor = true;
             // 
-            // checkbox_emailNewCodes
+            // checkbox_showNotifications
             // 
-            this.checkbox_emailNewCodes.AutoSize = true;
-            this.checkbox_emailNewCodes.Location = new System.Drawing.Point(6, 42);
-            this.checkbox_emailNewCodes.Name = "checkbox_emailNewCodes";
-            this.checkbox_emailNewCodes.Size = new System.Drawing.Size(206, 17);
-            this.checkbox_emailNewCodes.TabIndex = 10;
-            this.checkbox_emailNewCodes.Text = "Email Me When a New Code is Active";
-            this.checkbox_emailNewCodes.UseVisualStyleBackColor = true;
-            // 
-            // groupbox_Options
-            // 
-            this.groupbox_Options.Controls.Add(this.checkbox_emailNewCodes);
-            this.groupbox_Options.Controls.Add(this.checkbox_whiteListOnly);
-            this.groupbox_Options.Location = new System.Drawing.Point(316, 28);
-            this.groupbox_Options.Name = "groupbox_Options";
-            this.groupbox_Options.Size = new System.Drawing.Size(301, 76);
-            this.groupbox_Options.TabIndex = 9;
-            this.groupbox_Options.TabStop = false;
-            this.groupbox_Options.Text = "Options";
+            this.checkbox_showNotifications.AutoSize = true;
+            this.checkbox_showNotifications.Location = new System.Drawing.Point(9, 19);
+            this.checkbox_showNotifications.Name = "checkbox_showNotifications";
+            this.checkbox_showNotifications.Size = new System.Drawing.Size(246, 17);
+            this.checkbox_showNotifications.TabIndex = 10;
+            this.checkbox_showNotifications.Text = "Show a notification when a new code is active";
+            this.checkbox_showNotifications.UseVisualStyleBackColor = true;
+            this.checkbox_showNotifications.CheckedChanged += new System.EventHandler(this.checkbox_showNotifications_CheckedChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.checkbox_showNotifications);
             this.groupBox1.Controls.Add(this.button_sendTestEmail);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textbox_emailAddress);
-            this.groupBox1.Location = new System.Drawing.Point(316, 110);
+            this.groupBox1.Location = new System.Drawing.Point(316, 28);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(301, 105);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Email Options";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(153, 62);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(142, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Save Email Address";
-            this.button2.UseVisualStyleBackColor = true;
+            this.groupBox1.Text = "Notification Options";
             // 
             // button_sendTestEmail
             // 
-            this.button_sendTestEmail.Location = new System.Drawing.Point(6, 62);
+            this.button_sendTestEmail.Location = new System.Drawing.Point(9, 42);
             this.button_sendTestEmail.Name = "button_sendTestEmail";
             this.button_sendTestEmail.Size = new System.Drawing.Size(142, 23);
             this.button_sendTestEmail.TabIndex = 2;
-            this.button_sendTestEmail.Text = "Send Test Email";
+            this.button_sendTestEmail.Text = "Send Test Notification";
             this.button_sendTestEmail.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 19);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Email Address";
-            // 
-            // textbox_emailAddress
-            // 
-            this.textbox_emailAddress.Location = new System.Drawing.Point(7, 35);
-            this.textbox_emailAddress.Name = "textbox_emailAddress";
-            this.textbox_emailAddress.Size = new System.Drawing.Size(288, 20);
-            this.textbox_emailAddress.TabIndex = 0;
+            this.button_sendTestEmail.Click += new System.EventHandler(this.button_sendTestEmail_Click);
             // 
             // groupbox_whitelistedUsernames
             // 
+            this.groupbox_whitelistedUsernames.Controls.Add(this.checkbox_whiteListOnly);
             this.groupbox_whitelistedUsernames.Controls.Add(this.textbox_whitelistedUsernames);
-            this.groupbox_whitelistedUsernames.Location = new System.Drawing.Point(316, 221);
+            this.groupbox_whitelistedUsernames.Location = new System.Drawing.Point(316, 139);
             this.groupbox_whitelistedUsernames.Name = "groupbox_whitelistedUsernames";
-            this.groupbox_whitelistedUsernames.Size = new System.Drawing.Size(301, 136);
+            this.groupbox_whitelistedUsernames.Size = new System.Drawing.Size(301, 195);
             this.groupbox_whitelistedUsernames.TabIndex = 11;
             this.groupbox_whitelistedUsernames.TabStop = false;
-            this.groupbox_whitelistedUsernames.Text = "Whitelisted Usernames";
+            this.groupbox_whitelistedUsernames.Text = "Code Grab Options";
             // 
             // textbox_whitelistedUsernames
             // 
-            this.textbox_whitelistedUsernames.Location = new System.Drawing.Point(9, 20);
+            this.textbox_whitelistedUsernames.Location = new System.Drawing.Point(6, 42);
             this.textbox_whitelistedUsernames.Name = "textbox_whitelistedUsernames";
-            this.textbox_whitelistedUsernames.Size = new System.Drawing.Size(286, 110);
+            this.textbox_whitelistedUsernames.Size = new System.Drawing.Size(286, 142);
             this.textbox_whitelistedUsernames.TabIndex = 0;
-            this.textbox_whitelistedUsernames.Text = "Scottybot\nHiRezAuvey\nHiRezHinduman\nHiRezFinch";
+            this.textbox_whitelistedUsernames.Text = "";
+            this.textbox_whitelistedUsernames.TextChanged += new System.EventHandler(this.textbox_whitelistedUsernames_TextChanged);
             // 
             // groupbox_activeCodes
             // 
@@ -239,16 +205,33 @@
             this.groupbox_expiredCodes.TabStop = false;
             this.groupbox_expiredCodes.Text = "Expired Codes";
             // 
+            // timer_MainForm
+            // 
+            this.timer_MainForm.Enabled = true;
+            this.timer_MainForm.Interval = 1000;
+            this.timer_MainForm.Tick += new System.EventHandler(this.timer_MainForm_Tick);
+            // 
+            // checkbox_AFKMode
+            // 
+            this.checkbox_AFKMode.AutoSize = true;
+            this.checkbox_AFKMode.Location = new System.Drawing.Point(507, 340);
+            this.checkbox_AFKMode.Name = "checkbox_AFKMode";
+            this.checkbox_AFKMode.Size = new System.Drawing.Size(110, 17);
+            this.checkbox_AFKMode.TabIndex = 14;
+            this.checkbox_AFKMode.Text = "Run in AFK Mode";
+            this.checkbox_AFKMode.UseVisualStyleBackColor = true;
+            this.checkbox_AFKMode.CheckedChanged += new System.EventHandler(this.checkbox_AFKMode_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(629, 368);
+            this.Controls.Add(this.checkbox_AFKMode);
             this.Controls.Add(this.groupbox_expiredCodes);
             this.Controls.Add(this.groupbox_activeCodes);
             this.Controls.Add(this.groupbox_whitelistedUsernames);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.groupbox_Options);
             this.Controls.Add(this.menustrip_mainForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menustrip_mainForm;
@@ -256,13 +239,13 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Smite Mixer Code Grabber";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
             this.menustrip_mainForm.PerformLayout();
-            this.groupbox_Options.ResumeLayout(false);
-            this.groupbox_Options.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupbox_whitelistedUsernames.ResumeLayout(false);
+            this.groupbox_whitelistedUsernames.PerformLayout();
             this.groupbox_activeCodes.ResumeLayout(false);
             this.groupbox_expiredCodes.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -281,17 +264,15 @@
         private System.Windows.Forms.Button button_redeemSelected;
         private System.Windows.Forms.Button button_redeemAllActive;
         private System.Windows.Forms.CheckBox checkbox_whiteListOnly;
-        private System.Windows.Forms.CheckBox checkbox_emailNewCodes;
-        private System.Windows.Forms.GroupBox groupbox_Options;
+        private System.Windows.Forms.CheckBox checkbox_showNotifications;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button_sendTestEmail;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textbox_emailAddress;
         private System.Windows.Forms.GroupBox groupbox_whitelistedUsernames;
         private System.Windows.Forms.RichTextBox textbox_whitelistedUsernames;
         private System.Windows.Forms.GroupBox groupbox_activeCodes;
         private System.Windows.Forms.GroupBox groupbox_expiredCodes;
+        private System.Windows.Forms.Button button_sendTestEmail;
+        private System.Windows.Forms.Timer timer_MainForm;
+        private System.Windows.Forms.CheckBox checkbox_AFKMode;
     }
 }
 

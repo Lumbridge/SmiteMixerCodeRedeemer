@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{79C482B1-1AD7-4269-A7BD-20771DC3D96D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmiteMixerCodeGrabberGUI</RootNamespace>
     <AssemblyName>SmiteMixerCodeGrabberGUI</AssemblyName>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,6 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AllCodes.cs" />
+    <Compile Include="Classes\Automation.cs" />
+    <Compile Include="Classes\Common.cs" />
+    <Compile Include="Classes\SmiteCode.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +85,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dolphin Script\Dolphin Script.csproj">
+      <Project>{f5653194-6efb-43aa-8947-7e7d4918eafd}</Project>
+      <Name>Dolphin Script</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MixerChatAPI\MixerChatAPI.csproj">
+      <Project>{0186126b-231d-47db-8063-a71385fb07e6}</Project>
+      <Name>MixerChatAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SmiteMixerCodeGrabberCLI\SmiteMixerCodeGrabberCLI.csproj">
+      <Project>{6e208121-1156-42fc-8cfb-1d12ea5998ce}</Project>
+      <Name>SmiteMixerCodeGrabberCLI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

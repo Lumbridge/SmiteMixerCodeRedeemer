@@ -1,16 +1,16 @@
 ﻿using System;
-using MixerChat;
-using MixerChat.Classes;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 
-using DolphinScript;
+using MixerChat;
+using MixerChat.Classes;
+
 using DolphinScript.Lib.Backend;
 using DolphinScript.Lib.ScriptEventClasses;
 
 using SmiteMixerListener.Classes;
 using static SmiteMixerListener.Classes.Common;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace SmiteMixerListener
 {

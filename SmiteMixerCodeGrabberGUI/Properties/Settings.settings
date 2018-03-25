@@ -2,8 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SmiteMixerCodeGrabberGUI.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="userEmail" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="notificationSetting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="whitelistedUsernames" Type="System.Collections.Generic.List&lt;System.String&gt;" Scope="User">
+      <Value Profile="(Default)">new List&lt;System.String&gt;();</Value>
+    </Setting>
+    <Setting Name="AFKMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

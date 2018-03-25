@@ -198,34 +198,10 @@ namespace DolphinScript.Lib.Backend
             //
             foreach (var ev in Events)
             {
-                // check if the event if part of a repeat group
+                // each script event has overriden the DoEvent method so each
+                // script event completes their own DoEvent method before the next one is carried out
                 //
-                if (ev.IsPartOfGroup && ev.EventsInGroup.IndexOf(ev) == 0)
-                {
-                    for (int i = 0; i < ev.NumberOfCycles; i++)
-                    {
-                        // do each subevent in the group list
-                        //
-                        foreach (var subEvent in ev.EventsInGroup)
-                        {
-                            // call overriden do method
-                            //
-                            subEvent.DoEvent();
-                        }
-                    }
-                }
-                else if (ev.IsPartOfGroup && ev.EventsInGroup.IndexOf(ev) != 0)
-                {
-                    // skip the event because it was completed by the group loop
-                    //
-                }
-                else
-                {
-                    // each script event has overriden the DoEvent method so each
-                    // script event completes their own DoEvent method before the next one is carried out
-                    //
-                    ev.DoEvent();
-                }
+                ev.DoEvent();                
             }
         }
     }
