@@ -156,9 +156,8 @@ namespace SmiteMixerCodeGrabberGUI
                             //
                             var loop = Classes.Automation.GetRedeemLoop(code.GetCode());
 
-                            // call the main loop to carry out the event of redeeming the code
-                            //
-                            DolphinScript.Lib.Backend.Common.DoLoop(loop);
+                            foreach (var ev in loop)
+                                ev.DoEvent();
 
                             code.SetIsRedeemed(true);
                         }
