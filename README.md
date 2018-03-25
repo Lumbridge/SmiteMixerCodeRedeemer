@@ -7,5 +7,5 @@ This application will monitor the smite mixer chat for chest codes and redeem th
 3) If it finds a code it will bring the Smite window to the front and attempt to redeem the code using Dolphin Script automation.
 
 ### Credits
-Credits to myself for Dolphin Script &amp; SmiteMixerListener Projects,  
+Credits to myself for Dolphin Script, SmiteMixerListenerCLI and SmiteMixerListenerGUI Projects,  
 Credits to https://github.com/breeser/ for the mixer chat API.  
