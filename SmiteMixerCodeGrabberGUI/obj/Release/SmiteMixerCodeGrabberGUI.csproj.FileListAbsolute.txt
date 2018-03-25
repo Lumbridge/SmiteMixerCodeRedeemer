@@ -9,10 +9,10 @@ C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.pdb
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\DolphinScript.dll
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\MixerChat.dll
-C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\SmiteMixerListener.exe
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\WebSocket4Net.dll
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\Newtonsoft.Json.dll
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\DolphinScript.pdb
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\MixerChat.pdb
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\SmiteMixerListener.pdb
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\Newtonsoft.Json.xml
+C:\Users\ryans\source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\SmiteMixerListener.dll

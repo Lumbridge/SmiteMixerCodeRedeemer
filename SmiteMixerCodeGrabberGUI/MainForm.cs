@@ -11,10 +11,6 @@ using System.Collections.Generic;
 using MixerChat;
 using MixerChat.Classes;
 
-using DolphinScript.Lib.Backend;
-using DolphinScript.Lib.ScriptEventClasses;
-
-using SmiteMixerListener.Classes;
 using static SmiteMixerListener.Classes.Common;
 
 using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
