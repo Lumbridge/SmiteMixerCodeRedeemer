@@ -87,6 +87,9 @@ namespace DolphinScript.Lib.ScriptEventClasses
 
             while (dist > 1.0)
             {
+                if (GetCursorPosition().X == 0 && GetCursorPosition().Y == 0)
+                    return;
+
                 pushForce = Math.Min(pushForce, dist);
 
                 if (dist >= targetArea)

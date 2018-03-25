@@ -6,4 +6,3 @@ C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\obj\Release\Do
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\bin\Release\DolphinScript.dll.config
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\bin\Release\DolphinScript.dll
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\obj\Release\DolphinScript.dll
-C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csprojResolveAssemblyReference.cache

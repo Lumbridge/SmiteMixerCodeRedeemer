@@ -38,10 +38,6 @@ namespace SmiteMixerCodeGrabberGUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            foreach (var name in Properties.Settings.Default.whitelistedUsernames.ToList())
-                textbox_whitelistedUsernames.AppendText(name + "\n");
-            checkbox_showNotifications.Checked = Properties.Settings.Default.notificationSetting;
-
             Mixer chat = new Mixer();
             chat.OnMessageReceived += Chat_OnMessageReceived;
             chat.OnUserJoined += Chat_OnUserJoined;
@@ -66,7 +62,12 @@ namespace SmiteMixerCodeGrabberGUI
                         AddCodeToCodeList(code);
                     }
                     else
-                        Write("Code Spotted: " + code + " (Already Redeemed).", true);
+                    {
+                        if (!code.Contains(" "))
+                            Write("Code Spotted: " + code + " (Already Redeemed).", true);
+                        else
+                            Write("Potential Code Spotted: " + code + " (Invalid)", true);
+                    }
                 }
                 catch { }
             }
@@ -85,15 +86,6 @@ namespace SmiteMixerCodeGrabberGUI
         private static void Chat_OnUserJoined(UserEventArgs e)
         {
             //Console.WriteLine(string.Format("{0} joined", e.User));
-        }
-
-
-        private void textbox_whitelistedUsernames_TextChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.whitelistedUsernames.Clear();
-            foreach (var name in textbox_whitelistedUsernames.Lines)
-                Properties.Settings.Default.whitelistedUsernames.Add(name);
-            Properties.Settings.Default.Save();
         }
 
         private void checkbox_showNotifications_CheckedChanged(object sender, EventArgs e)

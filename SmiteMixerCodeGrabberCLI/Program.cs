@@ -18,39 +18,39 @@ namespace SmiteMixerListener
     {
         static void Main(string[] args)
         {
-            // if the internal list of redeemed codes isn't instanciated yet then we need to make a new one
-            if (Properties.Settings.Default.RedeemedCodes == null)
-            {
-                Properties.Settings.Default.RedeemedCodes = new List<string>();
-                Properties.Settings.Default.Save();
-            }
+            //// if the internal list of redeemed codes isn't instanciated yet then we need to make a new one
+            //if (Properties.Settings.Default.RedeemedCodes == null)
+            //{
+            //    Properties.Settings.Default.RedeemedCodes = new List<string>();
+            //    Properties.Settings.Default.Save();
+            //}
             
-            // meta info
-            Write("\n\tSmite Code Redeemer v0.9.2-Beta (Mixer) By github.com/Lumbridge.\n\n" +
-                "\tCredits to myself for Dolphin Script & SmiteMixerListener Projects,\n" + 
-                "\tCredits to github.com/Breeser for the Mixer Chat API.\n\n" + 
-                "\tAttempting to connect to SmiteGame Mixer Chat...", false);
+            //// meta info
+            //Write("\n\tSmite Code Redeemer v0.9.2-Beta (Mixer) By github.com/Lumbridge.\n\n" +
+            //    "\tCredits to myself for Dolphin Script & SmiteMixerListener Projects,\n" + 
+            //    "\tCredits to github.com/Breeser for the Mixer Chat API.\n\n" + 
+            //    "\tAttempting to connect to SmiteGame Mixer Chat...", false);
 
-            if (Properties.Settings.Default.RedeemedCodes.Count > 0)
-            {
-                Write("\tList of redeemed codes:\n", false);
-                foreach (var code in Properties.Settings.Default.RedeemedCodes)
-                    Write("\t" + code + "\n", false);
-            }
-            else
-                Write("Redeemed codes list is currently empty.", true);
+            //if (Properties.Settings.Default.RedeemedCodes.Count > 0)
+            //{
+            //    Write("\tList of redeemed codes:\n", false);
+            //    foreach (var code in Properties.Settings.Default.RedeemedCodes)
+            //        Write("\t" + code + "\n", false);
+            //}
+            //else
+            //    Write("Redeemed codes list is currently empty.", true);
 
-            Mixer chat = new Mixer();
-            chat.OnMessageReceived += Chat_OnMessageReceived;
-            chat.OnUserJoined += Chat_OnUserJoined;
-            chat.OnUserLeft += Chat_OnUserLeft;
-            chat.OnError += Chat_OnError;
-            var connected = chat.Connect("SmiteGame");
+            //Mixer chat = new Mixer();
+            //chat.OnMessageReceived += Chat_OnMessageReceived;
+            //chat.OnUserJoined += Chat_OnUserJoined;
+            //chat.OnUserLeft += Chat_OnUserLeft;
+            //chat.OnError += Chat_OnError;
+            //var connected = chat.Connect("SmiteGame");
 
-            if (connected)
-                Task.Run(() => RedeemQueue());
+            //if (connected)
+            //    Task.Run(() => RedeemQueue());
 
-            Console.ReadLine();
+            //Console.ReadLine();
         }
 
         private static void Chat_OnMessageReceived(ChatMessageEventArgs e)
@@ -119,6 +119,7 @@ namespace SmiteMixerListener
                     Write("No codes currently in the queue...", true);
 
                 Thread.Sleep(15000);
+
             }
         }
 

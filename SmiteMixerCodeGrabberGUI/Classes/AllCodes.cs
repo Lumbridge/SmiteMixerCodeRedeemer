@@ -17,7 +17,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 
         public static void AddCodeToCodeList(string code)
         {
-            Console.WriteLine("\tAdded code: " + code + " to code list.");
+            Console.WriteLine("\t[{0}] Added code: " + code + " to code list.", DateTime.Now);
             _AllCodes.Add(new SmiteCode(code));
         }
 

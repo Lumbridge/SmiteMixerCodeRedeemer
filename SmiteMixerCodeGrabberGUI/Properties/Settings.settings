@@ -5,9 +5,6 @@
     <Setting Name="notificationSetting" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="whitelistedUsernames" Type="System.Collections.Generic.List&lt;System.String&gt;" Scope="User">
-      <Value Profile="(Default)">new List&lt;System.String&gt;();</Value>
-    </Setting>
     <Setting Name="AFKMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>

@@ -25,34 +25,27 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             //
             var loop = GetRedeemLoop(sc.GetCode());
 
-            // call the main loop to carry out the event of redeeming the code
-            //
-            DolphinScript.Lib.Backend.Common.DoLoop(loop);
+            foreach (var ev in loop)
+                ev.DoEvent();
+
+            sc.SetIsRedeemed(true);
         }
 
         public static void RedeemAllActive()
         {
-            Thread.Sleep(15000);
-            while (true)
+            foreach (var code in GetActiveCodes())
             {
-                if (GetActiveCodes().Count > 0)
+                if (code.GetIsRedeemed() == false)
                 {
-                    foreach (var code in GetActiveCodes())
-                    {
-                        // get the event list and pass it the code we want it to type
-                        //
-                        var loop = GetRedeemLoop(code.GetCode());
+                    // get the event list and pass it the code we want it to type
+                    //
+                    var loop = GetRedeemLoop(code.GetCode());
 
-                        // call the main loop to carry out the event of redeeming the code
-                        //
-                        DolphinScript.Lib.Backend.Common.DoLoop(loop);
+                    foreach (var ev in loop)
+                        ev.DoEvent();
 
-                        // mark the code as redeemed
-                        //
-                        code.SetIsRedeemed(true);
-                    }
+                    code.SetIsRedeemed(true);
                 }
-                Thread.Sleep(15000);
             }
         }
 
@@ -60,8 +53,6 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         {
             return new List<ScriptEvent>()
             {
-                GetMoveWindowToFront(),
-                GetPause(1.0, 2.0),
                 GetMouseMoveToWindow(new WinAPI.RECT(43, 788, 101, 1014)),
                 GetLeftMouseClick(),
                 GetPause(1.0, 2.0),

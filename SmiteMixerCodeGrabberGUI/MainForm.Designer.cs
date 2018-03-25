@@ -68,7 +68,7 @@
             this.helpToolStripMenuItem});
             this.menustrip_mainForm.Location = new System.Drawing.Point(0, 0);
             this.menustrip_mainForm.Name = "menustrip_mainForm";
-            this.menustrip_mainForm.Size = new System.Drawing.Size(629, 24);
+            this.menustrip_mainForm.Size = new System.Drawing.Size(318, 24);
             this.menustrip_mainForm.TabIndex = 1;
             this.menustrip_mainForm.Text = "menustrip_mainForm";
             // 
@@ -152,6 +152,7 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Options";
+            this.groupBox1.Visible = false;
             // 
             // button_sendTestEmail
             // 
@@ -173,6 +174,7 @@
             this.groupbox_whitelistedUsernames.TabIndex = 11;
             this.groupbox_whitelistedUsernames.TabStop = false;
             this.groupbox_whitelistedUsernames.Text = "Code Grab Options";
+            this.groupbox_whitelistedUsernames.Visible = false;
             // 
             // textbox_whitelistedUsernames
             // 
@@ -181,7 +183,6 @@
             this.textbox_whitelistedUsernames.Size = new System.Drawing.Size(286, 142);
             this.textbox_whitelistedUsernames.TabIndex = 0;
             this.textbox_whitelistedUsernames.Text = "";
-            this.textbox_whitelistedUsernames.TextChanged += new System.EventHandler(this.textbox_whitelistedUsernames_TextChanged);
             // 
             // groupbox_activeCodes
             // 
@@ -214,7 +215,7 @@
             // checkbox_AFKMode
             // 
             this.checkbox_AFKMode.AutoSize = true;
-            this.checkbox_AFKMode.Location = new System.Drawing.Point(507, 340);
+            this.checkbox_AFKMode.Location = new System.Drawing.Point(200, 363);
             this.checkbox_AFKMode.Name = "checkbox_AFKMode";
             this.checkbox_AFKMode.Size = new System.Drawing.Size(110, 17);
             this.checkbox_AFKMode.TabIndex = 14;
@@ -226,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 368);
+            this.ClientSize = new System.Drawing.Size(318, 392);
             this.Controls.Add(this.checkbox_AFKMode);
             this.Controls.Add(this.groupbox_expiredCodes);
             this.Controls.Add(this.groupbox_activeCodes);

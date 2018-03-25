@@ -37,18 +37,6 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("new List<System.String>();")]
-        public global::System.Collections.Generic.List<System.String> whitelistedUsernames {
-            get {
-                return ((global::System.Collections.Generic.List<System.String>)(this["whitelistedUsernames"]));
-            }
-            set {
-                this["whitelistedUsernames"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool AFKMode {
             get {
