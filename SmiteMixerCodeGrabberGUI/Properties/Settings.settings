@@ -8,5 +8,24 @@
     <Setting Name="AFKMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="whitelistOnly" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="codeLength" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">17</Value>
+    </Setting>
+    <Setting Name="codesStartWith" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AP</Value>
+    </Setting>
+    <Setting Name="whitelistedUsernames" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;ScottyBot&lt;/string&gt;
+  &lt;string&gt;HiRez Auvey&lt;/string&gt;
+  &lt;string&gt;HiRez Hinduman&lt;/string&gt;
+  &lt;string&gt;HiRez Finch&lt;/string&gt;
+  &lt;string&gt;HiRez Vinny&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

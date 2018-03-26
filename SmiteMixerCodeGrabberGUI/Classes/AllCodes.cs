@@ -15,16 +15,24 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             _AllCodes = new List<SmiteCode>();
         }
 
-        public static void AddCodeToCodeList(string code)
+        public static void AddCodeToCodeList(string code, bool isActive)
         {
-            Console.WriteLine("\t[{0}] Added code: " + code + " to code list.", DateTime.Now);
-            _AllCodes.Add(new SmiteCode(code));
+            if (isActive)
+            {
+                Console.WriteLine("\t[{0}] Added Active code: " + code + " to the code list.", DateTime.Now);
+                _AllCodes.Add(new SmiteCode(code));
+            }
+            else
+            {
+                Console.WriteLine("\t[{0}] Added Expried code: " + code + " to the code list.", DateTime.Now);
+                _AllCodes.Add(new SmiteCode(code, isActive));
+            }
         }
 
         public static void RemoveCodeFromList(string code)
         {
-            Console.WriteLine("Removed code: " + code + " from redeem queue.");
-            _AllCodes.Remove(_AllCodes.Where(x=>x.GetCode() == code).First());
+            Console.WriteLine("Removed code: " + code + " from the code list.");
+            _AllCodes.Remove(_AllCodes.Where(x => x.GetCode() == code).First());
         }
 
         public static List<SmiteCode> GetActiveCodes()
@@ -35,6 +43,24 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         public static List<SmiteCode> GetExpiredCodes()
         {
             return _AllCodes.Where(x => x.GetIsActive() == false).ToList();
+        }
+
+        public static void ClearActiveCodes()
+        {
+            foreach(var code in GetActiveCodes())
+            {
+                if (code.GetIsActive() == true)
+                    RemoveCodeFromList(code.GetCode());
+            }
+        }
+
+        public static void ClearExpiredCodes()
+        {
+            foreach (var code in GetExpiredCodes())
+            {
+                if (code.GetIsActive() == false)
+                    RemoveCodeFromList(code.GetCode());
+            }
         }
     }
 }

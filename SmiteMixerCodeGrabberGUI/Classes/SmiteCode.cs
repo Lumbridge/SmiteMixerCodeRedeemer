@@ -56,5 +56,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             Time_GrabbedAt = DateTime.Now;
             isActive = true;
         }
+        public SmiteCode(string code, bool isActive)
+        {
+            this.code = code;
+            Time_GrabbedAt = DateTime.Now.Subtract(new TimeSpan(0,30,0));
+            this.isActive = isActive;
+        }
     }
 }

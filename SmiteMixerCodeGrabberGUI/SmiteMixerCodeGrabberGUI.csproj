@@ -52,7 +52,9 @@
     <Compile Include="Classes\AllCodes.cs" />
     <Compile Include="Classes\Automation.cs" />
     <Compile Include="Classes\Common.cs" />
+    <Compile Include="Classes\MetaInfo.cs" />
     <Compile Include="Classes\SmiteCode.cs" />
+    <Compile Include="Classes\Whitelist.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
