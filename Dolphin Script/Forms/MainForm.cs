@@ -1669,8 +1669,8 @@ namespace DolphinScript
 
                     // calculate the width and height of the search area
                     //
-                    int w = p2.X - p1.X,
-                        h = p2.Y - p1.Y;
+                    int w = (int)p2.X - (int)p1.X,
+                        h = (int)p2.Y - (int)p1.Y;
 
                     // take a screenshot of the search area and store it in our bitmap
                     //

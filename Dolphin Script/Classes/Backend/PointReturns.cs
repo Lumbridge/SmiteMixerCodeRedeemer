@@ -11,7 +11,7 @@ namespace DolphinScript.Lib.Backend
     /// This class contains methods which generally return point values
     /// there are exceptions for the RECT methods and list of point method.
     /// </summary>
-    class PointReturns
+    public class PointReturns
     {
         /// <summary>
         /// Returns the center point of a given rectangle area

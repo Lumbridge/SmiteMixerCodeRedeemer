@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading; 
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using MixerChat;
 using MixerChat.Classes;
@@ -12,8 +13,9 @@ using DolphinScript.Lib.ScriptEventClasses;
 
 using SmiteMixerListener.Classes;
 using static SmiteMixerListener.Classes.Common;
-using System.Threading;
 using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
+
+using static SmiteMixerCodeGrabberGUI.Classes.DynamicResolution;
 
 namespace SmiteMixerCodeGrabberGUI.Classes
 {
@@ -47,52 +49,6 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                     code.SetIsRedeemed(true);
                 }
             }
-        }
-
-        public static List<ScriptEvent> GetRedeemLoop(string code)
-        {
-            return new List<ScriptEvent>()
-            {
-                GetMouseMoveToWindow(new WinAPI.RECT(43, 788, 101, 1014)),
-                GetLeftMouseClick(),
-                GetPause(1.0, 2.0),
-                GetMouseMoveToWindow(new WinAPI.RECT(57, 521, 86, 658)),
-                GetLeftMouseClick(),
-                GetPause(1.0, 2.0),
-                GetMouseMoveToWindow(new WinAPI.RECT(569, 160, 610, 297)),
-                GetLeftMouseClick(),
-                GetPause(1.0, 2.0),
-                GetMouseMoveToWindow(new WinAPI.RECT(358, 703, 372, 759)),
-                GetLeftMouseClick(),
-                GetPause(1.0, 2.0),
-                new KeyboardKeyPress() { KeyboardKeys = code },
-                GetMouseMoveToWindow(new WinAPI.RECT(396, 810, 416, 907)),
-                GetLeftMouseClick(),
-                GetPause(1.0, 2.0),
-                GetMouseMoveToWindow(new WinAPI.RECT(603, 822, 622, 969)),
-                GetLeftMouseClick(),
-                GetPause(1.0, 2.0),
-            };
-        }
-
-        static MoveWindowToFront GetMoveWindowToFront()
-        {
-            return new MoveWindowToFront() { WindowToClickTitle = "Smite (32-bit, DX9)" };
-        }
-
-        static RandomPauseInRange GetPause(double min, double max)
-        {
-            return new RandomPauseInRange() { DelayMaximum = max, DelayMinimum = min };
-        }
-
-        static MouseMoveToAreaOnWindow GetMouseMoveToWindow(WinAPI.RECT clickArea)
-        {
-            return new MouseMoveToAreaOnWindow() { ClickArea = clickArea, WindowToClickTitle = "Smite (32-bit, DX9)" };
-        }
-
-        static MouseClick GetLeftMouseClick()
-        {
-            return new MouseClick() { MouseButton = WinAPI.VirtualMouseStates.Left_Click };
         }
     }
 }

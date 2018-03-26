@@ -21,7 +21,7 @@ namespace DolphinScript.Lib.Backend
         {
             // this is where we will store a snapshot of the screen
             //
-            Bitmap bmpScreenshot = new Bitmap(area.Width, area.Height);
+            Bitmap bmpScreenshot = new Bitmap((int)area.Width, (int)area.Height);
 
             // creates a graphics object so we can draw the screen in the bitmap (bmpScreenshot)
             //
@@ -29,7 +29,7 @@ namespace DolphinScript.Lib.Backend
 
             // copy from screen into the bitmap we created
             //
-            g.CopyFromScreen(area.Left, area.Top, 0, 0, new Size(area.Width * 2, area.Height * 2));
+            g.CopyFromScreen((int)area.Left, (int)area.Top, 0, 0, new Size((int)area.Width * 2, (int)area.Height * 2));
 
             // return the screenshot
             //
@@ -46,7 +46,7 @@ namespace DolphinScript.Lib.Backend
         {
             // this is where we will store a snapshot of the screen
             //
-            Bitmap bmpScreenshot = new Bitmap(area.Width * 3, area.Height * 3);
+            Bitmap bmpScreenshot = new Bitmap((int)area.Width * 3, (int)area.Height * 3);
 
             // creates a graphics object so we can draw the screen in the bitmap (bmpScreenshot)
             //
@@ -62,11 +62,11 @@ namespace DolphinScript.Lib.Backend
 
             // copy from screen into the bitmap we created
             //
-            g.CopyFromScreen(area.Left - area.Width, area.Top - area.Height, 0, 0, new Size(area.Width * 3, area.Height * 3));
+            g.CopyFromScreen((int)area.Left - (int)area.Width, (int)area.Top - (int)area.Height, 0, 0, new Size((int)area.Width * 3, (int)area.Height * 3));
 
             // draw a transparent rectangle over the actual click area
             //
-            g.FillRectangle(customBrush, new RectangleF(new PointF(area.Width, area.Height), new SizeF(area.Width, area.Height)));
+            g.FillRectangle(customBrush, new RectangleF(new PointF((int)area.Width, (int)area.Height), new SizeF((int)area.Width, (int)area.Height)));
 
             // return the screenshot
             //

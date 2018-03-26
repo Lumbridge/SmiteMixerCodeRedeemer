@@ -15,9 +15,8 @@ using MixerChat.Classes;
 using static SmiteMixerListener.Classes.Common;
 
 using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
-
 using static SmiteMixerCodeGrabberGUI.Classes.Common;
-using System.Collections.Specialized;
+using static SmiteMixerCodeGrabberGUI.Classes.DynamicResolution;
 
 namespace SmiteMixerCodeGrabberGUI
 {
@@ -30,6 +29,8 @@ namespace SmiteMixerCodeGrabberGUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            var scale = GetPercentageScaleDifference(GetSmiteWindowResolution());
+
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
             textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
@@ -222,7 +223,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void activeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AddCodeToCodeList(GenerateRandomSmiteCode(), true);
+            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now.Subtract(new TimeSpan(0,29,50)));
         }
         private void expiredToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -270,7 +271,7 @@ namespace SmiteMixerCodeGrabberGUI
                         {
                             // get the event list and pass it the code we want it to type
                             //
-                            var loop = Classes.Automation.GetRedeemLoop(code.GetCode());
+                            var loop = GetRedeemLoop(code.GetCode());
 
                             foreach (var ev in loop)
                                 ev.DoEvent();
@@ -286,6 +287,5 @@ namespace SmiteMixerCodeGrabberGUI
             }
         }
         #endregion
-
     }
 }

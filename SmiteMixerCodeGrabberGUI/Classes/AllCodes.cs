@@ -29,6 +29,20 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             }
         }
 
+        public static void AddCodeToCodeListDebug(string code, bool isActive, DateTime CreationTime)
+        {
+            if (isActive)
+            {
+                Console.WriteLine("\t[{0}] Added Active code: " + code + " to the code list.", DateTime.Now);
+                _AllCodes.Add(new SmiteCode(code, true, CreationTime));
+            }
+            else
+            {
+                Console.WriteLine("\t[{0}] Added Expried code: " + code + " to the code list.", DateTime.Now);
+                _AllCodes.Add(new SmiteCode(code, isActive));
+            }
+        }
+
         public static void RemoveCodeFromList(string code)
         {
             Console.WriteLine("Removed code: " + code + " from the code list.");

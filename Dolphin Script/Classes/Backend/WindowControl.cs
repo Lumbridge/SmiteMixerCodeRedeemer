@@ -9,7 +9,7 @@ namespace DolphinScript.Lib.Backend
     /// <summary>
     /// This class contains functionality around process windows such as getting the title of them and bringing them to the front if needed.
     /// </summary>
-    class WindowControl
+    public class WindowControl
     {
         /// <summary>
         /// gets the title of the currently active window
@@ -102,9 +102,14 @@ namespace DolphinScript.Lib.Backend
             // we check if the window exists first then if it does
             //
             if (WindowExists(WindowClass, WindowName))
+            {
+                // un-minimises window
+                //
+                ShowWindowAsync(handle, SW_SHOWNORMAL);
                 // then we set it as the foreground window
                 //
                 SetForegroundWindow(handle);
+            }
         }
 
         /// <summary>

@@ -69,6 +69,28 @@ namespace DolphinScript.Lib.Backend
             {
                 return "Top-Left XY: " + Left + ", " + Top + " Bottom-Right XY: " + Right + ", " + Bottom;
             }
+
+            public RECT ScaleUp(int scalePercentage)
+            {
+                Top = (Top / 100) * scalePercentage;
+                Bottom = (Bottom / 100) * scalePercentage;
+
+                Right = (Right / 100) * scalePercentage;
+                Left = (Left / 100) * scalePercentage;
+                return this;
+            }
+
+            public RECT ScaleDown(int scalePercentage)
+            {
+                var scalar = Math.Abs(scalePercentage);
+
+                Top = (Top * scalar) / 100;
+                Bottom = (Bottom * scalar) / 100;
+
+                Right = (Right * scalar) / 100;
+                Left = (Left * scalar) / 100;
+                return this;
+            }
         }
 
         /// <summary>

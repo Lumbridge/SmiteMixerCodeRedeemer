@@ -17,3 +17,12 @@ C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\M
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChatAPI.csproj.CopyComplete
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.dll
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\MixerChat.dll.config
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\MixerChat.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\MixerChat.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\Newtonsoft.Json.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\WebSocket4Net.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\Newtonsoft.Json.xml
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChatAPI.csprojResolveAssemblyReference.cache
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.pdb
