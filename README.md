@@ -2,7 +2,7 @@
 This application will monitor the smite mixer chat for chest codes and redeem them using the PC game client.  
 
 # Usage
-## !!! NOTE: If you want to use automatic code redemption make sure the SMITE Game Client is open in Borderless Windowed Mode !!!
+# !!! NOTE: If you want to use automatic code redemption make sure the SMITE Game Client is open in Borderless Windowed Mode !!!
 ## AFK Mode
 AFK mode will fully automate the code redemption process. It will read codes from the mixer chat (no need to have the stream open in browser), then it will bring the Smite game client to the foreground, go to the store, go to the redeem code tab, type the code and click the redeem button.
 ## Semi Manual Mode
