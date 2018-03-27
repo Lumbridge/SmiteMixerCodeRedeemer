@@ -34,6 +34,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addTestCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,6 @@
             this.groupbox_expiredCodes = new System.Windows.Forms.GroupBox();
             this.timer_MainForm = new System.Windows.Forms.Timer(this.components);
             this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
-            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
@@ -104,16 +104,23 @@
             // wikiToolStripMenuItem
             // 
             this.wikiToolStripMenuItem.Name = "wikiToolStripMenuItem";
-            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.wikiToolStripMenuItem.Text = "Wiki";
             this.wikiToolStripMenuItem.Click += new System.EventHandler(this.wikiToolStripMenuItem_Click);
             // 
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.creditsToolStripMenuItem.Text = "Credits";
             this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
+            // 
+            // reportBugToolStripMenuItem
+            // 
+            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.reportBugToolStripMenuItem.Text = "Report Bug";
+            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
             // 
             // debugToolStripMenuItem
             // 
@@ -154,20 +161,20 @@
             this.activeListToolStripMenuItem,
             this.expiredListToolStripMenuItem});
             this.clearActiveListToolStripMenuItem.Name = "clearActiveListToolStripMenuItem";
-            this.clearActiveListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clearActiveListToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.clearActiveListToolStripMenuItem.Text = "Clear List";
             // 
             // activeListToolStripMenuItem
             // 
             this.activeListToolStripMenuItem.Name = "activeListToolStripMenuItem";
-            this.activeListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.activeListToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.activeListToolStripMenuItem.Text = "Active";
             this.activeListToolStripMenuItem.Click += new System.EventHandler(this.activeListToolStripMenuItem_Click);
             // 
             // expiredListToolStripMenuItem
             // 
             this.expiredListToolStripMenuItem.Name = "expiredListToolStripMenuItem";
-            this.expiredListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.expiredListToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.expiredListToolStripMenuItem.Text = "Expired";
             this.expiredListToolStripMenuItem.Click += new System.EventHandler(this.expiredListToolStripMenuItem_Click);
             // 
@@ -382,13 +389,6 @@
             this.checkbox_AFKMode.UseVisualStyleBackColor = true;
             this.checkbox_AFKMode.CheckedChanged += new System.EventHandler(this.checkbox_AFKMode_CheckedChanged);
             // 
-            // reportBugToolStripMenuItem
-            // 
-            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.reportBugToolStripMenuItem.Text = "Report Bug";
-            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,7 +405,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Smite Mixer Code Grabber v0.9.6-Beta";
+            this.Text = "Smite Mixer Code Grabber v0.9.9-Beta";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
             this.menustrip_mainForm.PerformLayout();

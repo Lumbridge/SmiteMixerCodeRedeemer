@@ -85,8 +85,7 @@ namespace MixerChat
                             OnMessageReceived?.Invoke(new ChatMessageEventArgs(cEvent.data.user_name, message));
                             break;
                         case "WelcomeEvent":
-                            Console.WriteLine("\tConnected to channel, Listening for codes...\n" + 
-                                "\tMake sure Smite is open & in windowed mode (1920x1080)!\n");
+                            Console.WriteLine("\tConnected to channel, Listening for codes...\n");
                             ws.Send(JsonConvert.SerializeObject(new Auth(channelId.id)));
                             break;
                         case "UserLeave":
