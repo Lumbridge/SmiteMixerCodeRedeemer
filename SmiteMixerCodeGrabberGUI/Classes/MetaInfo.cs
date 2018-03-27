@@ -8,7 +8,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 {
     public static class MetaInfo
     {
-        public static string Version = "v0.9.6-Beta";
+        public static string Version = "v0.9.9-Beta";
 
         public static string GetMetaInfoConsole()
         {

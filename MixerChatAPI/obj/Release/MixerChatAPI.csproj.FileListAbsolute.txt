@@ -23,6 +23,5 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\Mixe
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\Newtonsoft.Json.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\WebSocket4Net.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\Newtonsoft.Json.xml
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChatAPI.csprojResolveAssemblyReference.cache
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.pdb
