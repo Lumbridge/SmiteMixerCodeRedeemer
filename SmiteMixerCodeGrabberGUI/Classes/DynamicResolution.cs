@@ -79,7 +79,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             Task.Run(()=> SetWindowTopMostIfExists("LaunchUnrealUWindowsClient", "Smite (32-bit, DX9)"));
             Thread.Sleep(100);
             RECT smiteRECT = PointReturns.GetWindowPosition(smiteHandle);
-            Console.WriteLine("Current Smite Resolution: " + smiteRECT.Width + "x" + smiteRECT.Height);
+            Write("Current Smite Resolution: " + smiteRECT.Width + "x" + smiteRECT.Height, true);
             return smiteRECT;
         }
         
