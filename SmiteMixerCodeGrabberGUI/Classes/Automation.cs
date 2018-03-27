@@ -14,6 +14,7 @@ using DolphinScript.Lib.ScriptEventClasses;
 using SmiteMixerListener.Classes;
 using static SmiteMixerListener.Classes.Common;
 using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
+using static DolphinScript.Lib.Backend.Common;
 
 using static SmiteMixerCodeGrabberGUI.Classes.DynamicResolution;
 
@@ -28,9 +29,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             var loop = GetRedeemLoop(sc.GetCode());
 
             foreach (var ev in loop)
-                ev.DoEvent();
+                if(IsRunning)
+                    ev.DoEvent();
 
-            sc.SetIsRedeemed(true);
+            if(IsRunning)
+                sc.SetIsRedeemed(true);
         }
 
         public static void RedeemAllActive()
@@ -44,9 +47,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                     var loop = GetRedeemLoop(code.GetCode());
 
                     foreach (var ev in loop)
-                        ev.DoEvent();
+                        if(IsRunning)
+                            ev.DoEvent();
 
-                    code.SetIsRedeemed(true);
+                    if(IsRunning)
+                        code.SetIsRedeemed(true);
                 }
             }
         }

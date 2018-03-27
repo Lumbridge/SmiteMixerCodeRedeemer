@@ -85,7 +85,7 @@ namespace MixerChat
                             OnMessageReceived?.Invoke(new ChatMessageEventArgs(cEvent.data.user_name, message));
                             break;
                         case "WelcomeEvent":
-                            Console.WriteLine("\tConnected to channel, Listening for codes...\n");
+                            Console.WriteLine("Connected to channel, Listening for codes...");
                             ws.Send(JsonConvert.SerializeObject(new Auth(channelId.id)));
                             break;
                         case "UserLeave":

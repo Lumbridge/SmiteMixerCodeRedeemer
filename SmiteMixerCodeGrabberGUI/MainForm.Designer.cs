@@ -61,9 +61,12 @@
             this.numberbox_codeLength = new System.Windows.Forms.NumericUpDown();
             this.textbox_whitelistedUsernames = new System.Windows.Forms.RichTextBox();
             this.groupbox_activeCodes = new System.Windows.Forms.GroupBox();
+            this.button_CopySelectedToClipboard = new System.Windows.Forms.Button();
             this.groupbox_expiredCodes = new System.Windows.Forms.GroupBox();
             this.timer_MainForm = new System.Windows.Forms.Timer(this.components);
             this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.logbox = new System.Windows.Forms.RichTextBox();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
@@ -77,7 +80,7 @@
             this.listbox_Active.FormattingEnabled = true;
             this.listbox_Active.Location = new System.Drawing.Point(6, 19);
             this.listbox_Active.Name = "listbox_Active";
-            this.listbox_Active.Size = new System.Drawing.Size(286, 134);
+            this.listbox_Active.Size = new System.Drawing.Size(286, 95);
             this.listbox_Active.TabIndex = 0;
             // 
             // menustrip_mainForm
@@ -211,7 +214,7 @@
             // 
             // button_redeemSelected
             // 
-            this.button_redeemSelected.Location = new System.Drawing.Point(6, 159);
+            this.button_redeemSelected.Location = new System.Drawing.Point(6, 120);
             this.button_redeemSelected.Name = "button_redeemSelected";
             this.button_redeemSelected.Size = new System.Drawing.Size(142, 23);
             this.button_redeemSelected.TabIndex = 5;
@@ -221,7 +224,7 @@
             // 
             // button_redeemAllActive
             // 
-            this.button_redeemAllActive.Location = new System.Drawing.Point(150, 159);
+            this.button_redeemAllActive.Location = new System.Drawing.Point(150, 120);
             this.button_redeemAllActive.Name = "button_redeemAllActive";
             this.button_redeemAllActive.Size = new System.Drawing.Size(142, 23);
             this.button_redeemAllActive.TabIndex = 6;
@@ -234,9 +237,9 @@
             this.checkbox_whiteListOnly.AutoSize = true;
             this.checkbox_whiteListOnly.Location = new System.Drawing.Point(6, 19);
             this.checkbox_whiteListOnly.Name = "checkbox_whiteListOnly";
-            this.checkbox_whiteListOnly.Size = new System.Drawing.Size(255, 17);
+            this.checkbox_whiteListOnly.Size = new System.Drawing.Size(255, 30);
             this.checkbox_whiteListOnly.TabIndex = 3;
-            this.checkbox_whiteListOnly.Text = "Only grab codes from the whitelisted users below";
+            this.checkbox_whiteListOnly.Text = "Only grab codes from the whitelisted users below\r\n(Not recommended)";
             this.checkbox_whiteListOnly.UseVisualStyleBackColor = true;
             this.checkbox_whiteListOnly.CheckedChanged += new System.EventHandler(this.checkbox_whiteListOnly_CheckedChanged);
             // 
@@ -343,24 +346,35 @@
             // 
             // textbox_whitelistedUsernames
             // 
-            this.textbox_whitelistedUsernames.Location = new System.Drawing.Point(6, 42);
+            this.textbox_whitelistedUsernames.Location = new System.Drawing.Point(6, 55);
             this.textbox_whitelistedUsernames.Name = "textbox_whitelistedUsernames";
-            this.textbox_whitelistedUsernames.Size = new System.Drawing.Size(286, 130);
+            this.textbox_whitelistedUsernames.Size = new System.Drawing.Size(286, 117);
             this.textbox_whitelistedUsernames.TabIndex = 0;
             this.textbox_whitelistedUsernames.Text = "";
             this.textbox_whitelistedUsernames.TextChanged += new System.EventHandler(this.textbox_whitelistedUsernames_TextChanged);
             // 
             // groupbox_activeCodes
             // 
+            this.groupbox_activeCodes.Controls.Add(this.button_CopySelectedToClipboard);
             this.groupbox_activeCodes.Controls.Add(this.listbox_Active);
             this.groupbox_activeCodes.Controls.Add(this.button_redeemSelected);
             this.groupbox_activeCodes.Controls.Add(this.button_redeemAllActive);
             this.groupbox_activeCodes.Location = new System.Drawing.Point(12, 160);
             this.groupbox_activeCodes.Name = "groupbox_activeCodes";
-            this.groupbox_activeCodes.Size = new System.Drawing.Size(298, 194);
+            this.groupbox_activeCodes.Size = new System.Drawing.Size(298, 191);
             this.groupbox_activeCodes.TabIndex = 12;
             this.groupbox_activeCodes.TabStop = false;
             this.groupbox_activeCodes.Text = "Active Codes";
+            // 
+            // button_CopySelectedToClipboard
+            // 
+            this.button_CopySelectedToClipboard.Location = new System.Drawing.Point(6, 149);
+            this.button_CopySelectedToClipboard.Name = "button_CopySelectedToClipboard";
+            this.button_CopySelectedToClipboard.Size = new System.Drawing.Size(286, 30);
+            this.button_CopySelectedToClipboard.TabIndex = 8;
+            this.button_CopySelectedToClipboard.Text = "Copy Selected Code To Clipboard";
+            this.button_CopySelectedToClipboard.UseVisualStyleBackColor = true;
+            this.button_CopySelectedToClipboard.Click += new System.EventHandler(this.button_CopySelectedToClipboard_Click);
             // 
             // groupbox_expiredCodes
             // 
@@ -381,7 +395,7 @@
             // checkbox_AFKMode
             // 
             this.checkbox_AFKMode.AutoSize = true;
-            this.checkbox_AFKMode.Location = new System.Drawing.Point(12, 360);
+            this.checkbox_AFKMode.Location = new System.Drawing.Point(12, 359);
             this.checkbox_AFKMode.Name = "checkbox_AFKMode";
             this.checkbox_AFKMode.Size = new System.Drawing.Size(110, 17);
             this.checkbox_AFKMode.TabIndex = 14;
@@ -389,11 +403,32 @@
             this.checkbox_AFKMode.UseVisualStyleBackColor = true;
             this.checkbox_AFKMode.CheckedChanged += new System.EventHandler(this.checkbox_AFKMode_CheckedChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(293, 7);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(324, 17);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Note: Press F5 to stop the automation at any time.";
+            // 
+            // logbox
+            // 
+            this.logbox.Location = new System.Drawing.Point(12, 386);
+            this.logbox.Name = "logbox";
+            this.logbox.ReadOnly = true;
+            this.logbox.Size = new System.Drawing.Size(605, 67);
+            this.logbox.TabIndex = 16;
+            this.logbox.Text = "";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 388);
+            this.ClientSize = new System.Drawing.Size(624, 465);
+            this.Controls.Add(this.logbox);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.checkbox_AFKMode);
             this.Controls.Add(this.groupbox_expiredCodes);
             this.Controls.Add(this.groupbox_activeCodes);
@@ -405,7 +440,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Smite Mixer Code Grabber v0.9.9-Beta";
+            this.Text = "Smite Mixer Code Grabber v1.0.0";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
             this.menustrip_mainForm.PerformLayout();
@@ -440,7 +475,6 @@
         private System.Windows.Forms.GroupBox groupbox_expiredCodes;
         private System.Windows.Forms.Button button_sendTestEmail;
         private System.Windows.Forms.Timer timer_MainForm;
-        private System.Windows.Forms.CheckBox checkbox_AFKMode;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textbox_startCharacters;
         private System.Windows.Forms.Label label2;
@@ -458,6 +492,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
+        private System.Windows.Forms.Button button_CopySelectedToClipboard;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.CheckBox checkbox_AFKMode;
+        public System.Windows.Forms.RichTextBox logbox;
     }
 }
 

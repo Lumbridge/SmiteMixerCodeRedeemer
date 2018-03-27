@@ -8,13 +8,13 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 {
     public static class MetaInfo
     {
-        public static string Version = "v0.9.9-Beta";
+        public static string Version = "v1.0.0";
 
         public static string GetMetaInfoConsole()
         {
-            return  "\n\tSmite Mixer Code Redeemer " + Version + " By github.com/Lumbridge.\n\n" +
-                    "\tCredits to myself for Dolphin Script & SmiteMixerCodeGrabberCLI/GUI Projects,\n" +
-                    "\tCredits to github.com/Breeser for the Mixer Chat API.\n\n";
+            return  "Smite Mixer Code Redeemer " + Version + " By github.com/Lumbridge.\n" +
+                    "Credits to myself for Dolphin Script & SmiteMixerCodeGrabberCLI/GUI Projects,\n" +
+                    "Credits to github.com/Breeser for the Mixer Chat API.\n";
         }
 
         public static string GetMetaInfoMessageBox()

@@ -44,8 +44,6 @@ namespace DolphinScript.Lib.ScriptEventClasses
             //
             BringEventWindowToFront(this);
 
-            Thread.Sleep(1000);
-
             // don't override original click area or it will cause the mouse position to incrememnt every time this method is called
             RECT NewClickArea = GetClickAreaPositionOnWindow(WindowToClickHandle, ClickArea);
 

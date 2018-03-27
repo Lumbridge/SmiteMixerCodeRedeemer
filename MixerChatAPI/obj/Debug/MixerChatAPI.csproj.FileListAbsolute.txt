@@ -25,3 +25,4 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Debug\WebSoc
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Debug\MixerChat.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Debug\MixerChat.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Debug\MixerChatAPI.csprojResolveAssemblyReference.cache

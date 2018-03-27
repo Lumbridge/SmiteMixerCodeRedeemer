@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{79C482B1-1AD7-4269-A7BD-20771DC3D96D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmiteMixerCodeGrabberGUI</RootNamespace>
     <AssemblyName>SmiteMixerCodeGrabberGUI</AssemblyName>
@@ -54,7 +54,9 @@
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Classes\DynamicResolution.cs" />
     <Compile Include="Classes\MetaInfo.cs" />
+    <Compile Include="Classes\LogWriter.cs" />
     <Compile Include="Classes\SmiteCode.cs" />
+    <Compile Include="Classes\ThreadHelperClass.cs" />
     <Compile Include="Classes\Whitelist.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

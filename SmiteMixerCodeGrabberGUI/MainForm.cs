@@ -18,10 +18,42 @@ using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
 using static SmiteMixerCodeGrabberGUI.Classes.Common;
 using static SmiteMixerCodeGrabberGUI.Classes.DynamicResolution;
 
+using static DolphinScript.Lib.Backend.WinAPI;
+using static DolphinScript.Lib.Backend.Common;
+
+using SmiteMixerCodeGrabberGUI.Classes;
+using static SmiteMixerCodeGrabberGUI.Classes.ThreadHelperClass;
+
+using static SmiteMixerCodeGrabberGUI.Classes.LogWriter;
+
 namespace SmiteMixerCodeGrabberGUI
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// this method is used to determine if the user is pressing the F5 key to stop the script
+        /// </summary>
+        public static void CheckForTerminationKey(MainForm mf, CheckBox c)
+        {
+            while(true)
+            {
+                // listen for the F5 key
+                //
+                if (GetAsyncKeyState(VirtualKeyStates.VK_F5) < 0)
+                {
+                    // set is running flag to false
+                    IsRunning = false;
+                    
+                    Properties.Settings.Default.AFKMode = false;
+
+                    SetCheckbox(mf, c, false);
+
+                    return;
+                }
+                Thread.Sleep(100);
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -29,6 +61,9 @@ namespace SmiteMixerCodeGrabberGUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            CheckForIllegalCrossThreadCalls = false;
+            Console.SetOut(new LogWriter(logbox));
+
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
             textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
@@ -36,7 +71,7 @@ namespace SmiteMixerCodeGrabberGUI
             checkbox_whiteListOnly.Checked = Properties.Settings.Default.whitelistOnly;
 
             // meta info
-            Write(Classes.MetaInfo.GetMetaInfoConsole(), false);
+            Console.Write(MetaInfo.GetMetaInfoConsole());
 
             Mixer chat = new Mixer();
             chat.OnMessageReceived += Chat_OnMessageReceived;
@@ -45,7 +80,10 @@ namespace SmiteMixerCodeGrabberGUI
             chat.OnError += Chat_OnError;
             var connected = chat.Connect("SmiteGame");
 
+            Task.Run(() => CheckForTerminationKey(this, checkbox_AFKMode));
             Task.Run(() => MainLoop());
+
+            IsRunning = true;
         }
 
         #region Mixer Chat Handlers
@@ -129,6 +167,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void button_redeemAllActive_Click(object sender, EventArgs e)
         {
+            IsRunning = true;
             if (GetActiveCodes().Count > 0)
                 Classes.Automation.RedeemAllActive();
             else
@@ -136,6 +175,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void button_redeemSelected_Click(object sender, EventArgs e)
         {
+            IsRunning = true;
             var codes = GetActiveCodes();
             var selectedIndex = listbox_Active.SelectedIndex;
             if (selectedIndex > -1)
@@ -148,6 +188,8 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
+            if(checkbox_AFKMode.Checked)
+                IsRunning = true;
             Properties.Settings.Default.AFKMode = checkbox_AFKMode.Checked;
         }
         private void button_sendTestEmail_Click(object sender, EventArgs e)
@@ -189,6 +231,13 @@ namespace SmiteMixerCodeGrabberGUI
                 listbox_Active.SelectedIndex = s;
             else
                 listbox_Active.SelectedIndex = listbox_Active.Items.Count - 1;
+        }
+        private void button_CopySelectedToClipboard_Click(object sender, EventArgs e)
+        {
+            if(listbox_Active.SelectedIndex >= 0)
+            {
+                Clipboard.SetText(GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
+            }
         }
         #endregion
 
@@ -261,29 +310,28 @@ namespace SmiteMixerCodeGrabberGUI
 
         public static void MainLoop()
         {
-            while (Properties.Settings.Default.AFKMode)
+            while (true)
             {
                 if (Properties.Settings.Default.AFKMode == true)
                 {
                     foreach (var code in GetActiveCodes())
                     {
-                        if (code.GetIsRedeemed() == false)
+                        if (code.GetIsRedeemed() == false && IsRunning)
                         {
                             // get the event list and pass it the code we want it to type
                             //
                             var loop = GetRedeemLoop(code.GetCode());
 
                             foreach (var ev in loop)
-                                ev.DoEvent();
+                                if(IsRunning)
+                                    ev.DoEvent();
 
-                            code.SetIsRedeemed(true);
+                            if(IsRunning)
+                                code.SetIsRedeemed(true);
                         }
                     }
                 }
-                else
-                    Write("No codes currently in the queue...", true);
-
-                Thread.Sleep(15000);
+                Thread.Sleep(500);
             }
         }
     }

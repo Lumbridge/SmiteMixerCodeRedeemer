@@ -106,6 +106,7 @@ namespace DolphinScript.Lib.Backend
                 // un-minimises window
                 //
                 ShowWindowAsync(handle, SW_SHOWNORMAL);
+
                 // then we set it as the foreground window
                 //
                 SetForegroundWindow(handle);
@@ -130,7 +131,7 @@ namespace DolphinScript.Lib.Backend
 
                 // small delay to prevent click area errors
                 //
-                Thread.Sleep(1);
+                Thread.Sleep(100);
             }
         }
 
