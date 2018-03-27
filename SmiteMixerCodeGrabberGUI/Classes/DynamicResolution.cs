@@ -1,36 +1,74 @@
-﻿using DolphinScript.Lib.Backend;
-using DolphinScript.Lib.ScriptEventClasses;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Diagnostics;
 using System.Threading.Tasks;
+using DolphinScript.Lib.Backend;
+using System.Collections.Generic;
+using DolphinScript.Lib.ScriptEventClasses;
 using static DolphinScript.Lib.Backend.WinAPI;
 using static DolphinScript.Lib.Backend.WindowControl;
+using static SmiteMixerListener.Classes.Common;
+
 
 namespace SmiteMixerCodeGrabberGUI.Classes
 {
     static class DynamicResolution
     {
-        public static int GetPercentageScaleDifference(RECT resolution)
+        public static POINT GetAspectRatio(RECT r)
         {
-            RECT original = new RECT(0, 0, 1080, 1920);
+            int x = r.Width;
+            int y = r.Height;
+            return new POINT(x / GCD(x, y), y / GCD(x, y));
+        }
+        static int GCD(int a, int b)
+        {
+            int Remainder;
+            while (b != 0) {
+                Remainder = a % b;
+                a = b;
+                b = Remainder;
+            }
+            return a;
+        }
 
-            decimal totalOriginal = original.Height * original.Width;
-            decimal totalNew = resolution.Height * resolution.Width;
-            decimal totalDifference = totalOriginal - totalNew;
-            decimal pChange = (totalDifference / totalOriginal) * 100;
+        public static RECT ReScaleRECT(RECT toBeScaled, RECT newResolution, POINT aspectRatio)
+        {
+            RECT originalResolution;
 
-            if (pChange < 0)
-                Console.WriteLine(resolution.PrintArea() + " is " + pChange + "% smaller than " + original.PrintArea());
+            aspectRatio = GetAspectRatio(newResolution);
+
+            if (aspectRatio.X == 16 && aspectRatio.Y == 9)
+                originalResolution = new RECT(0, 0, 1080, 1920);
+            else if (aspectRatio.X == 8 && aspectRatio.Y == 5)
+                originalResolution = new RECT(0, 0, 1050, 1680);
+            else if (aspectRatio.X == 4 && aspectRatio.Y == 3)
+                originalResolution = new RECT(0, 0, 960, 1280);
             else
-                Console.WriteLine(resolution.PrintArea() + " is " + pChange + "% larger than " + original.PrintArea());
+                originalResolution = new RECT(0, 0, 1080, 1920);
 
-            Console.WriteLine("\nReturning Scalar: " + (int)Math.Round((totalDifference / totalOriginal) * 100));
+            // work out Height scalar
+            double originalH = originalResolution.Height;
+            double newH = newResolution.Height;
+            double differenceH = originalH - newH;
+            double scaleH = originalH / newH;
 
-            return (int)Math.Round((totalDifference / totalOriginal) * 100);
+            // work out Width scalar
+            double originalW = originalResolution.Width;
+            double newW = newResolution.Width;
+            double differenceW = originalW - newW;
+            double scaleW = originalW / newW;
+
+            // scale Height of passed in RECT 
+            double newTop = toBeScaled.Top / scaleH;
+            double newBottom = toBeScaled.Bottom / scaleH;
+
+            // scale Width of passed in RECT
+            double newRight = toBeScaled.Right / scaleW;
+            double newLeft = toBeScaled.Left / scaleW;
+
+            return new RECT(newTop, newLeft, newBottom, newRight);
         }
 
         public static RECT GetSmiteWindowResolution()
@@ -47,40 +85,53 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         
         public static List<ScriptEvent> GetRedeemLoop(string code)
         {
-            var scale = GetPercentageScaleDifference(GetSmiteWindowResolution());
-
+            RECT currentSmiteResolution = GetSmiteWindowResolution();
+            POINT aspectRatio = GetAspectRatio(currentSmiteResolution);
             RECT m1, m2, m3, m4, m5, m6;
 
-            if (scale < 0)
-            {
-                scale = Math.Abs(scale);
-                m1 = new RECT(20, 844, 73, 1068).ScaleDown(scale);
-                m2 = new RECT(31, 554, 59, 696).ScaleDown(scale);
-                m3 = new RECT(586, 198, 619, 320).ScaleDown(scale);
-                m4 = new RECT(354, 749, 367, 858).ScaleDown(scale);
-                m5 = new RECT(392, 860, 417, 972).ScaleDown(scale);
-                m6 = new RECT(613, 875, 635, 1042).ScaleDown(scale);
-            }
-            else if (scale == 0)
-            {
-                m1 = new RECT(20, 844, 73, 1068);
-                m2 = new RECT(31, 554, 59, 696);
-                m3 = new RECT(586, 198, 619, 320);
-                m4 = new RECT(354, 749, 367, 858);
-                m5 = new RECT(392, 860, 417, 972);
-                m6 = new RECT(613, 875, 635, 1042);
+            Write("Current Aspect Ratio: " + aspectRatio.X + ":" + aspectRatio.Y + ".", true);
 
-            }
-            else
+            if (aspectRatio.X == 16 && aspectRatio.Y == 9) // 16:9 ratios
             {
-                m1 = new RECT(20, 844, 73, 1068).ScaleUp(scale);
-                m2 = new RECT(31, 554, 59, 696).ScaleUp(scale);
-                m3 = new RECT(586, 198, 619, 320).ScaleUp(scale);
-                m4 = new RECT(354, 749, 367, 858).ScaleUp(scale);
-                m5 = new RECT(392, 860, 417, 972).ScaleUp(scale);
-                m6 = new RECT(613, 875, 635, 1042).ScaleUp(scale);
+                Write("Using 16:9 automation script.", true);
+                m1 = ReScaleRECT(new RECT(20, 844, 73, 1068), currentSmiteResolution, aspectRatio);
+                m2 = ReScaleRECT(new RECT(31, 554, 59, 696), currentSmiteResolution, aspectRatio);
+                m3 = ReScaleRECT(new RECT(586, 198, 619, 320), currentSmiteResolution, aspectRatio);
+                m4 = ReScaleRECT(new RECT(354, 749, 367, 858), currentSmiteResolution, aspectRatio);
+                m5 = ReScaleRECT(new RECT(392, 860, 417, 972), currentSmiteResolution, aspectRatio);
+                m6 = ReScaleRECT(new RECT(613, 875, 635, 1042), currentSmiteResolution, aspectRatio);
             }
-
+            else if (aspectRatio.X == 8 && aspectRatio.Y == 5) // 16:10 ratios
+            {
+                Write("Using 16:10 automation script.", true);
+                m1 = ReScaleRECT(new RECT(16, 735, 65, 940), currentSmiteResolution, aspectRatio);
+                m2 = ReScaleRECT(new RECT(29, 482, 53, 612), currentSmiteResolution, aspectRatio);
+                m3 = ReScaleRECT(new RECT(568, 100, 607, 220), currentSmiteResolution, aspectRatio);
+                m4 = ReScaleRECT(new RECT(342, 633, 360, 774), currentSmiteResolution, aspectRatio);
+                m5 = ReScaleRECT(new RECT(382, 745, 405, 850), currentSmiteResolution, aspectRatio);
+                m6 = ReScaleRECT(new RECT(597, 758, 619, 916), currentSmiteResolution, aspectRatio);
+            }
+            else if (aspectRatio.X == 4 && aspectRatio.Y == 3) // 4:3 ratios
+            {
+                Write("Using 4:3 automation script.", true);
+                m1 = ReScaleRECT(new RECT(13, 563, 50, 713), currentSmiteResolution, aspectRatio);
+                m2 = ReScaleRECT(new RECT(19, 368, 38, 462), currentSmiteResolution, aspectRatio);
+                m3 = ReScaleRECT(new RECT(449, 52, 480, 143), currentSmiteResolution, aspectRatio);
+                m4 = ReScaleRECT(new RECT(272, 478, 284, 552), currentSmiteResolution, aspectRatio);
+                m5 = ReScaleRECT(new RECT(304, 564, 321, 647), currentSmiteResolution, aspectRatio);
+                m6 = ReScaleRECT(new RECT(546, 566, 567, 713), currentSmiteResolution, aspectRatio);
+            }
+            else // unsupported aspect ratio
+            {
+                Write("Unsupported aspect ratio detected, defaulting to 16:9 automation script.", true);
+                m1 = ReScaleRECT(new RECT(20, 844, 73, 1068), currentSmiteResolution, aspectRatio);
+                m2 = ReScaleRECT(new RECT(31, 554, 59, 696), currentSmiteResolution, aspectRatio);
+                m3 = ReScaleRECT(new RECT(586, 198, 619, 320), currentSmiteResolution, aspectRatio);
+                m4 = ReScaleRECT(new RECT(354, 749, 367, 858), currentSmiteResolution, aspectRatio);
+                m5 = ReScaleRECT(new RECT(392, 860, 417, 972), currentSmiteResolution, aspectRatio);
+                m6 = ReScaleRECT(new RECT(613, 875, 635, 1042), currentSmiteResolution, aspectRatio);
+            }
+            
             return new List<ScriptEvent>()
             {
                 GetMouseMoveToWindow(m1),

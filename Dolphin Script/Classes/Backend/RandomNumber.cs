@@ -21,7 +21,7 @@ namespace DolphinScript.Lib.Backend
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
-        public static int GetRandomNumber(int min, int max)
+        public static int GetRandomNumber(double min, double max)
         {
             // we lock this method so that we ensure that the method only returns the same number once
             // and that a unique number is returned every time the method is called
@@ -30,7 +30,7 @@ namespace DolphinScript.Lib.Backend
             {
                 // return the random number using the private random object
                 //
-                return getrandom.Next(min, max + 1);
+                return getrandom.Next(Convert.ToInt32(min), Convert.ToInt32(max) + 1);
             }
         }
 

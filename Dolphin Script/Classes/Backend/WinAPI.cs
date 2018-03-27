@@ -33,6 +33,14 @@ namespace DolphinScript.Lib.Backend
             public int Height { get { return Bottom - Top; } }
             public int Width { get { return Right - Left; } }
 
+            public double dLeft;
+            public double dTop;
+            public double dRight;
+            public double dBottom;
+
+            public double dHeight { get { return dBottom - dTop; } }
+            public double dWidth { get { return dRight - dLeft; } }
+            
             /// <summary>
             /// RECT constructor which takes two points (TopLeft & BottomRight points)
             /// </summary>
@@ -44,6 +52,10 @@ namespace DolphinScript.Lib.Backend
                 Left = TopLeft.X;
                 Bottom = BottomRight.Y;
                 Right = BottomRight.X;
+                dTop = TopLeft.Y;
+                dLeft = TopLeft.X;
+                dBottom = BottomRight.Y;
+                dRight = BottomRight.X;
             }
 
             /// <summary>
@@ -59,6 +71,22 @@ namespace DolphinScript.Lib.Backend
                 this.Left = Left;
                 this.Bottom = Bottom;
                 this.Right = Right;
+                dTop = Top;
+                dLeft = Left;
+                dBottom = Bottom;
+                dRight = Right;
+            }
+
+            public RECT(double Top, double Left, double Bottom, double Right)
+            {
+                this.Top = Convert.ToInt32(Top);
+                this.Left = Convert.ToInt32(Left);
+                this.Bottom = Convert.ToInt32(Bottom);
+                this.Right = Convert.ToInt32(Right);
+                dTop = Top;
+                dLeft = Left;
+                dBottom = Bottom;
+                dRight = Right;
             }
 
             /// <summary>
@@ -101,7 +129,9 @@ namespace DolphinScript.Lib.Backend
         {
             public int X;
             public int Y;
-            
+            public double dX;
+            public double dY;
+
             /// <summary>
             /// POINT constructor takes two ints which are the x and y position of the coordinate
             /// </summary>
@@ -111,6 +141,16 @@ namespace DolphinScript.Lib.Backend
             {
                 this.X = X;
                 this.Y = Y;
+                dX = 0.0;
+                dY = 0.0;
+            }
+
+            public POINT(double dX, double dY)
+            {
+                this.dX = dX;
+                this.dY = dY;
+                X = 0;
+                Y = 0;
             }
 
             public override string ToString()
@@ -125,6 +165,15 @@ namespace DolphinScript.Lib.Backend
             public static implicit operator Point(POINT point)
             {
                 return new Point(point.X, point.Y);
+            }
+
+            /// <summary>
+            /// converts the normal C# point to our POINT structure
+            /// </summary>
+            /// <param name="point"></param>
+            public static implicit operator PointF(POINT point)
+            {
+                return new PointF((float)point.X, (float)point.Y);
             }
         }
 

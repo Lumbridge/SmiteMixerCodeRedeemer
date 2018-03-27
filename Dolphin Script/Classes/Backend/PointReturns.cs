@@ -26,7 +26,10 @@ namespace DolphinScript.Lib.Backend
             //
             temp.X = (p1.X + p2.X) / 2;
             temp.Y = (p1.Y + p2.Y) / 2;
-            
+
+            temp.dX = (p1.dX + p2.dX) / 2;
+            temp.dY = (p1.dY + p2.dY) / 2;
+
             // return the centerpoint of the area
             //
             return temp;
@@ -49,6 +52,9 @@ namespace DolphinScript.Lib.Backend
             temp.X = GetRandomNumber(TopleftPoint.X, BottomRightPoint.X);
             temp.Y = GetRandomNumber(TopleftPoint.Y, BottomRightPoint.Y);
 
+            temp.dX = GetRandomNumber(TopleftPoint.dX, BottomRightPoint.dX);
+            temp.dY = GetRandomNumber(TopleftPoint.dY, BottomRightPoint.dY);
+
             // return the randomised point
             //
             return temp;
@@ -69,6 +75,9 @@ namespace DolphinScript.Lib.Backend
             //
             temp.X = GetRandomNumber(Area.Left, Area.Right);
             temp.Y = GetRandomNumber(Area.Top, Area.Bottom);
+
+            temp.dX = GetRandomNumber(Area.Left, Area.Right);
+            temp.dY = GetRandomNumber(Area.Top, Area.Bottom);
 
             // return the randomised point
             //

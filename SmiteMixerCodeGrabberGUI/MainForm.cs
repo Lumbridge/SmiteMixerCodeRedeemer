@@ -29,8 +29,6 @@ namespace SmiteMixerCodeGrabberGUI
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            var scale = GetPercentageScaleDifference(GetSmiteWindowResolution());
-
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
             textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
@@ -259,6 +257,8 @@ namespace SmiteMixerCodeGrabberGUI
             return Properties.Settings.Default.codesStartWith + new string(Enumerable.Repeat(chars, len - 2)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
+        #endregion
+
         public static void MainLoop()
         {
             while (Properties.Settings.Default.AFKMode)
@@ -286,6 +286,5 @@ namespace SmiteMixerCodeGrabberGUI
                 Thread.Sleep(15000);
             }
         }
-        #endregion
     }
 }
