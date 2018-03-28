@@ -28,7 +28,7 @@
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="notificationSoundFilePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Beep.mp3</Value>
+      <Value Profile="(Default)">Beep.wav</Value>
     </Setting>
     <Setting Name="notificationSound" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

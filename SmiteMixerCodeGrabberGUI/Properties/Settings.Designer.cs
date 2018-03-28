@@ -104,7 +104,7 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Beep.mp3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Beep.wav")]
         public string notificationSoundFilePath {
             get {
                 return ((string)(this["notificationSoundFilePath"]));
