@@ -83,6 +83,8 @@ namespace SmiteMixerCodeGrabberGUI
             Task.Run(() => CheckForTerminationKey(this, checkbox_AFKMode));
             Task.Run(() => MainLoop());
 
+            Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
+
             IsRunning = true;
         }
 
@@ -114,31 +116,31 @@ namespace SmiteMixerCodeGrabberGUI
                     }
                     catch { }
                 }
-                else
+            }
+            else
+            {
+                if (isWhitelistedUser(e.User))
                 {
-                    if (isWhitelistedUser(e.User) && e.Message.Contains("AP"))
+                    var m = e.Message;
+                    try
                     {
-                        var m = e.Message;
-                        try
-                        {
-                            var code = m.Substring(m.IndexOf("AP"), 17);
+                        var code = m.Substring(m.IndexOf("AP"), 17);
 
-                            if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
-                            {
-                                AddCodeToCodeList(code, true);
-                                if (Properties.Settings.Default.notificationSetting)
-                                    DisplayNotification("New potential code added to active codes: \n" + code);
-                            }
-                            else
-                            {
-                                if (!code.Contains(" "))
-                                    Write("Code Spotted: " + code + " (Already Redeemed).", true);
-                                else
-                                    Write("Potential Code Spotted: " + code + " (Invalid)", true);
-                            }
+                        if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
+                        {
+                            AddCodeToCodeList(code, true);
+                            if (Properties.Settings.Default.notificationSetting)
+                                DisplayNotification("New potential code added to active codes: \n" + code);
                         }
-                        catch { }
+                        else
+                        {
+                            if (!code.Contains(" "))
+                                Write("Code Spotted: " + code + " (Already Redeemed).", true);
+                            else
+                                Write("Potential Code Spotted: " + code + " (Invalid)", true);
+                        }
                     }
+                    catch { }
                 }
             }
         }
@@ -208,6 +210,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void textbox_whitelistedUsernames_TextChanged(object sender, EventArgs e)
         {
+            Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
             Properties.Settings.Default.whitelistedUsernames.Clear();
             Properties.Settings.Default.whitelistedUsernames.AddRange(textbox_whitelistedUsernames.Lines.ToArray());
             Properties.Settings.Default.Save();
@@ -293,7 +296,7 @@ namespace SmiteMixerCodeGrabberGUI
         #region Helper Methods
         public static bool isWhitelistedUser(string user)
         {
-            return Classes.Whitelist.GetIsWhitelistedUser(user);
+            return Whitelist.GetIsWhitelistedUser(user);
         }
         public static string GenerateRandomSmiteCode()
         {
