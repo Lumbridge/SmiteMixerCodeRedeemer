@@ -125,5 +125,41 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
                 this["notificationSound"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool UseSlowTyping {
+            get {
+                return ((bool)(this["UseSlowTyping"]));
+            }
+            set {
+                this["UseSlowTyping"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Smite (32-bit, DX9)")]
+        public string smiteWindowTitle {
+            get {
+                return ((string)(this["smiteWindowTitle"]));
+            }
+            set {
+                this["smiteWindowTitle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool use64bitSmite {
+            get {
+                return ((bool)(this["use64bitSmite"]));
+            }
+            set {
+                this["use64bitSmite"] = value;
+            }
+        }
     }
 }

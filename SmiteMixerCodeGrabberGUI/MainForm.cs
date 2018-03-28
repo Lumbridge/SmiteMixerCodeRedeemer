@@ -64,7 +64,10 @@ namespace SmiteMixerCodeGrabberGUI
             CheckForIllegalCrossThreadCalls = false;
             Console.SetOut(new LogWriter(logbox));
 
+            checkbox_64bitSmite.Checked = Properties.Settings.Default.use64bitSmite;
+
             checkbox_AFKMode.Checked = Properties.Settings.Default.AFKMode;
+            checkbox_SlowType.Checked = Properties.Settings.Default.UseSlowTyping;
 
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
@@ -378,6 +381,22 @@ namespace SmiteMixerCodeGrabberGUI
         {
             logbox.SelectionStart = logbox.Text.Length;
             logbox.ScrollToCaret();
+        }
+
+        private void checkbox_SlowType_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.UseSlowTyping = checkbox_SlowType.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void checkbox_64bitSmite_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.use64bitSmite = checkbox_64bitSmite.Checked;
+            if (checkbox_64bitSmite.Checked)
+                Properties.Settings.Default.smiteWindowTitle = "Smite (64-bit, DX11)";
+            else
+                Properties.Settings.Default.smiteWindowTitle = "Smite (32-bit, DX9)";
+            Properties.Settings.Default.Save();
         }
     }
 }

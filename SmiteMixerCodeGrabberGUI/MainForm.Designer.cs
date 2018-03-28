@@ -70,6 +70,8 @@
             this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.logbox = new System.Windows.Forms.RichTextBox();
+            this.checkbox_SlowType = new System.Windows.Forms.CheckBox();
+            this.checkbox_64bitSmite = new System.Windows.Forms.CheckBox();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
@@ -458,11 +460,35 @@
             this.logbox.Text = "";
             this.logbox.TextChanged += new System.EventHandler(this.logbox_TextChanged);
             // 
+            // checkbox_SlowType
+            // 
+            this.checkbox_SlowType.AutoSize = true;
+            this.checkbox_SlowType.Location = new System.Drawing.Point(374, 434);
+            this.checkbox_SlowType.Name = "checkbox_SlowType";
+            this.checkbox_SlowType.Size = new System.Drawing.Size(127, 17);
+            this.checkbox_SlowType.TabIndex = 17;
+            this.checkbox_SlowType.Text = "Use slow code typing";
+            this.checkbox_SlowType.UseVisualStyleBackColor = true;
+            this.checkbox_SlowType.CheckedChanged += new System.EventHandler(this.checkbox_SlowType_CheckedChanged);
+            // 
+            // checkbox_64bitSmite
+            // 
+            this.checkbox_64bitSmite.AutoSize = true;
+            this.checkbox_64bitSmite.Location = new System.Drawing.Point(492, 7);
+            this.checkbox_64bitSmite.Name = "checkbox_64bitSmite";
+            this.checkbox_64bitSmite.Size = new System.Drawing.Size(126, 17);
+            this.checkbox_64bitSmite.TabIndex = 18;
+            this.checkbox_64bitSmite.Text = "I\'m using 64-Bit Smite";
+            this.checkbox_64bitSmite.UseVisualStyleBackColor = true;
+            this.checkbox_64bitSmite.CheckedChanged += new System.EventHandler(this.checkbox_64bitSmite_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 457);
+            this.Controls.Add(this.checkbox_64bitSmite);
+            this.Controls.Add(this.checkbox_SlowType);
             this.Controls.Add(this.logbox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkbox_AFKMode);
@@ -476,7 +502,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Smite Mixer Code Grabber v1.0.1";
+            this.Text = "Smite Mixer Code Grabber v1.0.2";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
             this.menustrip_mainForm.PerformLayout();
@@ -535,6 +561,8 @@
         private System.Windows.Forms.CheckBox checkbox_NotificationSound;
         private System.Windows.Forms.Button button_BrowseNotificationSound;
         private System.Windows.Forms.TextBox textbox_NotificationSound;
+        public System.Windows.Forms.CheckBox checkbox_SlowType;
+        public System.Windows.Forms.CheckBox checkbox_64bitSmite;
     }
 }
 

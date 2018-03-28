@@ -76,7 +76,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             Process[] processes = Process.GetProcessesByName("Smite");
             Process smiteProcess = processes[0];
             IntPtr smiteHandle = smiteProcess.MainWindowHandle;
-            Task.Run(()=> SetWindowTopMostIfExists("LaunchUnrealUWindowsClient", "Smite (32-bit, DX9)"));
+            Task.Run(()=> SetWindowTopMostIfExists("LaunchUnrealUWindowsClient", Properties.Settings.Default.smiteWindowTitle));
             Thread.Sleep(100);
             RECT smiteRECT = PointReturns.GetWindowPosition(smiteHandle);
             Write("Current Smite Resolution: " + smiteRECT.Width + "x" + smiteRECT.Height, true);
@@ -85,73 +85,53 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         
         public static List<ScriptEvent> GetRedeemLoop(string code)
         {
-            //RECT currentSmiteResolution = GetSmiteWindowResolution();
-            //POINT aspectRatio = GetAspectRatio(currentSmiteResolution);
-            //RECT m1, m2, m3, m4, m5, m6;
-
-            //Write("Current Aspect Ratio: " + aspectRatio.X + ":" + aspectRatio.Y + ".", true);
-
-            //if (aspectRatio.X == 16 && aspectRatio.Y == 9) // 16:9 ratios
-            //{
-            //    Write("Using 16:9 automation script.", true);
-            //    m1 = ReScaleRECT(new RECT(20, 844, 73, 1068), currentSmiteResolution, aspectRatio);
-            //    m2 = ReScaleRECT(new RECT(31, 554, 59, 696), currentSmiteResolution, aspectRatio);
-            //    m3 = ReScaleRECT(new RECT(586, 198, 619, 320), currentSmiteResolution, aspectRatio);
-            //    m4 = ReScaleRECT(new RECT(354, 749, 367, 858), currentSmiteResolution, aspectRatio);
-            //    m5 = ReScaleRECT(new RECT(392, 860, 417, 972), currentSmiteResolution, aspectRatio);
-            //    m6 = ReScaleRECT(new RECT(613, 875, 635, 1042), currentSmiteResolution, aspectRatio);
-            //}
-            //else if (aspectRatio.X == 8 && aspectRatio.Y == 5) // 16:10 ratios
-            //{
-            //    Write("Using 16:10 automation script.", true);
-            //    m1 = ReScaleRECT(new RECT(16, 735, 65, 940), currentSmiteResolution, aspectRatio);
-            //    m2 = ReScaleRECT(new RECT(29, 482, 53, 612), currentSmiteResolution, aspectRatio);
-            //    m3 = ReScaleRECT(new RECT(568, 100, 607, 220), currentSmiteResolution, aspectRatio);
-            //    m4 = ReScaleRECT(new RECT(342, 633, 360, 774), currentSmiteResolution, aspectRatio);
-            //    m5 = ReScaleRECT(new RECT(382, 745, 405, 850), currentSmiteResolution, aspectRatio);
-            //    m6 = ReScaleRECT(new RECT(597, 758, 619, 916), currentSmiteResolution, aspectRatio);
-            //}
-            //else if (aspectRatio.X == 4 && aspectRatio.Y == 3) // 4:3 ratios
-            //{
-            //    Write("Using 4:3 automation script.", true);
-            //    m1 = ReScaleRECT(new RECT(13, 563, 50, 713), currentSmiteResolution, aspectRatio);
-            //    m2 = ReScaleRECT(new RECT(19, 368, 38, 462), currentSmiteResolution, aspectRatio);
-            //    m3 = ReScaleRECT(new RECT(449, 52, 480, 143), currentSmiteResolution, aspectRatio);
-            //    m4 = ReScaleRECT(new RECT(272, 478, 284, 552), currentSmiteResolution, aspectRatio);
-            //    m5 = ReScaleRECT(new RECT(304, 564, 321, 647), currentSmiteResolution, aspectRatio);
-            //    m6 = ReScaleRECT(new RECT(546, 566, 567, 713), currentSmiteResolution, aspectRatio);
-            //}
-            //else // unsupported aspect ratio
-            //{
-            //    Write("Unsupported aspect ratio detected, defaulting to 16:9 automation script.", true);
-            //    m1 = ReScaleRECT(new RECT(20, 844, 73, 1068), currentSmiteResolution, aspectRatio);
-            //    m2 = ReScaleRECT(new RECT(31, 554, 59, 696), currentSmiteResolution, aspectRatio);
-            //    m3 = ReScaleRECT(new RECT(586, 198, 619, 320), currentSmiteResolution, aspectRatio);
-            //    m4 = ReScaleRECT(new RECT(354, 749, 367, 858), currentSmiteResolution, aspectRatio);
-            //    m5 = ReScaleRECT(new RECT(392, 860, 417, 972), currentSmiteResolution, aspectRatio);
-            //    m6 = ReScaleRECT(new RECT(613, 875, 635, 1042), currentSmiteResolution, aspectRatio);
-            //}
-
-            return new List<ScriptEvent>()
+            if(Properties.Settings.Default.UseSlowTyping)
             {
-                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = "Smite (32-bit, DX9)" },
-                GetPause(1.0, 1.5),
-                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
-                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
-                GetPause(1.0, 1.5),
-                new KeyboardKeyPress() { KeyboardKeys = "/claimpromotion " + code },
-                GetPause(0.3, 0.5),
-                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
-                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
-                GetPause(1.0, 1.5),
-                new KeyboardKeyPress() { KeyboardKeys = "{ESC}" },
-                new KeyboardKeyPress() { KeyboardKeys = "{ESC}" }
-            };
+                List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
+                {
+                    new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
+                    GetPause(1.0, 1.5),
+                    new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                    new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                    GetPause(1.0, 1.5)
+                };
+                var fullcode = "/claimpromotion " + code;
+                foreach (var letter in fullcode)
+                {
+                    SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = letter.ToString() });
+                    SlowTypingScript.Add(GetPause(0.1, 0.3));
+                }
+                SlowTypingScript.Add(GetPause(0.3, 0.5));
+                SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" });
+                SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" });
+                SlowTypingScript.Add(GetPause(1.0, 1.5));
+                SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = "{ESC}" });
+                SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = "{ESC}" });
+                return SlowTypingScript;
+            }
+            else
+            {
+                return new List<ScriptEvent>()
+                {
+                    new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
+                    GetPause(1.0, 1.5),
+                    new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                    new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                    GetPause(1.0, 1.5),
+                    new KeyboardKeyPress() { KeyboardKeys = "/claimpromotion " + code },
+                    GetPause(0.3, 0.5),
+                    new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                    new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                    GetPause(1.0, 1.5),
+                    new KeyboardKeyPress() { KeyboardKeys = "{ESC}" },
+                    new KeyboardKeyPress() { KeyboardKeys = "{ESC}" }
+                };
+            }
         }
 
         static MoveWindowToFront GetMoveWindowToFront()
         {
-            return new MoveWindowToFront() { WindowToClickTitle = "Smite (32-bit, DX9)" };
+            return new MoveWindowToFront() { WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle };
         }
 
         static RandomPauseInRange GetPause(double min, double max)
@@ -161,7 +141,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 
         static MouseMoveToAreaOnWindow GetMouseMoveToWindow(WinAPI.RECT clickArea)
         {
-            return new MouseMoveToAreaOnWindow() { ClickArea = clickArea, WindowToClickTitle = "Smite (32-bit, DX9)" };
+            return new MouseMoveToAreaOnWindow() { ClickArea = clickArea, WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle };
         }
 
         static MouseClick GetLeftMouseClick()

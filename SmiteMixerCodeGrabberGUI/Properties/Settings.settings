@@ -33,5 +33,14 @@
     <Setting Name="notificationSound" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="UseSlowTyping" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="smiteWindowTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Smite (32-bit, DX9)</Value>
+    </Setting>
+    <Setting Name="use64bitSmite" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
