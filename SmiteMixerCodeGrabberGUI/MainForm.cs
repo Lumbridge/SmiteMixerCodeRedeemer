@@ -371,8 +371,8 @@ namespace SmiteMixerCodeGrabberGUI
 
         private void logbox_TextChanged(object sender, EventArgs e)
         {
-            //logbox.SelectionStart = logbox.Text.Length;
-            //logbox.ScrollToCaret();
+            logbox.SelectionStart = logbox.Text.Length;
+            logbox.ScrollToCaret();
         }
     }
 }
