@@ -197,9 +197,12 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkbox_AFKMode.Checked)
+            if (checkbox_AFKMode.Checked)
                 IsRunning = true;
+            else
+                IsRunning = false;
             Properties.Settings.Default.AFKMode = checkbox_AFKMode.Checked;
+            Properties.Settings.Default.Save();
         }
         private void button_sendTestEmail_Click(object sender, EventArgs e)
         {
