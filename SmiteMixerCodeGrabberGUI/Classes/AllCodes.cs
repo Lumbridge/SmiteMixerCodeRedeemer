@@ -19,12 +19,12 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         {
             if (isActive)
             {
-                Console.WriteLine("\t[{0}] Added Active code: " + code + " to the code list.", DateTime.Now);
+                Console.WriteLine("Added Active code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code));
             }
             else
             {
-                Console.WriteLine("\t[{0}] Added Expried code: " + code + " to the code list.", DateTime.Now);
+                Console.WriteLine("Added Expried code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code, isActive));
             }
         }
@@ -33,12 +33,12 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         {
             if (isActive)
             {
-                Console.WriteLine("\t[{0}] Added Active code: " + code + " to the code list.", DateTime.Now);
+                Console.WriteLine("Added Active code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code, true, CreationTime));
             }
             else
             {
-                Console.WriteLine("\t[{0}] Added Expried code: " + code + " to the code list.", DateTime.Now);
+                Console.WriteLine("Added Expried code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code, isActive));
             }
         }
