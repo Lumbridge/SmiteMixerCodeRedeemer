@@ -113,8 +113,6 @@ namespace SmiteMixerCodeGrabberGUI
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
                             AddCodeToCodeList(code, true);
-                            if (Properties.Settings.Default.notificationSetting)
-                                DisplayNotification("New potential code added to active codes: \n" + code);
                         }
                         else
                         {
