@@ -64,6 +64,8 @@ namespace SmiteMixerCodeGrabberGUI
             CheckForIllegalCrossThreadCalls = false;
             Console.SetOut(new LogWriter(logbox));
 
+            checkbox_AFKMode.Checked = Properties.Settings.Default.AFKMode;
+
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
 
