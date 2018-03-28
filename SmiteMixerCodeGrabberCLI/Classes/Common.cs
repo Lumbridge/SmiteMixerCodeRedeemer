@@ -10,10 +10,7 @@ namespace SmiteMixerListener.Classes
     {
         public static void Write(string msg, bool showDateTime)
         {
-            if(showDateTime)
-                Console.WriteLine("[{0}] {1}", DateTime.Now, msg);
-            else
-                Console.WriteLine("{0}", msg);
+            Console.WriteLine("{0}", msg);
         }
     }
 }
