@@ -44,12 +44,15 @@ namespace DolphinScript.Lib.ScriptEventClasses
             //
             BringEventWindowToFront(this);
 
-            // don't override original click area or it will cause the mouse position to incrememnt every time this method is called
-            RECT NewClickArea = GetClickAreaPositionOnWindow(WindowToClickHandle, ClickArea);
+            if(ClickArea.Height > 0)
+            {
+                // don't override original click area or it will cause the mouse position to incrememnt every time this method is called
+                RECT NewClickArea = GetClickAreaPositionOnWindow(WindowToClickHandle, ClickArea);
 
-            // call the final mouse move method
-            //
-            MoveMouseToAreaOnWindow(NewClickArea);
+                // call the final mouse move method
+                //
+                MoveMouseToAreaOnWindow(NewClickArea);
+            }
         }
 
         /// <summary>

@@ -64,11 +64,16 @@ namespace SmiteMixerCodeGrabberGUI
             CheckForIllegalCrossThreadCalls = false;
             Console.SetOut(new LogWriter(logbox));
 
-            numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
-            textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
-            checkbox_showNotifications.Checked = Properties.Settings.Default.notificationSetting;
+            numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
+
             checkbox_whiteListOnly.Checked = Properties.Settings.Default.whitelistOnly;
+            textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
+
+            checkbox_showNotifications.Checked = Properties.Settings.Default.notificationSetting;
+            textbox_NotificationSound.Text = Properties.Settings.Default.notificationSoundFilePath;
+
+            checkbox_NotificationSound.Checked = Properties.Settings.Default.notificationSound;
 
             // meta info
             Console.Write(MetaInfo.GetMetaInfoConsole());
@@ -336,6 +341,38 @@ namespace SmiteMixerCodeGrabberGUI
                 }
                 Thread.Sleep(500);
             }
+        }
+
+        private void button_BrowseNotificationSound_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            o.DefaultExt = ".wav";
+            o.Filter = "wav files (*.wav)|*.wav|All files (*.*)|*.*";
+            var result = o.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                Properties.Settings.Default.notificationSoundFilePath = o.FileName;
+                Properties.Settings.Default.Save();
+                textbox_NotificationSound.Text = o.FileName;
+            }
+        }
+
+        private void textbox_NotificationSound_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.notificationSoundFilePath = textbox_NotificationSound.Text;
+            Properties.Settings.Default.Save();
+        }
+
+        private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.notificationSound = checkbox_NotificationSound.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void logbox_TextChanged(object sender, EventArgs e)
+        {
+            //logbox.SelectionStart = logbox.Text.Length;
+            //logbox.ScrollToCaret();
         }
     }
 }

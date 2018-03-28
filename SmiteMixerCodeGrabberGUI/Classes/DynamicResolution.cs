@@ -131,29 +131,20 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                 m5 = ReScaleRECT(new RECT(392, 860, 417, 972), currentSmiteResolution, aspectRatio);
                 m6 = ReScaleRECT(new RECT(613, 875, 635, 1042), currentSmiteResolution, aspectRatio);
             }
-            
+
             return new List<ScriptEvent>()
             {
-                GetMouseMoveToWindow(m1),
-                GetLeftMouseClick(),
-                GetPause(0.5, 0.8),
-                GetMouseMoveToWindow(m2),
-                GetLeftMouseClick(),
-                GetPause(0.5, 0.8),
-                GetMouseMoveToWindow(m3),
-                GetLeftMouseClick(),
-                GetPause(0.5, 0.8),
-                GetMouseMoveToWindow(m4),
-                GetLeftMouseClick(),
-                GetPause(0.5, 0.8),
-                new KeyboardKeyPress() { KeyboardKeys = code },
-                GetPause(0.2, 0.5),
-                GetMouseMoveToWindow(m5),
-                GetLeftMouseClick(),
-                GetPause(0.5, 0.8),
-                GetMouseMoveToWindow(m6),
-                GetLeftMouseClick(),
+                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = "Smite (32-bit, DX9)" },
                 GetPause(1.0, 1.5),
+                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                GetPause(1.0, 1.5),
+                new KeyboardKeyPress() { KeyboardKeys = "/claimpromotion " + code },
+                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                new KeyboardKeyPress() { KeyboardKeys = "{ENTER}" },
+                GetPause(1.0, 1.5),
+                new KeyboardKeyPress() { KeyboardKeys = "{ESC}" },
+                new KeyboardKeyPress() { KeyboardKeys = "{ESC}" }
             };
         }
 

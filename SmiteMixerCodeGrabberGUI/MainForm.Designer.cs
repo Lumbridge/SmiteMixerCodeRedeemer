@@ -67,6 +67,9 @@
             this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.logbox = new System.Windows.Forms.RichTextBox();
+            this.textbox_NotificationSound = new System.Windows.Forms.TextBox();
+            this.button_BrowseNotificationSound = new System.Windows.Forms.Button();
+            this.checkbox_NotificationSound = new System.Windows.Forms.CheckBox();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
@@ -256,20 +259,23 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkbox_NotificationSound);
+            this.groupBox1.Controls.Add(this.button_BrowseNotificationSound);
+            this.groupBox1.Controls.Add(this.textbox_NotificationSound);
             this.groupBox1.Controls.Add(this.checkbox_showNotifications);
             this.groupBox1.Controls.Add(this.button_sendTestEmail);
             this.groupBox1.Location = new System.Drawing.Point(316, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 105);
+            this.groupBox1.Size = new System.Drawing.Size(301, 126);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Notification Options";
             // 
             // button_sendTestEmail
             // 
-            this.button_sendTestEmail.Location = new System.Drawing.Point(9, 42);
+            this.button_sendTestEmail.Location = new System.Drawing.Point(9, 91);
             this.button_sendTestEmail.Name = "button_sendTestEmail";
-            this.button_sendTestEmail.Size = new System.Drawing.Size(246, 23);
+            this.button_sendTestEmail.Size = new System.Drawing.Size(283, 23);
             this.button_sendTestEmail.TabIndex = 2;
             this.button_sendTestEmail.Text = "Send Test Notification";
             this.button_sendTestEmail.UseVisualStyleBackColor = true;
@@ -285,9 +291,9 @@
             this.groupbox_whitelistedUsernames.Controls.Add(this.numberbox_codeLength);
             this.groupbox_whitelistedUsernames.Controls.Add(this.checkbox_whiteListOnly);
             this.groupbox_whitelistedUsernames.Controls.Add(this.textbox_whitelistedUsernames);
-            this.groupbox_whitelistedUsernames.Location = new System.Drawing.Point(316, 139);
+            this.groupbox_whitelistedUsernames.Location = new System.Drawing.Point(316, 160);
             this.groupbox_whitelistedUsernames.Name = "groupbox_whitelistedUsernames";
-            this.groupbox_whitelistedUsernames.Size = new System.Drawing.Size(301, 241);
+            this.groupbox_whitelistedUsernames.Size = new System.Drawing.Size(301, 216);
             this.groupbox_whitelistedUsernames.TabIndex = 11;
             this.groupbox_whitelistedUsernames.TabStop = false;
             this.groupbox_whitelistedUsernames.Text = "Code Grab Options";
@@ -295,7 +301,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(175, 187);
+            this.label4.Location = new System.Drawing.Point(175, 149);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 9;
@@ -304,7 +310,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 187);
+            this.label3.Location = new System.Drawing.Point(6, 149);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 8;
@@ -312,7 +318,7 @@
             // 
             // textbox_startCharacters
             // 
-            this.textbox_startCharacters.Location = new System.Drawing.Point(100, 184);
+            this.textbox_startCharacters.Location = new System.Drawing.Point(100, 146);
             this.textbox_startCharacters.Name = "textbox_startCharacters";
             this.textbox_startCharacters.Size = new System.Drawing.Size(69, 20);
             this.textbox_startCharacters.TabIndex = 7;
@@ -321,7 +327,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(175, 212);
+            this.label2.Location = new System.Drawing.Point(175, 174);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 13);
             this.label2.TabIndex = 6;
@@ -330,7 +336,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 212);
+            this.label1.Location = new System.Drawing.Point(36, 174);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 5;
@@ -338,7 +344,7 @@
             // 
             // numberbox_codeLength
             // 
-            this.numberbox_codeLength.Location = new System.Drawing.Point(100, 210);
+            this.numberbox_codeLength.Location = new System.Drawing.Point(100, 172);
             this.numberbox_codeLength.Name = "numberbox_codeLength";
             this.numberbox_codeLength.Size = new System.Drawing.Size(69, 20);
             this.numberbox_codeLength.TabIndex = 4;
@@ -348,7 +354,7 @@
             // 
             this.textbox_whitelistedUsernames.Location = new System.Drawing.Point(6, 55);
             this.textbox_whitelistedUsernames.Name = "textbox_whitelistedUsernames";
-            this.textbox_whitelistedUsernames.Size = new System.Drawing.Size(286, 117);
+            this.textbox_whitelistedUsernames.Size = new System.Drawing.Size(286, 88);
             this.textbox_whitelistedUsernames.TabIndex = 0;
             this.textbox_whitelistedUsernames.Text = "";
             this.textbox_whitelistedUsernames.TextChanged += new System.EventHandler(this.textbox_whitelistedUsernames_TextChanged);
@@ -415,12 +421,42 @@
             // 
             // logbox
             // 
-            this.logbox.Location = new System.Drawing.Point(12, 386);
+            this.logbox.Location = new System.Drawing.Point(12, 382);
             this.logbox.Name = "logbox";
             this.logbox.ReadOnly = true;
-            this.logbox.Size = new System.Drawing.Size(605, 67);
+            this.logbox.Size = new System.Drawing.Size(605, 71);
             this.logbox.TabIndex = 16;
             this.logbox.Text = "";
+            this.logbox.TextChanged += new System.EventHandler(this.logbox_TextChanged);
+            // 
+            // textbox_NotificationSound
+            // 
+            this.textbox_NotificationSound.Location = new System.Drawing.Point(9, 65);
+            this.textbox_NotificationSound.Name = "textbox_NotificationSound";
+            this.textbox_NotificationSound.Size = new System.Drawing.Size(246, 20);
+            this.textbox_NotificationSound.TabIndex = 11;
+            this.textbox_NotificationSound.TextChanged += new System.EventHandler(this.textbox_NotificationSound_TextChanged);
+            // 
+            // button_BrowseNotificationSound
+            // 
+            this.button_BrowseNotificationSound.Location = new System.Drawing.Point(261, 63);
+            this.button_BrowseNotificationSound.Name = "button_BrowseNotificationSound";
+            this.button_BrowseNotificationSound.Size = new System.Drawing.Size(30, 23);
+            this.button_BrowseNotificationSound.TabIndex = 12;
+            this.button_BrowseNotificationSound.Text = "...";
+            this.button_BrowseNotificationSound.UseVisualStyleBackColor = true;
+            this.button_BrowseNotificationSound.Click += new System.EventHandler(this.button_BrowseNotificationSound_Click);
+            // 
+            // checkbox_NotificationSound
+            // 
+            this.checkbox_NotificationSound.AutoSize = true;
+            this.checkbox_NotificationSound.Location = new System.Drawing.Point(9, 42);
+            this.checkbox_NotificationSound.Name = "checkbox_NotificationSound";
+            this.checkbox_NotificationSound.Size = new System.Drawing.Size(222, 17);
+            this.checkbox_NotificationSound.TabIndex = 13;
+            this.checkbox_NotificationSound.Text = "Play a sound effect along with notification";
+            this.checkbox_NotificationSound.UseVisualStyleBackColor = true;
+            this.checkbox_NotificationSound.CheckedChanged += new System.EventHandler(this.checkbox_NotificationSound_CheckedChanged);
             // 
             // MainForm
             // 
@@ -440,7 +476,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Smite Mixer Code Grabber v1.0.0";
+            this.Text = "Smite Mixer Code Grabber v1.0.1";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
             this.menustrip_mainForm.PerformLayout();
@@ -496,6 +532,9 @@
         private System.Windows.Forms.Label label5;
         public System.Windows.Forms.CheckBox checkbox_AFKMode;
         public System.Windows.Forms.RichTextBox logbox;
+        private System.Windows.Forms.CheckBox checkbox_NotificationSound;
+        private System.Windows.Forms.Button button_BrowseNotificationSound;
+        private System.Windows.Forms.TextBox textbox_NotificationSound;
     }
 }
 

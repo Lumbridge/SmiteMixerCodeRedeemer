@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SmiteMixerCodeGrabberGUI.Classes.Common;
 
 namespace SmiteMixerCodeGrabberGUI.Classes
 {
@@ -21,6 +22,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             {
                 Console.WriteLine("Added Active code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code));
+                DisplayNotification("New potential code added to active codes: \n" + code);
             }
             else
             {

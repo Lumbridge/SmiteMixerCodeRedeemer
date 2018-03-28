@@ -14,6 +14,13 @@ namespace SmiteMixerCodeGrabberGUI.Classes
     {
         public static void DisplayNotification(string msg)
         {
+            if (Properties.Settings.Default.notificationSound)
+            {
+                try {
+                    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Properties.Settings.Default.notificationSoundFilePath);
+                    player.Play();
+                } catch { Console.WriteLine("Unable to play notification sound (invalid file format/path)."); }
+            }
             MessageBox.Show(msg, "Smite Code Grabber Notification", MessageBoxButtons.OK);
         }
     }

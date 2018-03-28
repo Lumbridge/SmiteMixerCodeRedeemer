@@ -101,7 +101,7 @@ namespace DolphinScript.Lib.Backend
 
             // we check if the window exists first then if it does
             //
-            if (WindowExists(WindowClass, WindowName))
+            if (WindowExists(WindowClass, WindowName) && GetActiveWindowTitle() != WindowName)
             {
                 // un-minimises window
                 //

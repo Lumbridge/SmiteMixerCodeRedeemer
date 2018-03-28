@@ -5,7 +5,7 @@ using static DolphinScript.Lib.Backend.Common;
 namespace DolphinScript.Lib.ScriptEventClasses
 {
     [Serializable]
-    class KeyboardHoldKey : ScriptEvent
+    public class KeyboardHoldKey : ScriptEvent
     {
         public override void DoEvent()
         {

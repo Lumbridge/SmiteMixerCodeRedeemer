@@ -27,5 +27,11 @@
   &lt;string&gt;HiRez Vinny&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="notificationSoundFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Beep.mp3</Value>
+    </Setting>
+    <Setting Name="notificationSound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
