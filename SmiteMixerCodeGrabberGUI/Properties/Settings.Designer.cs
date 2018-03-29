@@ -130,18 +130,6 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool UseSlowTyping {
-            get {
-                return ((bool)(this["UseSlowTyping"]));
-            }
-            set {
-                this["UseSlowTyping"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Smite (32-bit, DX9)")]
         public string smiteWindowTitle {
             get {

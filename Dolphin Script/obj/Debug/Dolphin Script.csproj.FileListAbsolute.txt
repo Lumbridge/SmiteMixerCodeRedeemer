@@ -16,15 +16,6 @@ C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\obj\Debug\Dolp
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.Properties.Resources.resources
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.GenerateResource.Cache
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.dll.config
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.pdb
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.MainForm.resources
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.Properties.Resources.resources
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.GenerateResource.cache
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.CoreCompileInputs.cache
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.pdb
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.pdb
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.MainForm.resources
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.Properties.Resources.resources
@@ -34,4 +25,12 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\Dolp
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csprojResolveAssemblyReference.cache
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csprojResolveAssemblyReference.cache
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.dll.config
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.pdb
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.MainForm.resources
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.Properties.Resources.resources
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.GenerateResource.cache
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.CoreCompileInputs.cache
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.pdb

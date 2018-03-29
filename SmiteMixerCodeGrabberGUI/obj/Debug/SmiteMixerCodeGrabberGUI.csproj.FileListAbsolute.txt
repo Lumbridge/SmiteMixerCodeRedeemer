@@ -16,25 +16,6 @@ C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.GenerateResource.Cache
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.exe
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.pdb
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\DolphinScript.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\MixerChat.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\WebSocket4Net.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\DolphinScript.pdb
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\DolphinScript.dll.config
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\MixerChat.pdb
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\MixerChat.dll.config
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.pdb
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.dll.config
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.exe.config
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csprojResolveAssemblyReference.cache
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.MainForm.resources
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.Properties.Resources.resources
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.GenerateResource.cache
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.CoreCompileInputs.cache
-C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.CopyComplete
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerCodeGrabberGUI.exe.config
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.exe
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.pdb
@@ -53,8 +34,27 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.MainForm.resources
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.Properties.Resources.resources
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.GenerateResource.Cache
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csprojResolveAssemblyReference.cache
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.MainForm.resources
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.Properties.Resources.resources
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.GenerateResource.cache
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.CoreCompileInputs.cache
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Smite Mixer Code Grabber.exe.config
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Smite Mixer Code Grabber.exe
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Smite Mixer Code Grabber.pdb
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\DolphinScript.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\MixerChat.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\WebSocket4Net.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\DolphinScript.pdb
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\DolphinScript.dll.config
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\MixerChat.pdb
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\MixerChat.dll.config
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.pdb
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.dll.config
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.exe.config
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.CopyComplete
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\Smite Mixer Code Grabber.exe
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\Smite Mixer Code Grabber.pdb

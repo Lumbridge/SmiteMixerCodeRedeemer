@@ -61,7 +61,6 @@ namespace SmiteMixerCodeGrabberGUI
             checkbox_64bitSmite.Checked = Properties.Settings.Default.use64bitSmite;
 
             checkbox_AFKMode.Checked = Properties.Settings.Default.AFKMode;
-            checkbox_SlowType.Checked = Properties.Settings.Default.UseSlowTyping;
 
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
@@ -107,6 +106,7 @@ namespace SmiteMixerCodeGrabberGUI
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
                             AddCodeToCodeList(code, true);
+                            Write("Code: " + code + " added to active codes (Grabbed from non-whitelisted user: " + e.User + ".");
                         }
                         else
                         {
@@ -131,6 +131,7 @@ namespace SmiteMixerCodeGrabberGUI
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
                             AddCodeToCodeList(code, true);
+                            Write("Code: " + code + " added to active codes (Grabbed from whitelisted user: " + e.User + ".");
                             if (Properties.Settings.Default.notificationSetting)
                                 DisplayNotification("New potential code added to active codes: \n" + code);
                         }
@@ -323,7 +324,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void activeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now.Subtract(new TimeSpan(0,29,50)));
+            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now.Subtract(new TimeSpan(0,27,00)));
         }
         private void expiredToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -335,7 +336,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Classes.MetaInfo.GetMetaInfoMessageBox(), "Smite Mixer Code Grabber Credits");
+            MessageBox.Show(MetaInfo.GetMetaInfoMessageBox(), "Smite Mixer Code Grabber Credits");
         }
         private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -395,7 +396,7 @@ namespace SmiteMixerCodeGrabberGUI
                     {
                         if (code.GetIsRedeemed() == false && IsRunning)
                         {
-                            Write("AFK Mode: Redeeming code (" + code + ")");
+                            Write("AFK Mode: Redeeming code (" + code + ").");
 
                             // get the event list and pass it the code we want it to type
                             //
@@ -409,7 +410,7 @@ namespace SmiteMixerCodeGrabberGUI
                                 code.SetIsRedeemed(true);
                         }
                     }
-                    Write("AFK Mode is enabled, code queue is empty. Going to sleep for 15 seconds...");
+                    Write("AFK Mode is enabled; code queue is empty. Going to sleep for 15 seconds...");
                     Thread.Sleep(15000);
                 }
                 Thread.Sleep(500);
