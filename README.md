@@ -23,6 +23,7 @@
 ![Imgur](https://i.imgur.com/YoT1tcr.png)
 ### 8) Redeem Codes Semi-Automatically: When codes come into the active codes box you can use the Redeem buttons to have the program redeem the codes for you. (It will bring SMITE to the foreground and type /claimpromotion "promotion code" into the chat).
 ![Imgur](https://i.imgur.com/79Wk2Gs.png)
+### 9) Once you have setup the program using the previous steps you can tick the AFK Mode box which will redeem codes as they come in automatically (MAKE SURE SMITE IS KEPT RUNNING AT ALL TIMES, IT CAN BE MINIMISED AND STILL FUNCTION!).
 # Credits
 Credits to myself for Dolphin Script, SmiteMixerListenerCLI and SmiteMixerListenerGUI Projects,  
 Credits to https://github.com/breeser/ for the mixer chat API.  
