@@ -71,12 +71,12 @@ namespace SmiteMixerCodeGrabberGUI
         {
             if (!Properties.Settings.Default.whitelistOnly)
             {
-                if (e.Message.Contains("AP"))
+                if (e.Message.Contains(Properties.Settings.Default.codesStartWith))
                 {
                     var m = e.Message;
                     try
                     {
-                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), 17);
+                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
 
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
@@ -101,7 +101,7 @@ namespace SmiteMixerCodeGrabberGUI
                     var m = e.Message;
                     try
                     {
-                        var code = m.Substring(m.IndexOf("AP"), 17);
+                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
 
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
@@ -109,6 +109,8 @@ namespace SmiteMixerCodeGrabberGUI
                             Write("Code: " + code + " added to active codes (Grabbed from whitelisted user: " + e.User + ".");
                             if (Properties.Settings.Default.notificationSetting)
                                 DisplayNotification("New potential code added to active codes: \n" + code);
+                            if (Properties.Settings.Default.notificationSound)
+                                PlayNotificationSound();
                         }
                         else
                         {
@@ -119,6 +121,15 @@ namespace SmiteMixerCodeGrabberGUI
                         }
                     }
                     catch { }
+                }
+                else
+                {
+                    try
+                    {
+                        var m = e.Message;
+                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
+                        Write("Code matching specified criteria was observed: " + code + " posted by user: " + e.User);
+                    } catch { }
                 }
             }
         }
@@ -188,6 +199,8 @@ namespace SmiteMixerCodeGrabberGUI
         private void button_sendTestEmail_Click(object sender, EventArgs e)
         {
             DisplayNotification("This is a test notification.");
+            if (Properties.Settings.Default.notificationSound)
+                PlayNotificationSound();
         }
         private void numberbox_codeLength_ValueChanged(object sender, EventArgs e)
         {
