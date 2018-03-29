@@ -20,7 +20,7 @@
     <Setting Name="whitelistedUsernames" Type="System.Collections.Specialized.StringCollection" Scope="User">
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;ScottyBot&lt;/string&gt;
+  &lt;string&gt;Scottybot&lt;/string&gt;
   &lt;string&gt;HiRez Auvey&lt;/string&gt;
   &lt;string&gt;HiRez Hinduman&lt;/string&gt;
   &lt;string&gt;HiRez Finch&lt;/string&gt;

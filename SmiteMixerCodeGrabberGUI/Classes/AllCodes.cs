@@ -22,10 +22,10 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             {
                 Console.WriteLine("Added Active code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code));
-                if (Properties.Settings.Default.notificationSetting)
-                    DisplayNotification("New potential code added to active codes: \n" + code);
                 if (Properties.Settings.Default.notificationSound)
                     PlayNotificationSound();
+                if (Properties.Settings.Default.notificationSetting)
+                    DisplayNotification("New potential code added to active codes: \n" + code);
                 }
                 else
             {

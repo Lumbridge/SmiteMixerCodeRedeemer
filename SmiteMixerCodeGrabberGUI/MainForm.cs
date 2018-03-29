@@ -107,10 +107,10 @@ namespace SmiteMixerCodeGrabberGUI
                         {
                             AddCodeToCodeList(code, true);
                             Write("Code: " + code + " added to active codes (Grabbed from whitelisted user: " + e.User + ".");
-                            if (Properties.Settings.Default.notificationSetting)
-                                DisplayNotification("New potential code added to active codes: \n" + code);
                             if (Properties.Settings.Default.notificationSound)
                                 PlayNotificationSound();
+                            if (Properties.Settings.Default.notificationSetting)
+                                DisplayNotification("New potential code added to active codes: \n" + code);
                         }
                         else
                         {
@@ -198,9 +198,10 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void button_sendTestEmail_Click(object sender, EventArgs e)
         {
-            DisplayNotification("This is a test notification.");
             if (Properties.Settings.Default.notificationSound)
                 PlayNotificationSound();
+            if(Properties.Settings.Default.notificationSetting)
+                DisplayNotification("This is a test notification.");
         }
         private void numberbox_codeLength_ValueChanged(object sender, EventArgs e)
         {
