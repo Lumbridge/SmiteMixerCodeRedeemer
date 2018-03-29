@@ -19,6 +19,10 @@
 ![Imgur](https://i.imgur.com/lL3nVUK.png)
 ### if your SMITE client is 64-Bit, toggle this option ON!
 ![Imgur](https://i.imgur.com/Qc5N6VZ.png)
+### 7) Setup code grab criteria (as of writing this codes start with the letters AP and are 17 characters long) which can be seen below:
+![Imgur](https://i.imgur.com/YoT1tcr.png)
+### 8) Redeem Codes Semi-Automatically: When codes come into the active codes box you can use the Redeem buttons to have the program redeem the codes for you. (It will bring SMITE to the foreground and type /claimpromotion "promotion code" into the chat).
+![Imgur](https://i.imgur.com/79Wk2Gs.png)
 # Credits
 Credits to myself for Dolphin Script, SmiteMixerListenerCLI and SmiteMixerListenerGUI Projects,  
 Credits to https://github.com/breeser/ for the mixer chat API.  
