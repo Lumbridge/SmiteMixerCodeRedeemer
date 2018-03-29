@@ -72,6 +72,7 @@
             this.logbox = new System.Windows.Forms.RichTextBox();
             this.checkbox_64bitSmite = new System.Windows.Forms.CheckBox();
             this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkbox_DX11 = new System.Windows.Forms.CheckBox();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
@@ -479,11 +480,23 @@
             this.userGuideToolStripMenuItem.Text = "User Guide";
             this.userGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
             // 
+            // checkbox_DX11
+            // 
+            this.checkbox_DX11.AutoSize = true;
+            this.checkbox_DX11.Location = new System.Drawing.Point(360, 7);
+            this.checkbox_DX11.Name = "checkbox_DX11";
+            this.checkbox_DX11.Size = new System.Drawing.Size(126, 17);
+            this.checkbox_DX11.TabIndex = 19;
+            this.checkbox_DX11.Text = "I\'m using DX11 Smite";
+            this.checkbox_DX11.UseVisualStyleBackColor = true;
+            this.checkbox_DX11.CheckedChanged += new System.EventHandler(this.checkbox_DX11_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 457);
+            this.Controls.Add(this.checkbox_DX11);
             this.Controls.Add(this.checkbox_64bitSmite);
             this.Controls.Add(this.logbox);
             this.Controls.Add(this.label5);
@@ -498,7 +511,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Smite Mixer Code Grabber v1.0.4";
+            this.Text = "Smite Mixer Code Grabber v1.0.5";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
             this.menustrip_mainForm.PerformLayout();
@@ -559,6 +572,7 @@
         private System.Windows.Forms.TextBox textbox_NotificationSound;
         public System.Windows.Forms.CheckBox checkbox_64bitSmite;
         private System.Windows.Forms.ToolStripMenuItem userGuideToolStripMenuItem;
+        public System.Windows.Forms.CheckBox checkbox_DX11;
     }
 }
 

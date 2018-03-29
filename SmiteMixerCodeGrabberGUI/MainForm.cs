@@ -34,6 +34,7 @@ namespace SmiteMixerCodeGrabberGUI
             Console.SetOut(new LogWriter(logbox));
 
             checkbox_64bitSmite.Checked = Properties.Settings.Default.use64bitSmite;
+            checkbox_DX11.Checked = Properties.Settings.Default.useDX11Smite;
 
             checkbox_AFKMode.Checked = Properties.Settings.Default.AFKMode;
 
@@ -81,7 +82,7 @@ namespace SmiteMixerCodeGrabberGUI
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
                             AddCodeToCodeList(code, true);
-                            Write("Code: " + code + " added to active codes (Grabbed from non-whitelisted user: " + e.User + ".");
+                            Write("Code: " + code + " added to active codes (Grabbed from user: " + e.User + ").");
                         }
                         else
                         {
@@ -106,11 +107,11 @@ namespace SmiteMixerCodeGrabberGUI
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
                             AddCodeToCodeList(code, true);
-                            Write("Code: " + code + " added to active codes (Grabbed from whitelisted user: " + e.User + ".");
+                            Write("Code: " + code + " added to active codes (Grabbed from user: " + e.User + ").");
                             if (Properties.Settings.Default.notificationSound)
                                 PlayNotificationSound();
                             if (Properties.Settings.Default.notificationSetting)
-                                DisplayNotification("New potential code added to active codes: \n" + code);
+                                DisplayNotification("New code added to active codes: \n" + code);
                         }
                         else
                         {
@@ -223,8 +224,12 @@ namespace SmiteMixerCodeGrabberGUI
         {
             if(listbox_Active.SelectedIndex >= 0)
             {
-                Clipboard.SetText(GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
-                Write("Copied code to clipboard: " + GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
+                try
+                {
+                    Clipboard.SetText(GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
+                    Write("Copied code to clipboard: " + GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
+                }
+                catch{ }
             }
         }
         private void button_BrowseNotificationSound_Click(object sender, EventArgs e)
@@ -268,18 +273,16 @@ namespace SmiteMixerCodeGrabberGUI
         private void checkbox_64bitSmite_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.use64bitSmite = checkbox_64bitSmite.Checked;
-            if (checkbox_64bitSmite.Checked)
-            {
-                Properties.Settings.Default.smiteWindowTitle = "Smite (64-bit, DX11)";
-                Properties.Settings.Default.Save();
-                Write("Using 64-Bit Client : True; will look for Window with title: Smite (64-bit, DX11).");
-            }
-            else
-            {
-                Properties.Settings.Default.smiteWindowTitle = "Smite (32-bit, DX9)";
-                Properties.Settings.Default.Save();
-                Write("Using 64-Bit Client : False; will look for Window with title: Smite (32-bit, DX9).");
-            }
+            Properties.Settings.Default.smiteWindowTitle = GetSmiteWindowTitle();
+            Properties.Settings.Default.Save();
+            Write("Graphics settings toggled; Will now look for Window with title: " + GetSmiteWindowTitle());
+        }
+        private void checkbox_DX11_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.useDX11Smite = checkbox_DX11.Checked;
+            Properties.Settings.Default.smiteWindowTitle = GetSmiteWindowTitle();
+            Properties.Settings.Default.Save();
+            Write("Graphics settings toggled; Will now look for Window with title: " + GetSmiteWindowTitle());
         }
         #endregion
 
@@ -388,7 +391,7 @@ namespace SmiteMixerCodeGrabberGUI
                     {
                         if (code.GetIsRedeemed() == false && IsRunning)
                         {
-                            Write("AFK Mode: Redeeming code (" + code + ").");
+                            Write("AFK Mode: Redeeming code (" + code.GetCode() + ").");
 
                             // get the event list and pass it the code we want it to type
                             //
@@ -402,10 +405,8 @@ namespace SmiteMixerCodeGrabberGUI
                                 code.SetIsRedeemed(true);
                         }
                     }
-                    Write("AFK Mode is enabled; code queue is empty. Going to sleep for 15 seconds...");
-                    Thread.Sleep(15000);
                 }
-                Thread.Sleep(500);
+                Thread.Sleep(100);
             }
         }
 

@@ -25,7 +25,7 @@
   &lt;string&gt;HiRez Hinduman&lt;/string&gt;
   &lt;string&gt;HiRez Finch&lt;/string&gt;
   &lt;string&gt;HiRez Vinny&lt;/string&gt;
-  &lt;string&gt;LaTigress&lt;/string&gt;
+  &lt;string&gt;LeTigress&lt;/string&gt;
   &lt;string&gt;Fdt&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
@@ -39,6 +39,9 @@
       <Value Profile="(Default)">Smite (32-bit, DX9)</Value>
     </Setting>
     <Setting Name="use64bitSmite" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="useDX11Smite" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

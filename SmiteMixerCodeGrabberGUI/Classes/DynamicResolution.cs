@@ -16,7 +16,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
     {        
         public static List<ScriptEvent> GetRedeemLoop(string code)
         {
-            System.Windows.Forms.Clipboard.SetText("/claimpromotion " + code);
+            try
+            {
+                System.Windows.Forms.Clipboard.SetText("/claimpromotion " + code);
+            }
+            catch { }
             List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
             {
                 new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },

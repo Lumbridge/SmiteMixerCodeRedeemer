@@ -92,7 +92,7 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
   <string>HiRez Hinduman</string>
   <string>HiRez Finch</string>
   <string>HiRez Vinny</string>
-  <string>LaTigress</string>
+  <string>LeTigress</string>
   <string>Fdt</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection whitelistedUsernames {
@@ -149,6 +149,18 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
             }
             set {
                 this["use64bitSmite"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useDX11Smite {
+            get {
+                return ((bool)(this["useDX11Smite"]));
+            }
+            set {
+                this["useDX11Smite"] = value;
             }
         }
     }
