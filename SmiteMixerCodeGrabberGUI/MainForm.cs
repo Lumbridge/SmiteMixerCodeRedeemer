@@ -23,31 +23,6 @@ namespace SmiteMixerCodeGrabberGUI
 {
     public partial class MainForm : Form
     {
-        /// <summary>
-        /// this method is used to determine if the user is pressing the F5 key to stop the script
-        /// </summary>
-        public static void CheckForTerminationKey()
-        {
-            while(true)
-            {
-                // listen for the F5 key
-                //
-                if (GetAsyncKeyState(VirtualKeyStates.VK_F5) < 0)
-                {
-                    // set is running flag to false
-                    IsRunning = false;
-                    
-                    Properties.Settings.Default.AFKMode = false;
-                    Properties.Settings.Default.Save();
-
-                    DisplayNotification("F5 Key Detected: AFK Mode disabled.");
-
-                    return;
-                }
-                Thread.Sleep(100);
-            }
-        }
-
         public MainForm()
         {
             InitializeComponent();
@@ -414,6 +389,31 @@ namespace SmiteMixerCodeGrabberGUI
                     Thread.Sleep(15000);
                 }
                 Thread.Sleep(500);
+            }
+        }
+
+        /// <summary>
+        /// this method is used to determine if the user is pressing the F5 key to stop the script
+        /// </summary>
+        public static void CheckForTerminationKey()
+        {
+            while (true)
+            {
+                // listen for the F5 key
+                //
+                if (GetAsyncKeyState(VirtualKeyStates.VK_F5) < 0)
+                {
+                    // set is running flag to false
+                    IsRunning = false;
+
+                    Properties.Settings.Default.AFKMode = false;
+                    Properties.Settings.Default.Save();
+
+                    DisplayNotification("F5 Key Detected: AFK Mode disabled.");
+
+                    return;
+                }
+                Thread.Sleep(100);
             }
         }
     }
