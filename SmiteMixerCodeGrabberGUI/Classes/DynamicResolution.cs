@@ -18,7 +18,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         {
             List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
             {
-                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = "Untitled - Notepad" },
+                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
                 GetPause(1.0, 1.5),
                 GetEnterKeyClick(),
                 GetPause(1.0, 1.5),

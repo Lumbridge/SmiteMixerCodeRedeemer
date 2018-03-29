@@ -277,9 +277,9 @@
             this.checkbox_NotificationSound.AutoSize = true;
             this.checkbox_NotificationSound.Location = new System.Drawing.Point(9, 42);
             this.checkbox_NotificationSound.Name = "checkbox_NotificationSound";
-            this.checkbox_NotificationSound.Size = new System.Drawing.Size(222, 17);
+            this.checkbox_NotificationSound.Size = new System.Drawing.Size(217, 17);
             this.checkbox_NotificationSound.TabIndex = 13;
-            this.checkbox_NotificationSound.Text = "Play a sound effect along with notification";
+            this.checkbox_NotificationSound.Text = "Play a sound when a new code is active";
             this.checkbox_NotificationSound.UseVisualStyleBackColor = true;
             this.checkbox_NotificationSound.CheckedChanged += new System.EventHandler(this.checkbox_NotificationSound_CheckedChanged);
             // 

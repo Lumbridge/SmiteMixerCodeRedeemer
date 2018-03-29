@@ -426,7 +426,7 @@ namespace SmiteMixerCodeGrabberGUI
 
                     return;
                 }
-                Thread.Sleep(100);
+                Thread.Sleep(15);
             }
         }
     }
