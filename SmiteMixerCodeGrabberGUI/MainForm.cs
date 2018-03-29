@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Text;
 using System.Data;
 using System.Linq;
-using System.Drawing;
 using System.Windows.Forms;
-using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 using MixerChat;
 using MixerChat.Classes;
@@ -22,9 +18,6 @@ using static DolphinScript.Lib.Backend.WinAPI;
 using static DolphinScript.Lib.Backend.Common;
 
 using SmiteMixerCodeGrabberGUI.Classes;
-using static SmiteMixerCodeGrabberGUI.Classes.ThreadHelperClass;
-
-using static SmiteMixerCodeGrabberGUI.Classes.LogWriter;
 
 namespace SmiteMixerCodeGrabberGUI
 {
@@ -33,7 +26,7 @@ namespace SmiteMixerCodeGrabberGUI
         /// <summary>
         /// this method is used to determine if the user is pressing the F5 key to stop the script
         /// </summary>
-        public static void CheckForTerminationKey(MainForm mf, CheckBox c)
+        public static void CheckForTerminationKey()
         {
             while(true)
             {
@@ -45,8 +38,9 @@ namespace SmiteMixerCodeGrabberGUI
                     IsRunning = false;
                     
                     Properties.Settings.Default.AFKMode = false;
+                    Properties.Settings.Default.Save();
 
-                    SetCheckbox(mf, c, false);
+                    DisplayNotification("F5 Key Detected: AFK Mode disabled.");
 
                     return;
                 }
@@ -90,7 +84,7 @@ namespace SmiteMixerCodeGrabberGUI
             chat.OnError += Chat_OnError;
             var connected = chat.Connect("SmiteGame");
 
-            Task.Run(() => CheckForTerminationKey(this, checkbox_AFKMode));
+            Task.Run(() => CheckForTerminationKey());
             Task.Run(() => MainLoop());
 
             Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
@@ -117,9 +111,9 @@ namespace SmiteMixerCodeGrabberGUI
                         else
                         {
                             if (!code.Contains(" "))
-                                Write("Code Spotted: " + code + " (Already Redeemed).", true);
+                                Write("Code Spotted: " + code + " (Already Redeemed).");
                             else
-                                Write("Potential Code Spotted: " + code + " (Invalid)", true);
+                                Write("Potential Code Spotted: " + code + " (Invalid)");
                         }
                     }
                     catch { }
@@ -143,9 +137,9 @@ namespace SmiteMixerCodeGrabberGUI
                         else
                         {
                             if (!code.Contains(" "))
-                                Write("Code Spotted: " + code + " (Already Redeemed).", true);
+                                Write("Code Spotted: " + code + " (Already Redeemed).");
                             else
-                                Write("Potential Code Spotted: " + code + " (Invalid)", true);
+                                Write("Potential Code Spotted: " + code + " (Invalid Format)");
                         }
                     }
                     catch { }
@@ -155,7 +149,7 @@ namespace SmiteMixerCodeGrabberGUI
 
         private static void Chat_OnError(ErrorEventArgs e)
         {
-            Write(e.Exception.Message, true);
+            Write(e.Exception.Message);
         }
 
         private static void Chat_OnUserLeft(UserEventArgs e)
@@ -174,6 +168,7 @@ namespace SmiteMixerCodeGrabberGUI
         {
             Properties.Settings.Default.notificationSetting = checkbox_showNotifications.Checked;
             Properties.Settings.Default.Save();
+            Write("Show notification when new code is active: " + Properties.Settings.Default.notificationSetting);
         }
         private void button_redeemAllActive_Click(object sender, EventArgs e)
         {
@@ -199,11 +194,20 @@ namespace SmiteMixerCodeGrabberGUI
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
             if (checkbox_AFKMode.Checked)
+            {
+                Task.Run(() => CheckForTerminationKey());
+                Properties.Settings.Default.AFKMode = true;
+                Properties.Settings.Default.Save();
                 IsRunning = true;
+                Write("AFK Mode Enabled: " + Properties.Settings.Default.AFKMode);
+            }
             else
+            {
+                Properties.Settings.Default.AFKMode = false;
+                Properties.Settings.Default.Save();
                 IsRunning = false;
-            Properties.Settings.Default.AFKMode = checkbox_AFKMode.Checked;
-            Properties.Settings.Default.Save();
+                Write("AFK Mode Enabled: " + Properties.Settings.Default.AFKMode);
+            }
         }
         private void button_sendTestEmail_Click(object sender, EventArgs e)
         {
@@ -226,31 +230,72 @@ namespace SmiteMixerCodeGrabberGUI
             Properties.Settings.Default.whitelistedUsernames.AddRange(textbox_whitelistedUsernames.Lines.ToArray());
             Properties.Settings.Default.Save();
         }        
-        private void timer_MainForm_Tick(object sender, EventArgs e)
-        {
-            var s = listbox_Active.SelectedIndex;
-
-            listbox_Active.Items.Clear();
-            foreach (var aCode in GetActiveCodes())
-            {
-                listbox_Active.Items.Add(aCode.GetCode() + " " + aCode.GetTimeLeftString() + " Redeemed: " + aCode.GetIsRedeemed());
-            }
-            listbox_Expired.Items.Clear();
-            foreach (var eCode in GetExpiredCodes())
-            {
-                listbox_Expired.Items.Add(eCode.GetCode() + " Redeemed: " + eCode.GetIsRedeemed());
-            }
-
-            if (s < listbox_Active.Items.Count)
-                listbox_Active.SelectedIndex = s;
-            else
-                listbox_Active.SelectedIndex = listbox_Active.Items.Count - 1;
-        }
         private void button_CopySelectedToClipboard_Click(object sender, EventArgs e)
         {
             if(listbox_Active.SelectedIndex >= 0)
             {
                 Clipboard.SetText(GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
+                Write("Copied code to clipboard: " + GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
+            }
+        }
+        private void button_BrowseNotificationSound_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            o.DefaultExt = ".wav";
+            o.Filter = "wav files (*.wav)|*.wav|All files (*.*)|*.*";
+            var result = o.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                Properties.Settings.Default.notificationSoundFilePath = o.FileName;
+                Properties.Settings.Default.Save();
+                textbox_NotificationSound.Text = o.FileName;
+            }
+        }
+        private void textbox_NotificationSound_TextChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.notificationSoundFilePath = textbox_NotificationSound.Text;
+            Properties.Settings.Default.Save();
+        }
+        private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.notificationSound = checkbox_NotificationSound.Checked;
+            Properties.Settings.Default.Save();
+        }
+        private void logbox_TextChanged(object sender, EventArgs e)
+        {
+            logbox.SelectionStart = logbox.Text.Length;
+            logbox.ScrollToCaret();
+        }
+        private void checkbox_SlowType_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.UseSlowTyping = checkbox_SlowType.Checked;
+            if (checkbox_SlowType.Checked)
+            {
+                Properties.Settings.Default.UseSlowTyping = true;
+                Properties.Settings.Default.Save();
+                Write("Slow typing enabled: " + Properties.Settings.Default.UseSlowTyping + "; Will type codes slower.");
+            }
+            else
+            {
+                Properties.Settings.Default.UseSlowTyping = false;
+                Properties.Settings.Default.Save();
+                Write("Slow typing enabled: " + Properties.Settings.Default.UseSlowTyping + "; Will type codes faster.");
+            }
+        }
+        private void checkbox_64bitSmite_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.use64bitSmite = checkbox_64bitSmite.Checked;
+            if (checkbox_64bitSmite.Checked)
+            {
+                Properties.Settings.Default.smiteWindowTitle = "Smite (64-bit, DX11)";
+                Properties.Settings.Default.Save();
+                Write("Using 64-Bit Client : True; will look for Window with title: Smite (64-bit, DX11).");
+            }
+            else
+            {
+                Properties.Settings.Default.smiteWindowTitle = "Smite (32-bit, DX9)";
+                Properties.Settings.Default.Save();
+                Write("Using 64-Bit Client : False; will look for Window with title: Smite (32-bit, DX9).");
             }
         }
         #endregion
@@ -322,6 +367,30 @@ namespace SmiteMixerCodeGrabberGUI
         }
         #endregion
 
+        private void timer_MainForm_Tick(object sender, EventArgs e)
+        {
+            var s = listbox_Active.SelectedIndex;
+
+            listbox_Active.Items.Clear();
+            foreach (var aCode in GetActiveCodes())
+            {
+                listbox_Active.Items.Add(aCode.GetCode() + " " + aCode.GetTimeLeftString() + " Redeemed: " + aCode.GetIsRedeemed());
+            }
+            listbox_Expired.Items.Clear();
+            foreach (var eCode in GetExpiredCodes())
+            {
+                listbox_Expired.Items.Add(eCode.GetCode() + " Redeemed: " + eCode.GetIsRedeemed());
+            }
+
+            if (s < listbox_Active.Items.Count)
+                listbox_Active.SelectedIndex = s;
+            else
+                listbox_Active.SelectedIndex = listbox_Active.Items.Count - 1;
+
+            if (!Properties.Settings.Default.AFKMode)
+                checkbox_AFKMode.Checked = false;
+        }
+
         public static void MainLoop()
         {
             while (true)
@@ -332,6 +401,8 @@ namespace SmiteMixerCodeGrabberGUI
                     {
                         if (code.GetIsRedeemed() == false && IsRunning)
                         {
+                            Write("AFK Mode: Redeeming code (" + code + ")");
+
                             // get the event list and pass it the code we want it to type
                             //
                             var loop = GetRedeemLoop(code.GetCode());
@@ -344,57 +415,11 @@ namespace SmiteMixerCodeGrabberGUI
                                 code.SetIsRedeemed(true);
                         }
                     }
+                    Write("AFK Mode is enabled, code queue is empty. Going to sleep for 15 seconds...");
+                    Thread.Sleep(15000);
                 }
                 Thread.Sleep(500);
             }
-        }
-
-        private void button_BrowseNotificationSound_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog o = new OpenFileDialog();
-            o.DefaultExt = ".wav";
-            o.Filter = "wav files (*.wav)|*.wav|All files (*.*)|*.*";
-            var result = o.ShowDialog();
-            if(result == DialogResult.OK)
-            {
-                Properties.Settings.Default.notificationSoundFilePath = o.FileName;
-                Properties.Settings.Default.Save();
-                textbox_NotificationSound.Text = o.FileName;
-            }
-        }
-
-        private void textbox_NotificationSound_TextChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.notificationSoundFilePath = textbox_NotificationSound.Text;
-            Properties.Settings.Default.Save();
-        }
-
-        private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.notificationSound = checkbox_NotificationSound.Checked;
-            Properties.Settings.Default.Save();
-        }
-
-        private void logbox_TextChanged(object sender, EventArgs e)
-        {
-            logbox.SelectionStart = logbox.Text.Length;
-            logbox.ScrollToCaret();
-        }
-
-        private void checkbox_SlowType_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.UseSlowTyping = checkbox_SlowType.Checked;
-            Properties.Settings.Default.Save();
-        }
-
-        private void checkbox_64bitSmite_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.use64bitSmite = checkbox_64bitSmite.Checked;
-            if (checkbox_64bitSmite.Checked)
-                Properties.Settings.Default.smiteWindowTitle = "Smite (64-bit, DX11)";
-            else
-                Properties.Settings.Default.smiteWindowTitle = "Smite (32-bit, DX9)";
-            Properties.Settings.Default.Save();
         }
     }
 }

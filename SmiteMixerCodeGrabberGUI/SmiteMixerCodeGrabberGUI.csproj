@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SmiteMixerCodeGrabberGUI</RootNamespace>
-    <AssemblyName>SmiteMixerCodeGrabberGUI</AssemblyName>
+    <AssemblyName>Smite Mixer Code Grabber</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

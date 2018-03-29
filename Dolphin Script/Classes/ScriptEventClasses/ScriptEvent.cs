@@ -59,6 +59,11 @@ namespace DolphinScript.Lib.ScriptEventClasses
         // click event mouse button
         //
         public VirtualMouseStates MouseButton { get; set; }
+        
+        /// <summary>
+        /// keybd event key
+        /// </summary>
+        public VirtualKeyStates KeybdEventBtn { get; set; }
 
         // string of keys we are sending during a keyboard type event
         //

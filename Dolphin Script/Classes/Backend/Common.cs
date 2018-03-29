@@ -133,10 +133,10 @@ namespace DolphinScript.Lib.Backend
         /// shortcut function to write to the console
         /// </summary>
         /// <param name="text"></param>
-        public static void Write(string text)
-        {
-            Console.WriteLine("[{0}] {1}", DateTime.Now.ToShortTimeString(), text);
-        }
+        //public static void Write(string text)
+        //{
+        //    Console.WriteLine("[{0}] {1}", DateTime.Now.ToShortTimeString(), text);
+        //}
 
         /// <summary>
         /// swaps position of two elements in a collection

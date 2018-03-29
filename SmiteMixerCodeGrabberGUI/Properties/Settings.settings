@@ -25,6 +25,8 @@
   &lt;string&gt;HiRez Hinduman&lt;/string&gt;
   &lt;string&gt;HiRez Finch&lt;/string&gt;
   &lt;string&gt;HiRez Vinny&lt;/string&gt;
+  &lt;string&gt;LaTigress&lt;/string&gt;
+  &lt;string&gt;Fdt&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="notificationSoundFilePath" Type="System.String" Scope="User">

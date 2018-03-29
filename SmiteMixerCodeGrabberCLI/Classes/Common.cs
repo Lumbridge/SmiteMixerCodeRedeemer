@@ -8,7 +8,7 @@ namespace SmiteMixerListener.Classes
 {
     public class Common
     {
-        public static void Write(string msg, bool showDateTime)
+        public static void Write(string msg)
         {
             Console.WriteLine("{0}", msg);
         }

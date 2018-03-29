@@ -72,6 +72,7 @@
     <Compile Include="Classes\Backend\ColourEvent.cs" />
     <Compile Include="Classes\Backend\Common.cs" />
     <Compile Include="Classes\Backend\MouseMoveMath.cs" />
+    <Compile Include="Classes\ScriptEventClasses\KeybdEvent.cs" />
     <Compile Include="Classes\ScriptEventClasses\MouseMoveToMultiColourOnWindow.cs" />
     <Compile Include="Classes\Backend\PointReturns.cs" />
     <Compile Include="Classes\Backend\RandomNumber.cs" />
