@@ -258,7 +258,6 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.UseSlowTyping = checkbox_SlowType.Checked;
             if (checkbox_NotificationSound.Checked)
             {
                 Properties.Settings.Default.notificationSound = true;
@@ -276,22 +275,6 @@ namespace SmiteMixerCodeGrabberGUI
         {
             logbox.SelectionStart = logbox.Text.Length;
             logbox.ScrollToCaret();
-        }
-        private void checkbox_SlowType_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.UseSlowTyping = checkbox_SlowType.Checked;
-            if (checkbox_SlowType.Checked)
-            {
-                Properties.Settings.Default.UseSlowTyping = true;
-                Properties.Settings.Default.Save();
-                Write("Slow typing enabled: " + Properties.Settings.Default.UseSlowTyping + "; Will type codes slower.");
-            }
-            else
-            {
-                Properties.Settings.Default.UseSlowTyping = false;
-                Properties.Settings.Default.Save();
-                Write("Slow typing enabled: " + Properties.Settings.Default.UseSlowTyping + "; Will type codes faster.");
-            }
         }
         private void checkbox_64bitSmite_CheckedChanged(object sender, EventArgs e)
         {

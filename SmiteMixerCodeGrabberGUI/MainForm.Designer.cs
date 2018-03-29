@@ -70,7 +70,6 @@
             this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.logbox = new System.Windows.Forms.RichTextBox();
-            this.checkbox_SlowType = new System.Windows.Forms.CheckBox();
             this.checkbox_64bitSmite = new System.Windows.Forms.CheckBox();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -460,17 +459,6 @@
             this.logbox.Text = "";
             this.logbox.TextChanged += new System.EventHandler(this.logbox_TextChanged);
             // 
-            // checkbox_SlowType
-            // 
-            this.checkbox_SlowType.AutoSize = true;
-            this.checkbox_SlowType.Location = new System.Drawing.Point(374, 434);
-            this.checkbox_SlowType.Name = "checkbox_SlowType";
-            this.checkbox_SlowType.Size = new System.Drawing.Size(127, 17);
-            this.checkbox_SlowType.TabIndex = 17;
-            this.checkbox_SlowType.Text = "Use slow code typing";
-            this.checkbox_SlowType.UseVisualStyleBackColor = true;
-            this.checkbox_SlowType.CheckedChanged += new System.EventHandler(this.checkbox_SlowType_CheckedChanged);
-            // 
             // checkbox_64bitSmite
             // 
             this.checkbox_64bitSmite.AutoSize = true;
@@ -488,7 +476,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 457);
             this.Controls.Add(this.checkbox_64bitSmite);
-            this.Controls.Add(this.checkbox_SlowType);
             this.Controls.Add(this.logbox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkbox_AFKMode);
@@ -561,7 +548,6 @@
         private System.Windows.Forms.CheckBox checkbox_NotificationSound;
         private System.Windows.Forms.Button button_BrowseNotificationSound;
         private System.Windows.Forms.TextBox textbox_NotificationSound;
-        public System.Windows.Forms.CheckBox checkbox_SlowType;
         public System.Windows.Forms.CheckBox checkbox_64bitSmite;
     }
 }

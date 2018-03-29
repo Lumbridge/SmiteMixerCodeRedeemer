@@ -16,42 +16,24 @@ namespace SmiteMixerCodeGrabberGUI.Classes
     {        
         public static List<ScriptEvent> GetRedeemLoop(string code)
         {
-            if(Properties.Settings.Default.UseSlowTyping)
+            List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
             {
-                List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
-                {
-                    new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
-                    GetPause(1.0, 1.5),
-                    GetEnterKeyClick(),
-                    GetPause(1.0, 1.5)
-                };
-                var fullcode = "/claimpromotion " + code;
-                foreach (var letter in fullcode)
-                {
-                    SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = letter.ToString() });
-                    SlowTypingScript.Add(GetPause(0.1, 0.3));
-                }
-                SlowTypingScript.Add(GetPause(0.3, 0.5));
-                GetEnterKeyClick();
-                SlowTypingScript.Add(GetPause(1.0, 1.5));
-                GetESCKeyClick();
-                return SlowTypingScript;
-            }
-            else
+                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
+                GetPause(1.0, 1.5),
+                GetEnterKeyClick(),
+                GetPause(1.0, 1.5)
+            };
+            var fullcode = "/claimpromotion " + code;
+            foreach (var letter in fullcode)
             {
-                return new List<ScriptEvent>()
-                {
-                    new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
-                    GetPause(1.0, 1.5),
-                    GetEnterKeyClick(),
-                    GetPause(1.0, 1.5),
-                    new KeyboardKeyPress() { KeyboardKeys = "/claimpromotion " + code },
-                    GetPause(0.3, 0.5),
-                    GetEnterKeyClick(),
-                    GetPause(1.0, 1.5),
-                    GetESCKeyClick()
-                };
+                SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = letter.ToString() });
+                SlowTypingScript.Add(GetPause(0.1, 0.3));
             }
+            SlowTypingScript.Add(GetPause(0.3, 0.5));
+            GetEnterKeyClick();
+            SlowTypingScript.Add(GetPause(1.0, 1.5));
+            GetESCKeyClick();
+            return SlowTypingScript;
         }
 
         static MoveWindowToFront GetMoveWindowToFront()
