@@ -182,7 +182,6 @@ namespace SmiteMixerCodeGrabberGUI
         {
             if (checkbox_AFKMode.Checked)
             {
-                Task.Run(() => CheckForTerminationKey());
                 Properties.Settings.Default.AFKMode = true;
                 Properties.Settings.Default.Save();
                 IsRunning = true;
@@ -331,6 +330,10 @@ namespace SmiteMixerCodeGrabberGUI
         {
             System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/issues");
         }
+        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
+        }
         #endregion
 
         #region Helper Methods
@@ -424,8 +427,6 @@ namespace SmiteMixerCodeGrabberGUI
                     Properties.Settings.Default.Save();
 
                     DisplayNotification("F5 Key Detected: AFK Mode disabled.");
-
-                    return;
                 }
                 Thread.Sleep(15);
             }

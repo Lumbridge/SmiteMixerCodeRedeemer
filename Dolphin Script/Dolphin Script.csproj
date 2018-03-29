@@ -82,6 +82,7 @@
     <Compile Include="Classes\ScriptEventClasses\MouseMoveToAreaOnWindow.cs" />
     <Compile Include="Classes\ScriptEventClasses\MouseMoveToColourOnWindow.cs" />
     <Compile Include="Classes\ScriptEventClasses\MouseMoveToPointOnWindow.cs" />
+    <Compile Include="Classes\ScriptEventClasses\PasteClipboard.cs" />
     <Compile Include="Classes\ScriptEventClasses\PauseWhileColourDoesntExistInAreaOnWindow.cs" />
     <Compile Include="Classes\ScriptEventClasses\PauseWhileColourExistsInAreaOnWindow.cs" />
     <Compile Include="Classes\ScriptEventClasses\ScriptEvent.cs" />

@@ -16,24 +16,20 @@ namespace SmiteMixerCodeGrabberGUI.Classes
     {        
         public static List<ScriptEvent> GetRedeemLoop(string code)
         {
+            System.Windows.Forms.Clipboard.SetText("/claimpromotion " + code);
             List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
             {
                 new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
                 GetPause(1.0, 1.5),
                 GetEnterKeyClick(),
                 GetPause(1.0, 1.5),
-                GetForwardSlashOEM(),
+                GetPaste(),
+                GetPause(1.0, 1.5),
+                GetEnterKeyClick(),
+                GetPause(1.0, 1.5),
+                GetESCKeyClick(),
+                GetPause(1.0, 1.5)
             };
-            var fullcode = "claimpromotion " + code;
-            foreach (var letter in fullcode)
-            {
-                SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = letter.ToString() });
-                SlowTypingScript.Add(GetPause(0.1, 0.3));
-            }
-            SlowTypingScript.Add(GetPause(0.3, 0.5));
-            SlowTypingScript.Add(GetEnterKeyClick());
-            SlowTypingScript.Add(GetPause(0.8, 1.0));
-            SlowTypingScript.Add(GetESCKeyClick());
             return SlowTypingScript;
         }
 
@@ -55,6 +51,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         static MouseClick GetLeftMouseClick()
         {
             return new MouseClick() { MouseButton = VirtualMouseStates.Left_Click };
+        }
+
+        static DolphinScript.Classes.ScriptEventClasses.PasteClipboard GetPaste()
+        {
+            return new DolphinScript.Classes.ScriptEventClasses.PasteClipboard();
         }
 
         static DolphinScript.Classes.ScriptEventClasses.KeybdEvent GetEnterKeyClick()
