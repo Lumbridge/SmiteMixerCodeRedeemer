@@ -258,8 +258,19 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.notificationSound = checkbox_NotificationSound.Checked;
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.UseSlowTyping = checkbox_SlowType.Checked;
+            if (checkbox_NotificationSound.Checked)
+            {
+                Properties.Settings.Default.notificationSound = true;
+                Properties.Settings.Default.Save();
+                Write("Notification sound enabled: " + Properties.Settings.Default.notificationSound + "; A sound will be played when a new code becomes active.");
+            }
+            else
+            {
+                Properties.Settings.Default.notificationSound = false;
+                Properties.Settings.Default.Save();
+                Write("Notification sound enabled: " + Properties.Settings.Default.notificationSound + "; A sound will not be played when a new code becomes active.");
+            }
         }
         private void logbox_TextChanged(object sender, EventArgs e)
         {

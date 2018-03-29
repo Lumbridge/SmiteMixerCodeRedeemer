@@ -34,3 +34,4 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\Dolp
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\DolphinScript.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csprojResolveAssemblyReference.cache
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.dll
+C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csprojResolveAssemblyReference.cache

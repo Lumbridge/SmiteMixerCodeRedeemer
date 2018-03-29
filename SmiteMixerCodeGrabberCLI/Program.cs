@@ -67,7 +67,7 @@ namespace SmiteMixerListener
                         CodeQueue.AddCodeToQueue(code);
                     }
                     else
-                        Write("Code Spotted: " + code + " (Already Redeemed).", true);
+                        Write("Code Spotted: " + code + " (Already Redeemed).");
                 }
                 catch { }
             }
@@ -75,7 +75,7 @@ namespace SmiteMixerListener
 
         private static void Chat_OnError(ErrorEventArgs e)
         {
-            Write(e.Exception.Message, true);
+            Write(e.Exception.Message);
         }
 
         private static void Chat_OnUserLeft(UserEventArgs e)
@@ -90,7 +90,7 @@ namespace SmiteMixerListener
         
         private static void RedeemQueue()
         {
-            Write("Probing Queue in 15 seconds...", true);
+            Write("Probing Queue in 15 seconds...");
             Thread.Sleep(15000);
             while (true)
             {
@@ -116,7 +116,7 @@ namespace SmiteMixerListener
                     }
                 }
                 else
-                    Write("No codes currently in the queue...", true);
+                    Write("No codes currently in the queue...");
 
                 Thread.Sleep(15000);
 
