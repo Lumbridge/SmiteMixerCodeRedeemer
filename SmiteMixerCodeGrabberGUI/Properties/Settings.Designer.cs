@@ -130,7 +130,7 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Smite (32-bit, DX9)")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Current Smite Client: SMITE Client Not Found (Automation Disabled).")]
         public string smiteWindowTitle {
             get {
                 return ((string)(this["smiteWindowTitle"]));

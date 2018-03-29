@@ -32,12 +32,7 @@ namespace SmiteMixerCodeGrabberGUI
         {
             CheckForIllegalCrossThreadCalls = false;
             Console.SetOut(new LogWriter(logbox));
-
-            checkbox_64bitSmite.Checked = Properties.Settings.Default.use64bitSmite;
-            checkbox_DX11.Checked = Properties.Settings.Default.useDX11Smite;
-
-            checkbox_AFKMode.Checked = Properties.Settings.Default.AFKMode;
-
+            
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
 
@@ -59,8 +54,20 @@ namespace SmiteMixerCodeGrabberGUI
             chat.OnError += Chat_OnError;
             var connected = chat.Connect("SmiteGame");
 
-            Task.Run(() => CheckForTerminationKey());
-            Task.Run(() => MainLoop());
+            Thread killswitch = new Thread(new ThreadStart(CheckForTerminationKey));
+            killswitch.SetApartmentState(ApartmentState.STA);
+            killswitch.IsBackground = true;
+            killswitch.Start();
+
+            Thread AFKModeThread = new Thread(new ThreadStart(AFKModeLoop));
+            AFKModeThread.SetApartmentState(ApartmentState.STA);
+            AFKModeThread.IsBackground = true;
+            AFKModeThread.Start();
+
+            Thread CheckSmiteExists = new Thread(new ThreadStart(CheckSmiteIsOpenLoop));
+            CheckSmiteExists.SetApartmentState(ApartmentState.STA);
+            CheckSmiteExists.IsBackground = true;
+            CheckSmiteExists.Start();
 
             Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
 
@@ -181,20 +188,9 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkbox_AFKMode.Checked)
-            {
-                Properties.Settings.Default.AFKMode = true;
-                Properties.Settings.Default.Save();
-                IsRunning = true;
-                Write("AFK Mode Enabled: " + Properties.Settings.Default.AFKMode);
-            }
-            else
-            {
-                Properties.Settings.Default.AFKMode = false;
-                Properties.Settings.Default.Save();
-                IsRunning = false;
-                Write("AFK Mode Enabled: " + Properties.Settings.Default.AFKMode);
-            }
+            Properties.Settings.Default.AFKMode = checkbox_AFKMode.Checked;
+            IsRunning = checkbox_AFKMode.Checked;
+            Write("AFK Mode Enabled: " + Properties.Settings.Default.AFKMode);
         }
         private void button_sendTestEmail_Click(object sender, EventArgs e)
         {
@@ -269,20 +265,6 @@ namespace SmiteMixerCodeGrabberGUI
         {
             logbox.SelectionStart = logbox.Text.Length;
             logbox.ScrollToCaret();
-        }
-        private void checkbox_64bitSmite_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.use64bitSmite = checkbox_64bitSmite.Checked;
-            Properties.Settings.Default.smiteWindowTitle = GetSmiteWindowTitle();
-            Properties.Settings.Default.Save();
-            Write("Graphics settings toggled; Will now look for Window with title: " + GetSmiteWindowTitle());
-        }
-        private void checkbox_DX11_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.useDX11Smite = checkbox_DX11.Checked;
-            Properties.Settings.Default.smiteWindowTitle = GetSmiteWindowTitle();
-            Properties.Settings.Default.Save();
-            Write("Graphics settings toggled; Will now look for Window with title: " + GetSmiteWindowTitle());
         }
         #endregion
 
@@ -379,9 +361,34 @@ namespace SmiteMixerCodeGrabberGUI
 
             if (!Properties.Settings.Default.AFKMode)
                 checkbox_AFKMode.Checked = false;
+
+            if (Properties.Settings.Default.smiteWindowTitle != "Current Smite Client: SMITE Client Not Found." 
+                && Properties.Settings.Default.smiteWindowTitle != label_SmiteClientVersion.Text)
+                    label_SmiteClientVersion.Text = "Current Smite Client: " + Properties.Settings.Default.smiteWindowTitle;
+
+            if(Properties.Settings.Default.smiteWindowTitle == "Current Smite Client: SMITE Client Not Found (Automation Disabled).")
+            {
+                // disable redeem buttons
+                button_redeemAllActive.Enabled = false;
+                button_redeemSelected.Enabled = false;
+
+                // disable afk mode checkbox & turn it off
+                checkbox_AFKMode.Checked = false;
+                checkbox_AFKMode.Enabled = false;
+                Properties.Settings.Default.AFKMode = false;
+            }
+            else
+            {
+                // enable redeem buttons
+                button_redeemAllActive.Enabled = true;
+                button_redeemSelected.Enabled = true;
+
+                // enable afk mode checkbox
+                checkbox_AFKMode.Enabled = true;
+            }
         }
 
-        public static void MainLoop()
+        public static void AFKModeLoop()
         {
             while (true)
             {
@@ -431,6 +438,23 @@ namespace SmiteMixerCodeGrabberGUI
                 }
                 Thread.Sleep(15);
             }
+        }
+
+        public static void CheckSmiteIsOpenLoop()
+        {
+            while (true)
+            {
+                if (!ProcessInfo.DoesSmiteProcessExist())
+                    Properties.Settings.Default.smiteWindowTitle = "Current Smite Client: SMITE Client Not Found (Automation Disabled).";
+                else
+                    Properties.Settings.Default.smiteWindowTitle = ProcessInfo.GetSmiteWindowTitle();
+                Thread.Sleep(100);
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

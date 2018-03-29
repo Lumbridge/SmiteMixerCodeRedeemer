@@ -55,6 +55,7 @@
     <Compile Include="Classes\DynamicResolution.cs" />
     <Compile Include="Classes\MetaInfo.cs" />
     <Compile Include="Classes\LogWriter.cs" />
+    <Compile Include="Classes\ProcessInfo.cs" />
     <Compile Include="Classes\SmiteCode.cs" />
     <Compile Include="Classes\ThreadHelperClass.cs" />
     <Compile Include="Classes\Whitelist.cs" />

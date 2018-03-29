@@ -70,9 +70,8 @@
             this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.logbox = new System.Windows.Forms.RichTextBox();
-            this.checkbox_64bitSmite = new System.Windows.Forms.CheckBox();
             this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkbox_DX11 = new System.Windows.Forms.CheckBox();
+            this.label_SmiteClientVersion = new System.Windows.Forms.Label();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
@@ -462,17 +461,6 @@
             this.logbox.Text = "";
             this.logbox.TextChanged += new System.EventHandler(this.logbox_TextChanged);
             // 
-            // checkbox_64bitSmite
-            // 
-            this.checkbox_64bitSmite.AutoSize = true;
-            this.checkbox_64bitSmite.Location = new System.Drawing.Point(492, 7);
-            this.checkbox_64bitSmite.Name = "checkbox_64bitSmite";
-            this.checkbox_64bitSmite.Size = new System.Drawing.Size(126, 17);
-            this.checkbox_64bitSmite.TabIndex = 18;
-            this.checkbox_64bitSmite.Text = "I\'m using 64-Bit Smite";
-            this.checkbox_64bitSmite.UseVisualStyleBackColor = true;
-            this.checkbox_64bitSmite.CheckedChanged += new System.EventHandler(this.checkbox_64bitSmite_CheckedChanged);
-            // 
             // userGuideToolStripMenuItem
             // 
             this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
@@ -480,24 +468,21 @@
             this.userGuideToolStripMenuItem.Text = "User Guide";
             this.userGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
             // 
-            // checkbox_DX11
+            // label_SmiteClientVersion
             // 
-            this.checkbox_DX11.AutoSize = true;
-            this.checkbox_DX11.Location = new System.Drawing.Point(360, 7);
-            this.checkbox_DX11.Name = "checkbox_DX11";
-            this.checkbox_DX11.Size = new System.Drawing.Size(126, 17);
-            this.checkbox_DX11.TabIndex = 19;
-            this.checkbox_DX11.Text = "I\'m using DX11 Smite";
-            this.checkbox_DX11.UseVisualStyleBackColor = true;
-            this.checkbox_DX11.CheckedChanged += new System.EventHandler(this.checkbox_DX11_CheckedChanged);
+            this.label_SmiteClientVersion.AutoSize = true;
+            this.label_SmiteClientVersion.Location = new System.Drawing.Point(288, 9);
+            this.label_SmiteClientVersion.Name = "label_SmiteClientVersion";
+            this.label_SmiteClientVersion.Size = new System.Drawing.Size(329, 13);
+            this.label_SmiteClientVersion.TabIndex = 17;
+            this.label_SmiteClientVersion.Text = "Current Smite Client: SMITE Client Not Found (Automation Disabled).";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 457);
-            this.Controls.Add(this.checkbox_DX11);
-            this.Controls.Add(this.checkbox_64bitSmite);
+            this.Controls.Add(this.label_SmiteClientVersion);
             this.Controls.Add(this.logbox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkbox_AFKMode);
@@ -511,7 +496,8 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Smite Mixer Code Grabber v1.0.5";
+            this.Text = "Smite Mixer Code Grabber v1.0.6";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
             this.menustrip_mainForm.PerformLayout();
@@ -570,9 +556,8 @@
         private System.Windows.Forms.CheckBox checkbox_NotificationSound;
         private System.Windows.Forms.Button button_BrowseNotificationSound;
         private System.Windows.Forms.TextBox textbox_NotificationSound;
-        public System.Windows.Forms.CheckBox checkbox_64bitSmite;
         private System.Windows.Forms.ToolStripMenuItem userGuideToolStripMenuItem;
-        public System.Windows.Forms.CheckBox checkbox_DX11;
+        private System.Windows.Forms.Label label_SmiteClientVersion;
     }
 }
 

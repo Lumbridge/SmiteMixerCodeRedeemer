@@ -13,14 +13,11 @@ using System.Runtime.InteropServices;
 namespace SmiteMixerCodeGrabberGUI.Classes
 {
     static class DynamicResolution
-    {        
+    {
+        [STAThread]
         public static List<ScriptEvent> GetRedeemLoop(string code)
         {
-            try
-            {
-                System.Windows.Forms.Clipboard.SetText("/claimpromotion " + code);
-            }
-            catch { }
+            System.Windows.Forms.Clipboard.SetText("/claimpromotion " + code);
             List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
             {
                 new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },

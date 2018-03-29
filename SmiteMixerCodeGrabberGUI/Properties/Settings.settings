@@ -36,7 +36,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="smiteWindowTitle" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Smite (32-bit, DX9)</Value>
+      <Value Profile="(Default)">Current Smite Client: SMITE Client Not Found (Automation Disabled).</Value>
     </Setting>
     <Setting Name="use64bitSmite" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

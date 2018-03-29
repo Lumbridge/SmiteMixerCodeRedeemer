@@ -27,21 +27,5 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             catch { Console.WriteLine("Unable to play notification sound (invalid file format/path)."); }
 
         }
-
-        public static string GetSmiteWindowTitle()
-        {
-            string bit, dx;
-            if (Properties.Settings.Default.use64bitSmite)
-                bit = "64";
-            else
-                bit = "32";
-
-            if (Properties.Settings.Default.useDX11Smite)
-                dx = "DX11";
-            else
-                dx = "DX9";
-
-            return "Smite (" + bit + "-bit, " + dx + ")";
-        }
     }
 }
