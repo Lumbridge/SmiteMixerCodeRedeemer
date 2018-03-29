@@ -16,11 +16,6 @@ C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.GenerateResource.Cache
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.exe
 C:\Users\ryans\Source\repos\MixerSmiteCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.pdb
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerCodeGrabberGUI.exe.config
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.exe
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.pdb
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerCodeGrabberGUI.exe
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerCodeGrabberGUI.pdb
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\DolphinScript.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\MixerChat.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\SmiteMixerListener.dll
@@ -58,3 +53,8 @@ C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\b
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\SmiteMixerCodeGrabberGUI.csproj.CopyComplete
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\Smite Mixer Code Grabber.exe
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\Smite Mixer Code Grabber.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Smite Mixer Code Grabber.exe.config
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\Smite Mixer Code Grabber.exe
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Debug\Smite Mixer Code Grabber.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Smite Mixer Code Grabber.exe
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Debug\Smite Mixer Code Grabber.pdb

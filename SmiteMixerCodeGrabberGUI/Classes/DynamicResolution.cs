@@ -18,21 +18,22 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         {
             List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
             {
-                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
+                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = "Untitled - Notepad" },
                 GetPause(1.0, 1.5),
                 GetEnterKeyClick(),
-                GetPause(1.0, 1.5)
+                GetPause(1.0, 1.5),
+                GetForwardSlashOEM(),
             };
-            var fullcode = "/claimpromotion " + code;
+            var fullcode = "claimpromotion " + code;
             foreach (var letter in fullcode)
             {
                 SlowTypingScript.Add(new KeyboardKeyPress() { KeyboardKeys = letter.ToString() });
                 SlowTypingScript.Add(GetPause(0.1, 0.3));
             }
             SlowTypingScript.Add(GetPause(0.3, 0.5));
-            GetEnterKeyClick();
-            SlowTypingScript.Add(GetPause(1.0, 1.5));
-            GetESCKeyClick();
+            SlowTypingScript.Add(GetEnterKeyClick());
+            SlowTypingScript.Add(GetPause(0.8, 1.0));
+            SlowTypingScript.Add(GetESCKeyClick());
             return SlowTypingScript;
         }
 
@@ -46,7 +47,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             return new RandomPauseInRange() { DelayMaximum = max, DelayMinimum = min };
         }
 
-        static MouseMoveToAreaOnWindow GetMouseMoveToWindow(WinAPI.RECT clickArea)
+        static MouseMoveToAreaOnWindow GetMouseMoveToWindow(RECT clickArea)
         {
             return new MouseMoveToAreaOnWindow() { ClickArea = clickArea, WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle };
         }
@@ -64,6 +65,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         static DolphinScript.Classes.ScriptEventClasses.KeybdEvent GetESCKeyClick()
         {
             return new DolphinScript.Classes.ScriptEventClasses.KeybdEvent() { KeybdEventBtn = VirtualKeyStates.VK_ESCAPE };
+        }
+
+        static DolphinScript.Classes.ScriptEventClasses.KeybdEvent GetForwardSlashOEM()
+        {
+            return new DolphinScript.Classes.ScriptEventClasses.KeybdEvent() { KeybdEventBtn = VirtualKeyStates.VK_DIVIDE };
         }
     }
 }

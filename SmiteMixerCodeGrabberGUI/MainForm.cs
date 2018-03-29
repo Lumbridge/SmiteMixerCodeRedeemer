@@ -76,7 +76,7 @@ namespace SmiteMixerCodeGrabberGUI
                     var m = e.Message;
                     try
                     {
-                        var code = m.Substring(m.IndexOf("AP"), 17);
+                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), 17);
 
                         if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
                         {
@@ -160,7 +160,7 @@ namespace SmiteMixerCodeGrabberGUI
             var codes = GetActiveCodes();
             var selectedIndex = listbox_Active.SelectedIndex;
             if (selectedIndex > -1)
-                Classes.Automation.RedeemSingle(codes[selectedIndex]);
+                Automation.RedeemSingle(codes[selectedIndex]);
         }
         private void checkbox_whiteListOnly_CheckedChanged(object sender, EventArgs e)
         {
