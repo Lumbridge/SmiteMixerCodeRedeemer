@@ -9,7 +9,7 @@
 <code>HiRez Hinduman</code>  
 <code>HiRez Finch</code>  
 <code>HiRez Vinny</code>  
-<code>LaTigress</code>  
+<code>LeTigress</code>  
 <code>Fdt</code>  
   
 ![Imgur](https://i.imgur.com/uXlra2L.png)
