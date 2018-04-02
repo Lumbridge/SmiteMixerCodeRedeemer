@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Linq;
-using System.Windows.Forms;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 using MixerChat;
 using MixerChat.Classes;
@@ -23,55 +22,160 @@ namespace SmiteMixerCodeGrabberGUI
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// Main form initialisation.
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Callback for when the main form has loaded.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // set whether to catch calls on the wrong thread that access a control's handle property when an application is being debugged
             CheckForIllegalCrossThreadCalls = false;
+
+            // override the console to output console.writeline to our custom console log
             Console.SetOut(new LogWriter(logbox));
             
+            // load up all saved properties
+            //
+            // textboxes
             textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
+            textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
+            textbox_NotificationSound.Text = Properties.Settings.Default.notificationSoundFilePath;
+            // checkboxes
+            checkbox_NotificationSound.Checked = Properties.Settings.Default.notificationSound;
+            checkbox_whiteListOnly.Checked = Properties.Settings.Default.whitelistOnly;
+            checkbox_showNotifications.Checked = Properties.Settings.Default.notificationSetting;
+            // numberboxes
             numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
 
-            checkbox_whiteListOnly.Checked = Properties.Settings.Default.whitelistOnly;
-            textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
-
-            checkbox_showNotifications.Checked = Properties.Settings.Default.notificationSetting;
-            textbox_NotificationSound.Text = Properties.Settings.Default.notificationSoundFilePath;
-
-            checkbox_NotificationSound.Checked = Properties.Settings.Default.notificationSound;
-
-            // meta info
+            // write the meta info to the console
             Console.Write(MetaInfo.GetMetaInfoConsole());
 
+            // hook up the mixer API callbacks
             Mixer chat = new Mixer();
             chat.OnMessageReceived += Chat_OnMessageReceived;
             chat.OnUserJoined += Chat_OnUserJoined;
             chat.OnUserLeft += Chat_OnUserLeft;
             chat.OnError += Chat_OnError;
+            // connect to the smite mixer chat (currently not using the connected boolean...)
             var connected = chat.Connect("SmiteGame");
 
+            // create and spin up our threads
+            //
+            // killswitch thread (listens for F5 key and stops automation)
             Thread killswitch = new Thread(new ThreadStart(CheckForTerminationKey));
             killswitch.SetApartmentState(ApartmentState.STA);
             killswitch.IsBackground = true;
             killswitch.Start();
-
+            // AFK mode thread (does afk mode stuff)
             Thread AFKModeThread = new Thread(new ThreadStart(AFKModeLoop));
             AFKModeThread.SetApartmentState(ApartmentState.STA);
             AFKModeThread.IsBackground = true;
             AFKModeThread.Start();
-
+            // Thread to monitor whether smite process exists
             Thread CheckSmiteExists = new Thread(new ThreadStart(CheckSmiteIsOpenLoop));
             CheckSmiteExists.SetApartmentState(ApartmentState.STA);
             CheckSmiteExists.IsBackground = true;
             CheckSmiteExists.Start();
-
+            // save the whitelist contents to the whitelist static list
             Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
-
+            // set is running to true by default
             IsRunning = true;
+        }
+
+        /// <summary>
+        /// This method is called each second that passes.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void timer_MainForm_Tick(object sender, EventArgs e)
+        {
+            // get the selected index of the active codes box
+            var currentlySelectedIndex = listbox_Active.SelectedIndex;
+
+            // clear the contents of the active codes box
+            listbox_Active.Items.Clear();
+            // loop through all active codes
+            foreach (var aCode in GetActiveCodes())
+            {
+                // add each active code to the active codes box
+                listbox_Active.Items.Add(aCode.GetCode() + " " + aCode.GetTimeLeftString() + " Redeemed: " + aCode.GetIsRedeemed());
+            }
+            // clear the contents of the expired codes box
+            listbox_Expired.Items.Clear();
+            // loop through all expired codes
+            foreach (var eCode in GetExpiredCodes())
+            {
+                // add each expired code to the expired codes box
+                listbox_Expired.Items.Add(eCode.GetCode() + " Redeemed: " + eCode.GetIsRedeemed());
+            }
+
+            // here we want to reselect the item that was selected by the user in the active codes box
+            //
+            // check that the active codes box isn't empty
+            if (listbox_Active.Items.Count == 0)
+            { /* do nothing */ }
+            // check that the selected index was in the bounds of the array
+            else if (currentlySelectedIndex >= 0 && currentlySelectedIndex < listbox_Active.Items.Count)
+                listbox_Active.SelectedIndex = currentlySelectedIndex;
+            // if the selected index is +1 over the current count then select the last item
+            else if (currentlySelectedIndex == listbox_Active.Items.Count + 1)
+                listbox_Active.SelectedIndex = listbox_Active.Items.Count - 1;
+            else { /* do nothing */ }
+
+            // check if AFK mode was disabled by any threads
+            if (!Properties.Settings.Default.AFKMode)
+                // if it has been disabled then uncheck the form checkbox
+                checkbox_AFKMode.Checked = false;
+
+            // check if we need to change the smite window form label
+            if (!ProcessInfo.DoesSmiteProcessExist() && label_SmiteClientVersion.Text != "SMITE Client Not Found (Automation Disabled).")
+                // set the form label to no client found
+                label_SmiteClientVersion.Text = "SMITE Client Not Found (Automation Disabled).";
+            else if(ProcessInfo.DoesSmiteProcessExist() && label_SmiteClientVersion.Text != ProcessInfo.GetSmiteWindowTitle())
+                // set the form label to the current smite window title
+                label_SmiteClientVersion.Text = ProcessInfo.GetSmiteWindowTitle();
+            
+            // check if we need to disable automation features due to finding no smite process
+            if(!ProcessInfo.DoesSmiteProcessExist())
+            {
+                // disable redeem buttons
+                button_redeemAllActive.Enabled = false;
+                button_redeemSelected.Enabled = false;
+
+                // disable afk mode checkbox & turn it off
+                checkbox_AFKMode.Checked = false;
+                checkbox_AFKMode.Enabled = false;
+                Properties.Settings.Default.AFKMode = false;
+            }
+            else
+            {
+                // enable redeem buttons
+                button_redeemAllActive.Enabled = true;
+                button_redeemSelected.Enabled = true;
+
+                // enable afk mode checkbox
+                checkbox_AFKMode.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Callback for when the main form is closing.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // exit when we close the main form (aborts all threads)
+            Application.Exit();
         }
 
         #region Mixer Chat Handlers
@@ -339,122 +443,94 @@ namespace SmiteMixerCodeGrabberGUI
         }
         #endregion
 
-        private void timer_MainForm_Tick(object sender, EventArgs e)
-        {
-            var s = listbox_Active.SelectedIndex;
-
-            listbox_Active.Items.Clear();
-            foreach (var aCode in GetActiveCodes())
-            {
-                listbox_Active.Items.Add(aCode.GetCode() + " " + aCode.GetTimeLeftString() + " Redeemed: " + aCode.GetIsRedeemed());
-            }
-            listbox_Expired.Items.Clear();
-            foreach (var eCode in GetExpiredCodes())
-            {
-                listbox_Expired.Items.Add(eCode.GetCode() + " Redeemed: " + eCode.GetIsRedeemed());
-            }
-
-            if (s < listbox_Active.Items.Count)
-                listbox_Active.SelectedIndex = s;
-            else
-                listbox_Active.SelectedIndex = listbox_Active.Items.Count - 1;
-
-            if (!Properties.Settings.Default.AFKMode)
-                checkbox_AFKMode.Checked = false;
-
-            if (Properties.Settings.Default.smiteWindowTitle != "Current Smite Client: SMITE Client Not Found." 
-                && Properties.Settings.Default.smiteWindowTitle != label_SmiteClientVersion.Text)
-                    label_SmiteClientVersion.Text = "Current Smite Client: " + Properties.Settings.Default.smiteWindowTitle;
-
-            if(Properties.Settings.Default.smiteWindowTitle == "Current Smite Client: SMITE Client Not Found (Automation Disabled).")
-            {
-                // disable redeem buttons
-                button_redeemAllActive.Enabled = false;
-                button_redeemSelected.Enabled = false;
-
-                // disable afk mode checkbox & turn it off
-                checkbox_AFKMode.Checked = false;
-                checkbox_AFKMode.Enabled = false;
-                Properties.Settings.Default.AFKMode = false;
-            }
-            else
-            {
-                // enable redeem buttons
-                button_redeemAllActive.Enabled = true;
-                button_redeemSelected.Enabled = true;
-
-                // enable afk mode checkbox
-                checkbox_AFKMode.Enabled = true;
-            }
-        }
-
+        #region Continuous Threads
+        /// <summary>
+        /// This method controls AFK mode.
+        /// </summary>
         public static void AFKModeLoop()
         {
+            // runs until application end
             while (true)
             {
+                // checks whether AFK mode is enabled by the user
                 if (Properties.Settings.Default.AFKMode == true)
                 {
+                    // loop through all active codes
                     foreach (var code in GetActiveCodes())
                     {
+                        // check that the current code hasn't already been redeemed & IsRunning is true (user hasn't pressed the killswitch)
                         if (code.GetIsRedeemed() == false && IsRunning)
                         {
+                            // output message to the log box
                             Write("AFK Mode: Redeeming code (" + code.GetCode() + ").");
 
                             // get the event list and pass it the code we want it to type
-                            //
                             var loop = GetRedeemLoop(code.GetCode());
 
+                            // loop through each event in the script
                             foreach (var ev in loop)
+                                // check that the killswitch hasn't been pressed
                                 if(IsRunning)
+                                    // do the script event
                                     ev.DoEvent();
 
+                            // if at the end of the script we weren't interrupted during code redemption then
+                            // set the code as redeemed
                             if(IsRunning)
                                 code.SetIsRedeemed(true);
                         }
                     }
                 }
+                // sleep the thread for 100 ms so we don't max out CPU usage
                 Thread.Sleep(100);
             }
         }
 
         /// <summary>
-        /// this method is used to determine if the user is pressing the F5 key to stop the script
+        /// This method listens for the F5 killswitch key which disables automation.
         /// </summary>
         public static void CheckForTerminationKey()
         {
+            // runs until application is closed
             while (true)
             {
                 // listen for the F5 key
-                //
                 if (GetAsyncKeyState(VirtualKeyStates.VK_F5) < 0)
                 {
                     // set is running flag to false
                     IsRunning = false;
 
+                    // disable afk mode
                     Properties.Settings.Default.AFKMode = false;
                     Properties.Settings.Default.Save();
 
+                    // output notification to show afk mode is disabled
                     DisplayNotification("F5 Key Detected: AFK Mode disabled.");
                 }
-                Thread.Sleep(15);
+                // sleep to reduce CPU usage
+                Thread.Sleep(50);
             }
         }
 
+        /// <summary>
+        /// This method checks if the smite process is running.
+        /// </summary>
         public static void CheckSmiteIsOpenLoop()
         {
+            // runs until application is closed
             while (true)
             {
-                if (!ProcessInfo.DoesSmiteProcessExist())
-                    Properties.Settings.Default.smiteWindowTitle = "Current Smite Client: SMITE Client Not Found (Automation Disabled).";
-                else
+                // check if smite process exists
+                if (ProcessInfo.DoesSmiteProcessExist())
+                    // get the name of the smite window from the process handle
                     Properties.Settings.Default.smiteWindowTitle = ProcessInfo.GetSmiteWindowTitle();
+                else
+                    // no process found: set smite window title to error message
+                    Properties.Settings.Default.smiteWindowTitle = "SMITE Client Not Found (Automation Disabled).";
+                // sleep to reduce CPU usage
                 Thread.Sleep(100);
             }
         }
-
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
+        #endregion
     }
 }

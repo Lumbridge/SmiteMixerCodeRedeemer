@@ -35,6 +35,7 @@
             this.wikiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addTestCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.activeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +71,6 @@
             this.checkbox_AFKMode = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.logbox = new System.Windows.Forms.RichTextBox();
-            this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_SmiteClientVersion = new System.Windows.Forms.Label();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -113,23 +113,30 @@
             // wikiToolStripMenuItem
             // 
             this.wikiToolStripMenuItem.Name = "wikiToolStripMenuItem";
-            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.wikiToolStripMenuItem.Text = "Wiki";
             this.wikiToolStripMenuItem.Click += new System.EventHandler(this.wikiToolStripMenuItem_Click);
             // 
             // creditsToolStripMenuItem
             // 
             this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.creditsToolStripMenuItem.Text = "Credits";
             this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
             // 
             // reportBugToolStripMenuItem
             // 
             this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.reportBugToolStripMenuItem.Text = "Report Bug";
             this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            // 
+            // userGuideToolStripMenuItem
+            // 
+            this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
+            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.userGuideToolStripMenuItem.Text = "User Guide";
+            this.userGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
             // 
             // debugToolStripMenuItem
             // 
@@ -461,21 +468,14 @@
             this.logbox.Text = "";
             this.logbox.TextChanged += new System.EventHandler(this.logbox_TextChanged);
             // 
-            // userGuideToolStripMenuItem
-            // 
-            this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
-            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.userGuideToolStripMenuItem.Text = "User Guide";
-            this.userGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
-            // 
             // label_SmiteClientVersion
             // 
             this.label_SmiteClientVersion.AutoSize = true;
-            this.label_SmiteClientVersion.Location = new System.Drawing.Point(288, 9);
+            this.label_SmiteClientVersion.Location = new System.Drawing.Point(386, 9);
             this.label_SmiteClientVersion.Name = "label_SmiteClientVersion";
-            this.label_SmiteClientVersion.Size = new System.Drawing.Size(329, 13);
+            this.label_SmiteClientVersion.Size = new System.Drawing.Size(231, 13);
             this.label_SmiteClientVersion.TabIndex = 17;
-            this.label_SmiteClientVersion.Text = "Current Smite Client: SMITE Client Not Found (Automation Disabled).";
+            this.label_SmiteClientVersion.Text = "SMITE Client Not Found (Automation Disabled).";
             // 
             // MainForm
             // 
@@ -496,7 +496,7 @@
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Smite Mixer Code Grabber v1.0.6";
+            this.Text = "Smite Mixer Code Grabber v1.0.7";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menustrip_mainForm.ResumeLayout(false);
