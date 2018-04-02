@@ -62,8 +62,6 @@ namespace SmiteMixerCodeGrabberGUI
             // hook up the mixer API callbacks
             Mixer chat = new Mixer();
             chat.OnMessageReceived += Chat_OnMessageReceived;
-            chat.OnUserJoined += Chat_OnUserJoined;
-            chat.OnUserLeft += Chat_OnUserLeft;
             chat.OnError += Chat_OnError;
             // connect to the smite mixer chat (currently not using the connected boolean...)
             var connected = chat.Connect("SmiteGame");
@@ -249,16 +247,6 @@ namespace SmiteMixerCodeGrabberGUI
         private static void Chat_OnError(ErrorEventArgs e)
         {
             Write(e.Exception.Message);
-        }
-
-        private static void Chat_OnUserLeft(UserEventArgs e)
-        {
-            //Console.WriteLine(string.Format("{0} left", e.User));
-        }
-
-        private static void Chat_OnUserJoined(UserEventArgs e)
-        {
-            //Console.WriteLine(string.Format("{0} joined", e.User));
         }
         #endregion
 
