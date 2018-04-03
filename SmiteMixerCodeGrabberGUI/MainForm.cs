@@ -179,69 +179,89 @@ namespace SmiteMixerCodeGrabberGUI
         #region Mixer Chat Handlers
         private static void Chat_OnMessageReceived(ChatMessageEventArgs e)
         {
+            // this branch will run if the user is not using the white list
             if (!Properties.Settings.Default.whitelistOnly)
             {
-                if (e.Message.Contains(Properties.Settings.Default.codesStartWith))
+                // check if the message has the code start in it
+                if (e.Message.Contains(Properties.Settings.Default.codesStartWith)
+                    && e.Message.Length >= Properties.Settings.Default.codeLength)
                 {
-                    var m = e.Message;
-                    try
-                    {
-                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
-
-                        if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
-                        {
-                            AddCodeToCodeList(code, true);
-                            Write("Code: " + code + " added to active codes (Grabbed from user: " + e.User + ").");
-                        }
-                        else
-                        {
-                            if (!code.Contains(" "))
-                                Write("Code Spotted: " + code + " (Already Redeemed).");
-                            else
-                                Write("Potential Code Spotted: " + code + " (Invalid)");
-                        }
-                    }
-                    catch { }
+                    shouldAddCode(e.Message, e.User);
                 }
             }
-            else
+            else // whitelist branch
             {
-                if (isWhitelistedUser(e.User))
+                // check if the message was from a whitelisted user and message contains the start of the code
+                if (isWhitelistedUser(e.User) &&
+                    e.Message.Contains(Properties.Settings.Default.codesStartWith)
+                    && e.Message.Length >= Properties.Settings.Default.codeLength)
                 {
-                    var m = e.Message;
-                    try
-                    {
-                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
-
-                        if (GetActiveCodes().Find(x => x.GetCode() == code) == null && GetExpiredCodes().Find(x => x.GetCode() == code) == null && !code.Contains(" "))
-                        {
-                            AddCodeToCodeList(code, true);
-                            Write("Code: " + code + " added to active codes (Grabbed from user: " + e.User + ").");
-                            if (Properties.Settings.Default.notificationSound)
-                                PlayNotificationSound();
-                            if (Properties.Settings.Default.notificationSetting)
-                                DisplayNotification("New code added to active codes: \n" + code);
-                        }
-                        else
-                        {
-                            if (!code.Contains(" "))
-                                Write("Code Spotted: " + code + " (Already Redeemed).");
-                            else
-                                Write("Potential Code Spotted: " + code + " (Invalid Format)");
-                        }
-                    }
-                    catch { }
+                    shouldAddCode(e.Message, e.User);
                 }
-                else
+                else // code observed from non-whitelist user
                 {
-                    try
+                    // remove everything before the code start
+                    var lTest = e.Message.Remove(0, e.Message.IndexOf(Properties.Settings.Default.codesStartWith));
+                    // check that the length of the remaining message is equal to or greater than the length of a code
+                    if (lTest.Length >= Properties.Settings.Default.codeLength)
                     {
                         var m = e.Message;
                         var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
                         Write("Code matching specified criteria was observed: " + code + " posted by user: " + e.User);
-                    } catch { }
+                    }
                 }
             }
+        }
+        /// <summary>
+        /// Added to reduce duplicated code in OnMessageRecieved handler,
+        /// checks if a message contains a valid code and adds it to the active codes list if it is valid.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="user"></param>
+        static void shouldAddCode(string message, string user)
+        {
+            // remove everything before the code start
+            var lTest = message.Remove(0, message.IndexOf(Properties.Settings.Default.codesStartWith));
+            // check that the length of the remaining message is equal to or greater than the length of a code
+            if(lTest.Length >= Properties.Settings.Default.codeLength)
+            {
+                // get the message
+                var m = message;
+                // extract the code from the message
+                var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
+                // check if the...
+                if (GetActiveCodes().Find(x => x.GetCode() == code) == null &&  // code isn't in the list of active codes
+                    GetExpiredCodes().Find(x => x.GetCode() == code) == null && // code isn't in the list of expired codes
+                    !code.Contains(" "))                                        // code contains no whitespace
+                {
+                    // add the code to the list of active codes
+                    AddCodeToCodeList(code, true);
+                    // log that a new code was added
+                    Write("Code: " + code + " added to active codes (Grabbed from user: " + user + ").");
+                    // if the notification sound option is enabled then play a sound
+                    if (Properties.Settings.Default.notificationSound)
+                        PlayNotificationSound();
+                    // if the notification setting is enabled then show a notification
+                    if (Properties.Settings.Default.notificationSetting)
+                        DisplayNotification("New code added to active codes: \n" + code);
+                }
+                else // code is already in a list or is invalid format
+                {
+                    badCode(code);
+                }
+            }
+        }
+        /// <summary>
+        /// Also added to reduce duplicated code, outputs
+        /// a message to the log if a code is invalid.
+        /// </summary>
+        /// <param name="code"></param>
+        static void badCode(string code)
+        {
+            if (!code.Contains(" "))
+                Write("Code Spotted: " + code + " (Already Redeemed).");
+            else
+                Write("Potential Code Spotted: " + code + " (Invalid Format)");
         }
 
         private static void Chat_OnError(ErrorEventArgs e)
