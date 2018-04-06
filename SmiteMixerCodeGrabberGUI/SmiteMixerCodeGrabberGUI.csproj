@@ -52,7 +52,6 @@
     <Compile Include="Classes\AllCodes.cs" />
     <Compile Include="Classes\Automation.cs" />
     <Compile Include="Classes\Common.cs" />
-    <Compile Include="Classes\DynamicResolution.cs" />
     <Compile Include="Classes\MetaInfo.cs" />
     <Compile Include="Classes\LogWriter.cs" />
     <Compile Include="Classes\ProcessInfo.cs" />

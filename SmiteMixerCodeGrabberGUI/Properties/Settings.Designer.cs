@@ -12,7 +12,7 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -49,7 +49,7 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool whitelistOnly {
             get {
                 return ((bool)(this["whitelistOnly"]));
@@ -88,12 +88,16 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
   <string>Scottybot</string>
-  <string>HiRez Auvey</string>
-  <string>HiRez Hinduman</string>
-  <string>HiRez Finch</string>
-  <string>HiRez Vinny</string>
+  <string>HiRezAuvey</string>
+  <string>HiRezHinduman</string>
+  <string>HiRezFinch</string>
+  <string>HiRezVinny</string>
+  <string>HiRezTaco</string>
+  <string>HiRezRude</string>
   <string>LeTigress</string>
   <string>Fdt</string>
+  <string>PeccYz</string>
+  <string>Aggro</string>
 </ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection whitelistedUsernames {
             get {
@@ -143,24 +147,12 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool use64bitSmite {
+        public bool minimiseAfterRedeeming {
             get {
-                return ((bool)(this["use64bitSmite"]));
+                return ((bool)(this["minimiseAfterRedeeming"]));
             }
             set {
-                this["use64bitSmite"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool useDX11Smite {
-            get {
-                return ((bool)(this["useDX11Smite"]));
-            }
-            set {
-                this["useDX11Smite"] = value;
+                this["minimiseAfterRedeeming"] = value;
             }
         }
     }

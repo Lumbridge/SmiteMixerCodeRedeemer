@@ -14,7 +14,8 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         {
             return  "Smite Mixer Code Redeemer " + Version + " By github.com/Lumbridge.\n" +
                     "Credits to myself for Dolphin Script & SmiteMixerCodeGrabberCLI/GUI Projects,\n" +
-                    "Credits to github.com/Breeser for the Mixer Chat API.\n";
+                    "Credits to github.com/Breeser for the Mixer Chat API.\n" +
+                    "Add me on SMITE - [RyanSensei]!\n";
         }
 
         public static string GetMetaInfoMessageBox()

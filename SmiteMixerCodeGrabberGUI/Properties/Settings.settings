@@ -9,7 +9,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="whitelistOnly" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="codeLength" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">17</Value>
@@ -21,12 +21,16 @@
       <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;string&gt;Scottybot&lt;/string&gt;
-  &lt;string&gt;HiRez Auvey&lt;/string&gt;
-  &lt;string&gt;HiRez Hinduman&lt;/string&gt;
-  &lt;string&gt;HiRez Finch&lt;/string&gt;
-  &lt;string&gt;HiRez Vinny&lt;/string&gt;
+  &lt;string&gt;HiRezAuvey&lt;/string&gt;
+  &lt;string&gt;HiRezHinduman&lt;/string&gt;
+  &lt;string&gt;HiRezFinch&lt;/string&gt;
+  &lt;string&gt;HiRezVinny&lt;/string&gt;
+  &lt;string&gt;HiRezTaco&lt;/string&gt;
+  &lt;string&gt;HiRezRude&lt;/string&gt;
   &lt;string&gt;LeTigress&lt;/string&gt;
   &lt;string&gt;Fdt&lt;/string&gt;
+  &lt;string&gt;PeccYz&lt;/string&gt;
+  &lt;string&gt;Aggro&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
     <Setting Name="notificationSoundFilePath" Type="System.String" Scope="User">
@@ -38,10 +42,7 @@
     <Setting Name="smiteWindowTitle" Type="System.String" Scope="User">
       <Value Profile="(Default)">Current Smite Client: SMITE Client Not Found (Automation Disabled).</Value>
     </Setting>
-    <Setting Name="use64bitSmite" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="useDX11Smite" Type="System.Boolean" Scope="User">
+    <Setting Name="minimiseAfterRedeeming" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

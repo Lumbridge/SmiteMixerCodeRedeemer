@@ -44,7 +44,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 
         public static Process GetProcess(string pName)
         {
-            return GetProcessList().Where(x => x.ProcessName == pName).First();
+            return GetProcessList().Where(x => x.ProcessName == pName).FirstOrDefault();
         }
 
         public static bool ProcessExists(Process hProcess)

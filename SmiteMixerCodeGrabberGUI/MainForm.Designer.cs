@@ -72,6 +72,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.logbox = new System.Windows.Forms.RichTextBox();
             this.label_SmiteClientVersion = new System.Windows.Forms.Label();
+            this.checkbox_MinimiseAfterRedeeming = new System.Windows.Forms.CheckBox();
             this.menustrip_mainForm.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupbox_whitelistedUsernames.SuspendLayout();
@@ -440,7 +441,7 @@
             // checkbox_AFKMode
             // 
             this.checkbox_AFKMode.AutoSize = true;
-            this.checkbox_AFKMode.Location = new System.Drawing.Point(507, 435);
+            this.checkbox_AFKMode.Location = new System.Drawing.Point(507, 462);
             this.checkbox_AFKMode.Name = "checkbox_AFKMode";
             this.checkbox_AFKMode.Size = new System.Drawing.Size(110, 17);
             this.checkbox_AFKMode.TabIndex = 14;
@@ -452,18 +453,18 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(15, 434);
+            this.label5.Location = new System.Drawing.Point(12, 460);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(324, 17);
+            this.label5.Size = new System.Drawing.Size(265, 17);
             this.label5.TabIndex = 15;
-            this.label5.Text = "Note: Press F5 to stop the automation at any time.";
+            this.label5.Text = "Note: Press F5 to stop automation script.";
             // 
             // logbox
             // 
             this.logbox.Location = new System.Drawing.Point(12, 357);
             this.logbox.Name = "logbox";
             this.logbox.ReadOnly = true;
-            this.logbox.Size = new System.Drawing.Size(605, 71);
+            this.logbox.Size = new System.Drawing.Size(605, 98);
             this.logbox.TabIndex = 16;
             this.logbox.Text = "";
             this.logbox.TextChanged += new System.EventHandler(this.logbox_TextChanged);
@@ -477,11 +478,23 @@
             this.label_SmiteClientVersion.TabIndex = 17;
             this.label_SmiteClientVersion.Text = "SMITE Client Not Found (Automation Disabled).";
             // 
+            // checkbox_MinimiseAfterRedeeming
+            // 
+            this.checkbox_MinimiseAfterRedeeming.AutoSize = true;
+            this.checkbox_MinimiseAfterRedeeming.Location = new System.Drawing.Point(325, 461);
+            this.checkbox_MinimiseAfterRedeeming.Name = "checkbox_MinimiseAfterRedeeming";
+            this.checkbox_MinimiseAfterRedeeming.Size = new System.Drawing.Size(178, 17);
+            this.checkbox_MinimiseAfterRedeeming.TabIndex = 18;
+            this.checkbox_MinimiseAfterRedeeming.Text = "Minimise SMITE after redeeming";
+            this.checkbox_MinimiseAfterRedeeming.UseVisualStyleBackColor = true;
+            this.checkbox_MinimiseAfterRedeeming.CheckedChanged += new System.EventHandler(this.checkbox_MinimiseAfterRedeeming_CheckedChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 457);
+            this.ClientSize = new System.Drawing.Size(624, 486);
+            this.Controls.Add(this.checkbox_MinimiseAfterRedeeming);
             this.Controls.Add(this.label_SmiteClientVersion);
             this.Controls.Add(this.logbox);
             this.Controls.Add(this.label5);
@@ -558,6 +571,7 @@
         private System.Windows.Forms.TextBox textbox_NotificationSound;
         private System.Windows.Forms.ToolStripMenuItem userGuideToolStripMenuItem;
         private System.Windows.Forms.Label label_SmiteClientVersion;
+        public System.Windows.Forms.CheckBox checkbox_MinimiseAfterRedeeming;
     }
 }
 
