@@ -5,14 +5,6 @@
 ![Video Settings Image](https://i.imgur.com/Eaf8X3u.png)
 ### 4) Setup the whitelist so you don't get any fake codes from random people, put these names in the whitelist box if they aren't there already:
 <code>Scottybot</code>  
-<code>HiRez Auvey</code>  
-<code>HiRez Hinduman</code>  
-<code>HiRez Finch</code>  
-<code>HiRez Vinny</code>  
-<code>LeTigress</code>  
-<code>Fdt</code> 
-
-<code>Scottybot</code>  
 <code>HiRezAuvey</code>  
 <code>HiRezHinduman</code>  
 <code>HiRezFinch</code>  
