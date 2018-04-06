@@ -10,7 +10,19 @@
 <code>HiRez Finch</code>  
 <code>HiRez Vinny</code>  
 <code>LeTigress</code>  
+<code>Fdt</code> 
+
+<code>Scottybot</code>  
+<code>HiRezAuvey</code>  
+<code>HiRezHinduman</code>  
+<code>HiRezFinch</code>  
+<code>HiRezVinny</code>  
+<code>HiRezTaco</code>  
+<code>HiRezRude</code>  
+<code>LeTigress</code>  
 <code>Fdt</code>  
+<code>PeccYz</code>  
+<code>Aggro</code>  
   
 ![Imgur](https://i.imgur.com/uXlra2L.png)
 ### 5) Setup notification options if you want notifications, there are 3 options here: You can have a visual notification which pops up a window when a code becomes active OR you can have a sound effect alert you when a new code becomes active (or you can enable both).
