@@ -1,5 +1,5 @@
 # How To Use Smite Mixer Code Redeemer
-### 1) Download the latest release [HERE.](https://github.com/Lumbridge/SmiteMixerCodeRedeemer/releases/download/v1.0.6/Smite.Mixer.Code.Redeemer.zip)
+### 1) Download the latest release [HERE.](https://github.com/Lumbridge/SmiteMixerCodeRedeemer/releases/download/v1.0.7/Smite.Mixer.Code.Redeemer.v1.0.7.zip)
 ### 2) Open the SMITE PC Game client.
 ### 3) Setup your video settings as they are in the image below.
 ![Video Settings Image](https://i.imgur.com/Eaf8X3u.png)
