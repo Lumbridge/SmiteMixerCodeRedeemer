@@ -9,6 +9,7 @@ using static SmiteMixerListener.Classes.Common;
 using static SmiteMixerCodeGrabberGUI.Classes.Common;
 using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
 using static SmiteMixerCodeGrabberGUI.Classes.Automation;
+using static SmiteMixerCodeGrabberGUI.Classes.Globals;
 
 using MixerChat;
 using MixerChat.Classes;
@@ -44,15 +45,16 @@ namespace SmiteMixerCodeGrabberGUI
             // load up all saved properties
             //
             // textboxes
-            textbox_startCharacters.Text = Properties.Settings.Default.codesStartWith;
-            textbox_whitelistedUsernames.Lines = Properties.Settings.Default.whitelistedUsernames.Cast<string>().ToArray();
-            textbox_NotificationSound.Text = Properties.Settings.Default.notificationSoundFilePath;
+            textbox_startCharacters.Text = codesStartWith;
+            textbox_whitelistedUsernames.Lines = whitelistedUsernames.Cast<string>().ToArray();
+            textbox_NotificationSound.Text = notificationSoundFilePath;
             // checkboxes
-            checkbox_NotificationSound.Checked = Properties.Settings.Default.notificationSound;
-            checkbox_whiteListOnly.Checked = Properties.Settings.Default.whitelistOnly;
-            checkbox_showNotifications.Checked = Properties.Settings.Default.notificationSetting;
+            checkbox_NotificationSound.Checked = notificationSound;
+            checkbox_whiteListOnly.Checked = whitelistOnly;
+            checkbox_showNotifications.Checked = notificationSetting;
+            checkbox_MinimiseAfterRedeeming.Checked = minimiseAfterRedeeming;
             // numberboxes
-            numberbox_codeLength.Value = Properties.Settings.Default.codeLength;
+            numberbox_codeLength.Value = codeLength;
 
             // write the meta info to the console
             Console.Write(MetaInfo.GetMetaInfoConsole());
@@ -128,7 +130,7 @@ namespace SmiteMixerCodeGrabberGUI
             else { /* do nothing */ }
 
             // check if AFK mode was disabled by any threads
-            if (!Properties.Settings.Default.AFKMode)
+            if (!AFKMode)
                 // if it has been disabled then uncheck the form checkbox
                 checkbox_AFKMode.Checked = false;
 
@@ -150,7 +152,7 @@ namespace SmiteMixerCodeGrabberGUI
                 // disable afk mode checkbox & turn it off
                 checkbox_AFKMode.Checked = false;
                 checkbox_AFKMode.Enabled = false;
-                Properties.Settings.Default.AFKMode = false;
+                AFKMode = false;
             }
             else
             {
@@ -178,11 +180,11 @@ namespace SmiteMixerCodeGrabberGUI
         private static void Chat_OnMessageReceived(ChatMessageEventArgs e)
         {
             // this branch will run if the user is not using the white list
-            if (!Properties.Settings.Default.whitelistOnly)
+            if (!whitelistOnly)
             {
                 // check if the message has the code start in it
-                if (e.Message.Contains(Properties.Settings.Default.codesStartWith)
-                    && e.Message.Length >= Properties.Settings.Default.codeLength)
+                if (e.Message.Contains(codesStartWith)
+                    && e.Message.Length >= codeLength)
                 {
                     shouldAddCode(e.Message, e.User);
                 }
@@ -191,20 +193,20 @@ namespace SmiteMixerCodeGrabberGUI
             {
                 // check if the message was from a whitelisted user and message contains the start of the code
                 if (isWhitelistedUser(e.User) &&
-                    e.Message.Contains(Properties.Settings.Default.codesStartWith)
-                    && e.Message.Length >= Properties.Settings.Default.codeLength)
+                    e.Message.Contains(codesStartWith)
+                    && e.Message.Length >= codeLength)
                 {
                     shouldAddCode(e.Message, e.User);
                 }
                 else // code observed from non-whitelist user
                 {
                     // remove everything before the code start
-                    var lTest = e.Message.Remove(0, e.Message.IndexOf(Properties.Settings.Default.codesStartWith));
+                    var lTest = e.Message.Remove(0, e.Message.IndexOf(codesStartWith));
                     // check that the length of the remaining message is equal to or greater than the length of a code
-                    if (lTest.Length >= Properties.Settings.Default.codeLength)
+                    if (lTest.Length >= codeLength)
                     {
                         var m = e.Message;
-                        var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
+                        var code = m.Substring(m.IndexOf(codesStartWith), codeLength);
                         Write("Code matching specified criteria was observed: " + code + " posted by user: " + e.User);
                     }
                 }
@@ -212,67 +214,63 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private static void Chat_OnError(ErrorEventArgs e)
         {
-            Write(e.Exception.Message);
+            //Write(e.Exception.Message);
         }
         #endregion
 
         #region Main Form Controls
         private void checkbox_showNotifications_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.notificationSetting = checkbox_showNotifications.Checked;
-            Properties.Settings.Default.Save();
+            notificationSetting = checkbox_showNotifications.Checked;
 
-            if (Properties.Settings.Default.notificationSetting)
+            if (notificationSetting)
                 Write("Visual notifications enabled.");
             else
                 Write("Visual notifications disabled.");
         }
         private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.notificationSound = checkbox_NotificationSound.Checked;
-            Properties.Settings.Default.Save();
+            notificationSound = checkbox_NotificationSound.Checked;
 
-            if (Properties.Settings.Default.notificationSound)
-                Write("Notification sound enabled: " + Properties.Settings.Default.notificationSound + "; A sound will be played when a new code becomes active.");
+            if (notificationSound)
+                Write("Notification sound enabled: " + notificationSound + "; A sound will be played when a new code becomes active.");
             else
-                Write("Notification sound disabled: " + Properties.Settings.Default.notificationSound + "; A sound will not be played when a new code becomes active.");
+                Write("Notification sound disabled: " + notificationSound + "; A sound will not be played when a new code becomes active.");
         }
         private void checkbox_whiteListOnly_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.whitelistOnly = checkbox_whiteListOnly.Checked;
-            Properties.Settings.Default.Save();
+            whitelistOnly = checkbox_whiteListOnly.Checked;
 
-            if (Properties.Settings.Default.whitelistOnly)
+            if (whitelistOnly)
                 Write("Whitelist mode enabled, will only add active codes from whitelisted usernames.");
             else
                 Write("Whitelist mode disabled, will grab potentially active codes from any username.");
         }
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.AFKMode = checkbox_AFKMode.Checked;
+            AFKMode = checkbox_AFKMode.Checked;
             IsRunning = checkbox_AFKMode.Checked;
 
-            if (Properties.Settings.Default.AFKMode)
+            if (AFKMode)
                 Write("AFK Mode Enabled, will automatically redeem codes as they become active.");
             else
                 Write("AFK Mode Disabled, will not automatically redeem codes as they become active.");
         }
         private void checkbox_MinimiseAfterRedeeming_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.minimiseAfterRedeeming = checkbox_MinimiseAfterRedeeming.Checked;
-            Properties.Settings.Default.Save();
+            minimiseAfterRedeeming = checkbox_MinimiseAfterRedeeming.Checked;
 
-            if (Properties.Settings.Default.minimiseAfterRedeeming)
-                Write("Minimise after redeeming enabled: " + Properties.Settings.Default.notificationSound + "; Will attempt to minimise the SMITE client after redeeming codes.");
+            if (minimiseAfterRedeeming)
+                Write("Minimise after redeeming enabled: " + minimiseAfterRedeeming + "; Will attempt to minimise the SMITE client after redeeming codes.");
             else
-                Write("Minimise after redeeming disabled: " + Properties.Settings.Default.notificationSound + "; Will not attempt to minimise the SMITE client after redeeming codes.");
+                Write("Minimise after redeeming disabled: " + minimiseAfterRedeeming + "; Will not attempt to minimise the SMITE client after redeeming codes.");
         }
 
         private void button_redeemAllActive_Click(object sender, EventArgs e)
         {
             IsRunning = true;
             if (GetActiveCodes().Count > 0)
-                Automation.RedeemAllActive();
+                RedeemAllActive();
             else
                 MessageBox.Show("There are no codes currently active.");
         }
@@ -282,13 +280,13 @@ namespace SmiteMixerCodeGrabberGUI
             var codes = GetActiveCodes();
             var selectedIndex = listbox_Active.SelectedIndex;
             if (selectedIndex > -1)
-                Automation.RedeemSingle(codes[selectedIndex]);
+                RedeemSingle(codes[selectedIndex]);
         }
         private void button_sendTestEmail_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.notificationSound)
+            if (notificationSound)
                 PlayNotificationSound();
-            if(Properties.Settings.Default.notificationSetting)
+            if(notificationSetting)
                 DisplayNotification("This is a test notification.");
         }
         private void button_CopySelectedToClipboard_Click(object sender, EventArgs e)
@@ -311,34 +309,31 @@ namespace SmiteMixerCodeGrabberGUI
             var result = o.ShowDialog();
             if (result == DialogResult.OK)
             {
-                Properties.Settings.Default.notificationSoundFilePath = o.FileName;
-                Properties.Settings.Default.Save();
+                notificationSoundFilePath = o.FileName;
                 textbox_NotificationSound.Text = o.FileName;
             }
         }
 
         private void textbox_startCharacters_TextChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.codesStartWith = textbox_startCharacters.Text;
-            Properties.Settings.Default.Save();
+            codesStartWith = textbox_startCharacters.Text;
+            Write("Will search for codes which start with the characters: " + codesStartWith + ".");
         }
         private void textbox_whitelistedUsernames_TextChanged(object sender, EventArgs e)
         {
             Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
-            Properties.Settings.Default.whitelistedUsernames.Clear();
-            Properties.Settings.Default.whitelistedUsernames.AddRange(textbox_whitelistedUsernames.Lines.ToArray());
-            Properties.Settings.Default.Save();
+            whitelistedUsernames.Clear();
+            whitelistedUsernames.AddRange(textbox_whitelistedUsernames.Lines.ToArray());
         }        
         private void textbox_NotificationSound_TextChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.notificationSoundFilePath = textbox_NotificationSound.Text;
-            Properties.Settings.Default.Save();
+            notificationSoundFilePath = textbox_NotificationSound.Text;
         }
 
         private void numberbox_codeLength_ValueChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.codeLength = (int)numberbox_codeLength.Value;
-            Properties.Settings.Default.Save();
+            codeLength = (int)numberbox_codeLength.Value;
+            Write("Will search for codes which are " + codeLength + " characters long.");
         }
 
         private void logbox_TextChanged(object sender, EventArgs e)
@@ -408,13 +403,13 @@ namespace SmiteMixerCodeGrabberGUI
         }
         public static string GenerateRandomSmiteCode()
         {
-            int len = Properties.Settings.Default.codeLength;
+            int len = codeLength;
 
             Random random = new Random();
 
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-            return Properties.Settings.Default.codesStartWith + new string(Enumerable.Repeat(chars, len - 2)
+            return codesStartWith + new string(Enumerable.Repeat(chars, len - 2)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         /// <summary>
@@ -426,14 +421,14 @@ namespace SmiteMixerCodeGrabberGUI
         static void shouldAddCode(string message, string user)
         {
             // remove everything before the code start
-            var lTest = message.Remove(0, message.IndexOf(Properties.Settings.Default.codesStartWith));
+            var lTest = message.Remove(0, message.IndexOf(codesStartWith));
             // check that the length of the remaining message is equal to or greater than the length of a code
-            if (lTest.Length >= Properties.Settings.Default.codeLength)
+            if (lTest.Length >= codeLength)
             {
                 // get the message
                 var m = message;
                 // extract the code from the message
-                var code = m.Substring(m.IndexOf(Properties.Settings.Default.codesStartWith), Properties.Settings.Default.codeLength);
+                var code = m.Substring(m.IndexOf(codesStartWith), codeLength);
                 // check if the...
                 if (GetActiveCodes().Find(x => x.GetCode() == code) == null &&  // code isn't in the list of active codes
                     GetExpiredCodes().Find(x => x.GetCode() == code) == null && // code isn't in the list of expired codes
@@ -444,10 +439,10 @@ namespace SmiteMixerCodeGrabberGUI
                     // log that a new code was added
                     Write("Code: " + code + " added to active codes (Grabbed from user: " + user + ").");
                     // if the notification sound option is enabled then play a sound
-                    if (Properties.Settings.Default.notificationSound)
+                    if (notificationSound)
                         PlayNotificationSound();
                     // if the notification setting is enabled then show a notification
-                    if (Properties.Settings.Default.notificationSetting)
+                    if (notificationSetting)
                         DisplayNotification("New code added to active codes: \n" + code);
                 }
                 else // code is already in a list or is invalid format
@@ -480,7 +475,7 @@ namespace SmiteMixerCodeGrabberGUI
             while (true)
             {
                 // checks whether AFK mode is enabled by the user
-                if (Properties.Settings.Default.AFKMode == true)
+                if (AFKMode)
                 {
                     // loop through all active codes
                     foreach (var code in GetActiveCodes())
@@ -503,12 +498,18 @@ namespace SmiteMixerCodeGrabberGUI
 
                             // if at the end of the script we weren't interrupted during code redemption then
                             // set the code as redeemed
-                            if(IsRunning)
+                            if (IsRunning)
+                            {
                                 code.SetIsRedeemed(true);
+                                shouldMinimise = true;
+                            }
                         }
                     }
-                    if (Properties.Settings.Default.minimiseAfterRedeeming)
+                    if (minimiseAfterRedeeming && shouldMinimise)
+                    {
                         MinimiseSMITEClient();
+                        shouldMinimise = false;
+                    }
                 }
                 // sleep the thread for 100 ms so we don't max out CPU usage
                 Thread.Sleep(100);
@@ -530,8 +531,7 @@ namespace SmiteMixerCodeGrabberGUI
                     IsRunning = false;
 
                     // disable afk mode
-                    Properties.Settings.Default.AFKMode = false;
-                    Properties.Settings.Default.Save();
+                    AFKMode = false;
 
                     // output notification to show afk mode is disabled
                     DisplayNotification("F5 Key Detected: AFK Mode disabled.");
@@ -552,10 +552,10 @@ namespace SmiteMixerCodeGrabberGUI
                 // check if smite process exists
                 if (ProcessInfo.DoesSmiteProcessExist())
                     // get the name of the smite window from the process handle
-                    Properties.Settings.Default.smiteWindowTitle = ProcessInfo.GetSmiteWindowTitle();
+                    smiteWindowTitle = ProcessInfo.GetSmiteWindowTitle();
                 else
                     // no process found: set smite window title to error message
-                    Properties.Settings.Default.smiteWindowTitle = "SMITE Client Not Found (Automation Disabled).";
+                    smiteWindowTitle = "SMITE Client Not Found (Automation Disabled).";
                 // sleep to reduce CPU usage
                 Thread.Sleep(100);
             }

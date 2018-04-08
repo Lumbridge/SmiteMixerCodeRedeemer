@@ -33,3 +33,4 @@ C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\D
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.CoreCompileInputs.cache
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.dll
 C:\Users\Ry208444\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csprojResolveAssemblyReference.cache

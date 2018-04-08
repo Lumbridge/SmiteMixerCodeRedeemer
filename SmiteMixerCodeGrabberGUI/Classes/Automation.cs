@@ -7,23 +7,33 @@ using static DolphinScript.Lib.Backend.WinAPI;
 using static DolphinScript.Lib.Backend.WindowControl;
 
 using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
+using static SmiteMixerCodeGrabberGUI.Classes.Globals;
 
 namespace SmiteMixerCodeGrabberGUI.Classes
 {
     class Automation
     {
-        public static void RedeemSingle(SmiteCode sc)
+        public static void RedeemSingle(SmiteCode code)
         {
             // get the event list and pass it the code we want it to type
             //
-            var loop = GetRedeemLoop(sc.GetCode());
+            var loop = GetRedeemLoop(code.GetCode());
 
             foreach (var ev in loop)
                 if(IsRunning)
                     ev.DoEvent();
 
-            if(IsRunning)
-                sc.SetIsRedeemed(true);
+            if (IsRunning)
+            {
+                code.SetIsRedeemed(true);
+                shouldMinimise = true;
+            }
+
+            if (minimiseAfterRedeeming && shouldMinimise)
+            {
+                MinimiseSMITEClient();
+                shouldMinimise = false;
+            }
         }
 
         public static void RedeemAllActive()
@@ -40,9 +50,17 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                         if(IsRunning)
                             ev.DoEvent();
 
-                    if(IsRunning)
+                    if (IsRunning)
+                    {
                         code.SetIsRedeemed(true);
+                        shouldMinimise = true;
+                    }
                 }
+            }
+            if (minimiseAfterRedeeming && shouldMinimise)
+            {
+                MinimiseSMITEClient();
+                shouldMinimise = false;
             }
         }
         
@@ -52,7 +70,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             System.Windows.Forms.Clipboard.SetText("/claimpromotion " + code);
             List<ScriptEvent> SlowTypingScript = new List<ScriptEvent>()
             {
-                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle },
+                new MouseMoveToAreaOnWindow() { ClickArea = new RECT(), WindowToClickTitle = smiteWindowTitle },
                 GetPause(1.0, 1.5),
                 GetEnterKeyClick(),
                 GetPause(1.0, 1.5),
@@ -68,7 +86,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 
         static MoveWindowToFront GetMoveWindowToFront()
         {
-            return new MoveWindowToFront() { WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle };
+            return new MoveWindowToFront() { WindowToClickTitle = smiteWindowTitle };
         }
 
         static RandomPauseInRange GetPause(double min, double max)
@@ -78,7 +96,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 
         static MouseMoveToAreaOnWindow GetMouseMoveToWindow(RECT clickArea)
         {
-            return new MouseMoveToAreaOnWindow() { ClickArea = clickArea, WindowToClickTitle = Properties.Settings.Default.smiteWindowTitle };
+            return new MouseMoveToAreaOnWindow() { ClickArea = clickArea, WindowToClickTitle = smiteWindowTitle };
         }
 
         static MouseClick GetLeftMouseClick()
