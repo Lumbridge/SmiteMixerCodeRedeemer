@@ -12,7 +12,7 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -56,55 +56,6 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
             }
             set {
                 this["whitelistOnly"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("17")]
-        public int codeLength {
-            get {
-                return ((int)(this["codeLength"]));
-            }
-            set {
-                this["codeLength"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("AP")]
-        public string codesStartWith {
-            get {
-                return ((string)(this["codesStartWith"]));
-            }
-            set {
-                this["codesStartWith"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>Scottybot</string>
-  <string>HiRezAuvey</string>
-  <string>HiRezHinduman</string>
-  <string>HiRezFinch</string>
-  <string>HiRezVinny</string>
-  <string>HiRezTaco</string>
-  <string>HiRezRude</string>
-  <string>LeTigress</string>
-  <string>Fdt</string>
-  <string>PeccYz</string>
-  <string>Aggro</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection whitelistedUsernames {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["whitelistedUsernames"]));
-            }
-            set {
-                this["whitelistedUsernames"] = value;
             }
         }
         
@@ -165,6 +116,450 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
             }
             set {
                 this["shouldMinimise"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("36")]
+        public int killswitchKey {
+            get {
+                return ((int)(this["killswitchKey"]));
+            }
+            set {
+                this["killswitchKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool killswitchEnabled {
+            get {
+                return ((bool)(this["killswitchEnabled"]));
+            }
+            set {
+                this["killswitchEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>Scottybot</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection whitelistedUsernames {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["whitelistedUsernames"]));
+            }
+            set {
+                this["whitelistedUsernames"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>most</string>\r\n  <string>recent</string>\r\n  <string>code</string>\r\n  <stri" +
+            "ng>latest</string>\r\n  <string>last</string>\r\n  <string>the</string>\r\n  <string>h" +
+            "as</string>\r\n  <string>left</string>\r\n  <string>station</string>\r\n  <string>stay" +
+            "</string>\r\n  <string>tuned</string>\r\n  <string>more</string>\r\n  <string>of</stri" +
+            "ng>\r\n  <string>to</string>\r\n  <string>and</string>\r\n  <string>a</string>\r\n  <str" +
+            "ing>in</string>\r\n  <string>is</string>\r\n  <string>it</string>\r\n  <string>you</st" +
+            "ring>\r\n  <string>that</string>\r\n  <string>he</string>\r\n  <string>was</string>\r\n " +
+            " <string>for</string>\r\n  <string>on</string>\r\n  <string>are</string>\r\n  <string>" +
+            "with</string>\r\n  <string>as</string>\r\n  <string>i</string>\r\n  <string>his</strin" +
+            "g>\r\n  <string>they</string>\r\n  <string>be</string>\r\n  <string>at</string>\r\n  <st" +
+            "ring>one</string>\r\n  <string>have</string>\r\n  <string>this</string>\r\n  <string>f" +
+            "rom</string>\r\n  <string>or</string>\r\n  <string>had</string>\r\n  <string>by</strin" +
+            "g>\r\n  <string>hot</string>\r\n  <string>word</string>\r\n  <string>but</string>\r\n  <" +
+            "string>what</string>\r\n  <string>some</string>\r\n  <string>we</string>\r\n  <string>" +
+            "can</string>\r\n  <string>out</string>\r\n  <string>other</string>\r\n  <string>were</" +
+            "string>\r\n  <string>all</string>\r\n  <string>there</string>\r\n  <string>when</strin" +
+            "g>\r\n  <string>up</string>\r\n  <string>use</string>\r\n  <string>your</string>\r\n  <s" +
+            "tring>how</string>\r\n  <string>said</string>\r\n  <string>an</string>\r\n  <string>ea" +
+            "ch</string>\r\n  <string>she</string>\r\n  <string>which</string>\r\n  <string>do</str" +
+            "ing>\r\n  <string>their</string>\r\n  <string>time</string>\r\n  <string>if</string>\r\n" +
+            "  <string>will</string>\r\n  <string>way</string>\r\n  <string>about</string>\r\n  <st" +
+            "ring>many</string>\r\n  <string>then</string>\r\n  <string>them</string>\r\n  <string>" +
+            "write</string>\r\n  <string>would</string>\r\n  <string>like</string>\r\n  <string>so<" +
+            "/string>\r\n  <string>these</string>\r\n  <string>her</string>\r\n  <string>long</stri" +
+            "ng>\r\n  <string>make</string>\r\n  <string>thing</string>\r\n  <string>see</string>\r\n" +
+            "  <string>him</string>\r\n  <string>two</string>\r\n  <string>look</string>\r\n  <stri" +
+            "ng>day</string>\r\n  <string>could</string>\r\n  <string>go</string>\r\n  <string>come" +
+            "</string>\r\n  <string>did</string>\r\n  <string>number</string>\r\n  <string>sound</s" +
+            "tring>\r\n  <string>no</string>\r\n  <string>people</string>\r\n  <string>my</string>\r" +
+            "\n  <string>over</string>\r\n  <string>know</string>\r\n  <string>water</string>\r\n  <" +
+            "string>than</string>\r\n  <string>call</string>\r\n  <string>first</string>\r\n  <stri" +
+            "ng>who</string>\r\n  <string>may</string>\r\n  <string>down</string>\r\n  <string>side" +
+            "</string>\r\n  <string>been</string>\r\n  <string>now</string>\r\n  <string>find</stri" +
+            "ng>\r\n  <string>any</string>\r\n  <string>new</string>\r\n  <string>work</string>\r\n  " +
+            "<string>part</string>\r\n  <string>take</string>\r\n  <string>get</string>\r\n  <strin" +
+            "g>place</string>\r\n  <string>made</string>\r\n  <string>live</string>\r\n  <string>wh" +
+            "ere</string>\r\n  <string>after</string>\r\n  <string>back</string>\r\n  <string>littl" +
+            "e</string>\r\n  <string>only</string>\r\n  <string>round</string>\r\n  <string>man</st" +
+            "ring>\r\n  <string>year</string>\r\n  <string>came</string>\r\n  <string>show</string>" +
+            "\r\n  <string>every</string>\r\n  <string>good</string>\r\n  <string>me</string>\r\n  <s" +
+            "tring>give</string>\r\n  <string>our</string>\r\n  <string>under</string>\r\n  <string" +
+            ">name</string>\r\n  <string>very</string>\r\n  <string>through</string>\r\n  <string>j" +
+            "ust</string>\r\n  <string>form</string>\r\n  <string>sentence</string>\r\n  <string>gr" +
+            "eat</string>\r\n  <string>think</string>\r\n  <string>say</string>\r\n  <string>help</" +
+            "string>\r\n  <string>low</string>\r\n  <string>line</string>\r\n  <string>differ</stri" +
+            "ng>\r\n  <string>turn</string>\r\n  <string>cause</string>\r\n  <string>much</string>\r" +
+            "\n  <string>mean</string>\r\n  <string>before</string>\r\n  <string>move</string>\r\n  " +
+            "<string>right</string>\r\n  <string>boy</string>\r\n  <string>old</string>\r\n  <strin" +
+            "g>too</string>\r\n  <string>same</string>\r\n  <string>tell</string>\r\n  <string>does" +
+            "</string>\r\n  <string>set</string>\r\n  <string>three</string>\r\n  <string>want</str" +
+            "ing>\r\n  <string>air</string>\r\n  <string>well</string>\r\n  <string>also</string>\r\n" +
+            "  <string>play</string>\r\n  <string>small</string>\r\n  <string>end</string>\r\n  <st" +
+            "ring>put</string>\r\n  <string>home</string>\r\n  <string>read</string>\r\n  <string>h" +
+            "and</string>\r\n  <string>port</string>\r\n  <string>large</string>\r\n  <string>spell" +
+            "</string>\r\n  <string>add</string>\r\n  <string>even</string>\r\n  <string>land</stri" +
+            "ng>\r\n  <string>here</string>\r\n  <string>must</string>\r\n  <string>big</string>\r\n " +
+            " <string>high</string>\r\n  <string>such</string>\r\n  <string>follow</string>\r\n  <s" +
+            "tring>act</string>\r\n  <string>why</string>\r\n  <string>ask</string>\r\n  <string>me" +
+            "n</string>\r\n  <string>change</string>\r\n  <string>went</string>\r\n  <string>light<" +
+            "/string>\r\n  <string>kind</string>\r\n  <string>off</string>\r\n  <string>need</strin" +
+            "g>\r\n  <string>house</string>\r\n  <string>picture</string>\r\n  <string>try</string>" +
+            "\r\n  <string>us</string>\r\n  <string>again</string>\r\n  <string>animal</string>\r\n  " +
+            "<string>point</string>\r\n  <string>mother</string>\r\n  <string>world</string>\r\n  <" +
+            "string>near</string>\r\n  <string>build</string>\r\n  <string>self</string>\r\n  <stri" +
+            "ng>earth</string>\r\n  <string>father</string>\r\n  <string>head</string>\r\n  <string" +
+            ">stand</string>\r\n  <string>own</string>\r\n  <string>page</string>\r\n  <string>shou" +
+            "ld</string>\r\n  <string>country</string>\r\n  <string>found</string>\r\n  <string>ans" +
+            "wer</string>\r\n  <string>school</string>\r\n  <string>grow</string>\r\n  <string>stud" +
+            "y</string>\r\n  <string>still</string>\r\n  <string>learn</string>\r\n  <string>plant<" +
+            "/string>\r\n  <string>cover</string>\r\n  <string>food</string>\r\n  <string>sun</stri" +
+            "ng>\r\n  <string>four</string>\r\n  <string>between</string>\r\n  <string>state</strin" +
+            "g>\r\n  <string>keep</string>\r\n  <string>eye</string>\r\n  <string>never</string>\r\n " +
+            " <string>let</string>\r\n  <string>thought</string>\r\n  <string>city</string>\r\n  <s" +
+            "tring>tree</string>\r\n  <string>cross</string>\r\n  <string>farm</string>\r\n  <strin" +
+            "g>hard</string>\r\n  <string>start</string>\r\n  <string>might</string>\r\n  <string>s" +
+            "tory</string>\r\n  <string>saw</string>\r\n  <string>far</string>\r\n  <string>sea</st" +
+            "ring>\r\n  <string>draw</string>\r\n  <string>late</string>\r\n  <string>run</string>\r" +
+            "\n  <string>while</string>\r\n  <string>press</string>\r\n  <string>close</string>\r\n " +
+            " <string>night</string>\r\n  <string>real</string>\r\n  <string>life</string>\r\n  <st" +
+            "ring>few</string>\r\n  <string>north</string>\r\n  <string>open</string>\r\n  <string>" +
+            "seem</string>\r\n  <string>together</string>\r\n  <string>next</string>\r\n  <string>w" +
+            "hite</string>\r\n  <string>children</string>\r\n  <string>begin</string>\r\n  <string>" +
+            "got</string>\r\n  <string>walk</string>\r\n  <string>example</string>\r\n  <string>eas" +
+            "e</string>\r\n  <string>paper</string>\r\n  <string>group</string>\r\n  <string>always" +
+            "</string>\r\n  <string>music</string>\r\n  <string>those</string>\r\n  <string>both</s" +
+            "tring>\r\n  <string>mark</string>\r\n  <string>often</string>\r\n  <string>letter</str" +
+            "ing>\r\n  <string>until</string>\r\n  <string>mile</string>\r\n  <string>river</string" +
+            ">\r\n  <string>car</string>\r\n  <string>feet</string>\r\n  <string>care</string>\r\n  <" +
+            "string>second</string>\r\n  <string>book</string>\r\n  <string>carry</string>\r\n  <st" +
+            "ring>took</string>\r\n  <string>science</string>\r\n  <string>eat</string>\r\n  <strin" +
+            "g>room</string>\r\n  <string>friend</string>\r\n  <string>began</string>\r\n  <string>" +
+            "idea</string>\r\n  <string>fish</string>\r\n  <string>mountain</string>\r\n  <string>s" +
+            "top</string>\r\n  <string>once</string>\r\n  <string>base</string>\r\n  <string>hear</" +
+            "string>\r\n  <string>horse</string>\r\n  <string>cut</string>\r\n  <string>sure</strin" +
+            "g>\r\n  <string>watch</string>\r\n  <string>color</string>\r\n  <string>face</string>\r" +
+            "\n  <string>wood</string>\r\n  <string>main</string>\r\n  <string>enough</string>\r\n  " +
+            "<string>plain</string>\r\n  <string>girl</string>\r\n  <string>usual</string>\r\n  <st" +
+            "ring>young</string>\r\n  <string>ready</string>\r\n  <string>above</string>\r\n  <stri" +
+            "ng>ever</string>\r\n  <string>red</string>\r\n  <string>list</string>\r\n  <string>tho" +
+            "ugh</string>\r\n  <string>feel</string>\r\n  <string>talk</string>\r\n  <string>bird</" +
+            "string>\r\n  <string>soon</string>\r\n  <string>body</string>\r\n  <string>dog</string" +
+            ">\r\n  <string>family</string>\r\n  <string>direct</string>\r\n  <string>pose</string>" +
+            "\r\n  <string>leave</string>\r\n  <string>song</string>\r\n  <string>measure</string>\r" +
+            "\n  <string>door</string>\r\n  <string>product</string>\r\n  <string>black</string>\r\n" +
+            "  <string>short</string>\r\n  <string>numeral</string>\r\n  <string>class</string>\r\n" +
+            "  <string>wind</string>\r\n  <string>question</string>\r\n  <string>happen</string>\r" +
+            "\n  <string>complete</string>\r\n  <string>ship</string>\r\n  <string>area</string>\r\n" +
+            "  <string>half</string>\r\n  <string>rock</string>\r\n  <string>order</string>\r\n  <s" +
+            "tring>fire</string>\r\n  <string>south</string>\r\n  <string>problem</string>\r\n  <st" +
+            "ring>piece</string>\r\n  <string>told</string>\r\n  <string>knew</string>\r\n  <string" +
+            ">pass</string>\r\n  <string>since</string>\r\n  <string>top</string>\r\n  <string>whol" +
+            "e</string>\r\n  <string>king</string>\r\n  <string>space</string>\r\n  <string>heard</" +
+            "string>\r\n  <string>best</string>\r\n  <string>hour</string>\r\n  <string>better</str" +
+            "ing>\r\n  <string>true</string>\r\n  <string>during</string>\r\n  <string>hundred</str" +
+            "ing>\r\n  <string>five</string>\r\n  <string>remember</string>\r\n  <string>step</stri" +
+            "ng>\r\n  <string>early</string>\r\n  <string>hold</string>\r\n  <string>west</string>\r" +
+            "\n  <string>ground</string>\r\n  <string>interest</string>\r\n  <string>reach</string" +
+            ">\r\n  <string>fast</string>\r\n  <string>verb</string>\r\n  <string>sing</string>\r\n  " +
+            "<string>listen</string>\r\n  <string>six</string>\r\n  <string>table</string>\r\n  <st" +
+            "ring>travel</string>\r\n  <string>less</string>\r\n  <string>morning</string>\r\n  <st" +
+            "ring>ten</string>\r\n  <string>simple</string>\r\n  <string>several</string>\r\n  <str" +
+            "ing>vowel</string>\r\n  <string>toward</string>\r\n  <string>war</string>\r\n  <string" +
+            ">lay</string>\r\n  <string>hirezfinch</string>\r\n  <string>against</string>\r\n  <str" +
+            "ing>pattern</string>\r\n  <string>slow</string>\r\n  <string>center</string>\r\n  <str" +
+            "ing>love</string>\r\n  <string>person</string>\r\n  <string>money</string>\r\n  <strin" +
+            "g>serve</string>\r\n  <string>appear</string>\r\n  <string>road</string>\r\n  <string>" +
+            "map</string>\r\n  <string>rain</string>\r\n  <string>rule</string>\r\n  <string>govern" +
+            "</string>\r\n  <string>pull</string>\r\n  <string>cold</string>\r\n  <string>notice</s" +
+            "tring>\r\n  <string>voice</string>\r\n  <string>unit</string>\r\n  <string>power</stri" +
+            "ng>\r\n  <string>town</string>\r\n  <string>fine</string>\r\n  <string>certain</string" +
+            ">\r\n  <string>fly</string>\r\n  <string>fall</string>\r\n  <string>lead</string>\r\n  <" +
+            "string>cry</string>\r\n  <string>dark</string>\r\n  <string>machine</string>\r\n  <str" +
+            "ing>note</string>\r\n  <string>wait</string>\r\n  <string>plan</string>\r\n  <string>f" +
+            "igure</string>\r\n  <string>star</string>\r\n  <string>box</string>\r\n  <string>noun<" +
+            "/string>\r\n  <string>field</string>\r\n  <string>rest</string>\r\n  <string>correct</" +
+            "string>\r\n  <string>able</string>\r\n  <string>pound</string>\r\n  <string>done</stri" +
+            "ng>\r\n  <string>beauty</string>\r\n  <string>drive</string>\r\n  <string>stood</strin" +
+            "g>\r\n  <string>contain</string>\r\n  <string>front</string>\r\n  <string>teach</strin" +
+            "g>\r\n  <string>week</string>\r\n  <string>final</string>\r\n  <string>gave</string>\r\n" +
+            "  <string>green</string>\r\n  <string>oh</string>\r\n  <string>quick</string>\r\n  <st" +
+            "ring>develop</string>\r\n  <string>ocean</string>\r\n  <string>warm</string>\r\n  <str" +
+            "ing>free</string>\r\n  <string>minute</string>\r\n  <string>strong</string>\r\n  <stri" +
+            "ng>special</string>\r\n  <string>mind</string>\r\n  <string>behind</string>\r\n  <stri" +
+            "ng>clear</string>\r\n  <string>tail</string>\r\n  <string>produce</string>\r\n  <strin" +
+            "g>fact</string>\r\n  <string>street</string>\r\n  <string>inch</string>\r\n  <string>m" +
+            "ultiply</string>\r\n  <string>nothing</string>\r\n  <string>course</string>\r\n  <stri" +
+            "ng>wheel</string>\r\n  <string>full</string>\r\n  <string>force</string>\r\n  <string>" +
+            "eunited</string>\r\n  <string>cyclonespin</string>\r\n  <string>blue</string>\r\n  <st" +
+            "ring>object</string>\r\n  <string>decide</string>\r\n  <string>surface</string>\r\n  <" +
+            "string>deep</string>\r\n  <string>moon</string>\r\n  <string>island</string>\r\n  <str" +
+            "ing>foot</string>\r\n  <string>system</string>\r\n  <string>busy</string>\r\n  <string" +
+            ">test</string>\r\n  <string>record</string>\r\n  <string>boat</string>\r\n  <string>co" +
+            "mmon</string>\r\n  <string>gold</string>\r\n  <string>possible</string>\r\n  <string>p" +
+            "lane</string>\r\n  <string>stead</string>\r\n  <string>dry</string>\r\n  <string>wonde" +
+            "r</string>\r\n  <string>laugh</string>\r\n  <string>thousand</string>\r\n  <string>ago" +
+            "</string>\r\n  <string>ran</string>\r\n  <string>check</string>\r\n  <string>game</str" +
+            "ing>\r\n  <string>shape</string>\r\n  <string>equate</string>\r\n  <string>miss</strin" +
+            "g>\r\n  <string>brought</string>\r\n  <string>heat</string>\r\n  <string>snow</string>" +
+            "\r\n  <string>tire</string>\r\n  <string>bring</string>\r\n  <string>yes</string>\r\n  <" +
+            "string>distant</string>\r\n  <string>fill</string>\r\n  <string>east</string>\r\n  <st" +
+            "ring>paint</string>\r\n  <string>language</string>\r\n  <string>among</string>\r\n  <s" +
+            "tring>grand</string>\r\n  <string>ball</string>\r\n  <string>yet</string>\r\n  <string" +
+            ">wave</string>\r\n  <string>drop</string>\r\n  <string>heart</string>\r\n  <string>am<" +
+            "/string>\r\n  <string>present</string>\r\n  <string>heavy</string>\r\n  <string>dance<" +
+            "/string>\r\n  <string>engine</string>\r\n  <string>position</string>\r\n  <string>arm<" +
+            "/string>\r\n  <string>wide</string>\r\n  <string>sail</string>\r\n  <string>material</" +
+            "string>\r\n  <string>size</string>\r\n  <string>vary</string>\r\n  <string>settle</str" +
+            "ing>\r\n  <string>speak</string>\r\n  <string>weight</string>\r\n  <string>general</st" +
+            "ring>\r\n  <string>ice</string>\r\n  <string>matter</string>\r\n  <string>circle</stri" +
+            "ng>\r\n  <string>pair</string>\r\n  <string>include</string>\r\n  <string>divide</stri" +
+            "ng>\r\n  <string>syllable</string>\r\n  <string>felt</string>\r\n  <string>perhaps</st" +
+            "ring>\r\n  <string>pick</string>\r\n  <string>sudden</string>\r\n  <string>count</stri" +
+            "ng>\r\n  <string>square</string>\r\n  <string>reason</string>\r\n  <string>length</str" +
+            "ing>\r\n  <string>represent</string>\r\n  <string>art</string>\r\n  <string>subject</s" +
+            "tring>\r\n  <string>region</string>\r\n  <string>energy</string>\r\n  <string>hunt</st" +
+            "ring>\r\n  <string>probable</string>\r\n  <string>bed</string>\r\n  <string>brother</s" +
+            "tring>\r\n  <string>egg</string>\r\n  <string>ride</string>\r\n  <string>cell</string>" +
+            "\r\n  <string>believe</string>\r\n  <string>fraction</string>\r\n  <string>forest</str" +
+            "ing>\r\n  <string>sit</string>\r\n  <string>race</string>\r\n  <string>window</string>" +
+            "\r\n  <string>store</string>\r\n  <string>summer</string>\r\n  <string>train</string>\r" +
+            "\n  <string>sleep</string>\r\n  <string>prove</string>\r\n  <string>lone</string>\r\n  " +
+            "<string>leg</string>\r\n  <string>exercise</string>\r\n  <string>wall</string>\r\n  <s" +
+            "tring>catch</string>\r\n  <string>mount</string>\r\n  <string>wish</string>\r\n  <stri" +
+            "ng>sky</string>\r\n  <string>board</string>\r\n  <string>joy</string>\r\n  <string>win" +
+            "ter</string>\r\n  <string>sat</string>\r\n  <string>written</string>\r\n  <string>wild" +
+            "</string>\r\n  <string>instrument</string>\r\n  <string>kept</string>\r\n  <string>gla" +
+            "ss</string>\r\n  <string>grass</string>\r\n  <string>cow</string>\r\n  <string>job</st" +
+            "ring>\r\n  <string>edge</string>\r\n  <string>sign</string>\r\n  <string>visit</string" +
+            ">\r\n  <string>past</string>\r\n  <string>soft</string>\r\n  <string>fun</string>\r\n  <" +
+            "string>bright</string>\r\n  <string>gas</string>\r\n  <string>weather</string>\r\n  <s" +
+            "tring>month</string>\r\n  <string>million</string>\r\n  <string>bear</string>\r\n  <st" +
+            "ring>finish</string>\r\n  <string>happy</string>\r\n  <string>hope</string>\r\n  <stri" +
+            "ng>flower</string>\r\n  <string>clothe</string>\r\n  <string>strange</string>\r\n  <st" +
+            "ring>gone</string>\r\n  <string>jump</string>\r\n  <string>baby</string>\r\n  <string>" +
+            "eight</string>\r\n  <string>village</string>\r\n  <string>meet</string>\r\n  <string>r" +
+            "oot</string>\r\n  <string>buy</string>\r\n  <string>raise</string>\r\n  <string>solve<" +
+            "/string>\r\n  <string>metal</string>\r\n  <string>whether</string>\r\n  <string>push</" +
+            "string>\r\n  <string>seven</string>\r\n  <string>paragraph</string>\r\n  <string>third" +
+            "</string>\r\n  <string>shall</string>\r\n  <string>held</string>\r\n  <string>hair</st" +
+            "ring>\r\n  <string>describe</string>\r\n  <string>cook</string>\r\n  <string>floor</st" +
+            "ring>\r\n  <string>either</string>\r\n  <string>result</string>\r\n  <string>burn</str" +
+            "ing>\r\n  <string>hill</string>\r\n  <string>safe</string>\r\n  <string>cat</string>\r\n" +
+            "  <string>century</string>\r\n  <string>consider</string>\r\n  <string>type</string>" +
+            "\r\n  <string>law</string>\r\n  <string>bit</string>\r\n  <string>coast</string>\r\n  <s" +
+            "tring>copy</string>\r\n  <string>phrase</string>\r\n  <string>silent</string>\r\n  <st" +
+            "ring>tall</string>\r\n  <string>sand</string>\r\n  <string>soil</string>\r\n  <string>" +
+            "roll</string>\r\n  <string>temperature</string>\r\n  <string>finger</string>\r\n  <str" +
+            "ing>industry</string>\r\n  <string>value</string>\r\n  <string>fight</string>\r\n  <st" +
+            "ring>lie</string>\r\n  <string>beat</string>\r\n  <string>excite</string>\r\n  <string" +
+            ">natural</string>\r\n  <string>view</string>\r\n  <string>sense</string>\r\n  <string>" +
+            "ear</string>\r\n  <string>else</string>\r\n  <string>quite</string>\r\n  <string>peccy" +
+            "z</string>\r\n  <string>broke</string>\r\n  <string>case</string>\r\n  <string>middle<" +
+            "/string>\r\n  <string>kill</string>\r\n  <string>son</string>\r\n  <string>lake</strin" +
+            "g>\r\n  <string>moment</string>\r\n  <string>scale</string>\r\n  <string>loud</string>" +
+            "\r\n  <string>spring</string>\r\n  <string>observe</string>\r\n  <string>child</string" +
+            ">\r\n  <string>straight</string>\r\n  <string>consonant</string>\r\n  <string>nation</" +
+            "string>\r\n  <string>dictionary</string>\r\n  <string>milk</string>\r\n  <string>speed" +
+            "</string>\r\n  <string>method</string>\r\n  <string>organ</string>\r\n  <string>pay</s" +
+            "tring>\r\n  <string>age</string>\r\n  <string>section</string>\r\n  <string>dress</str" +
+            "ing>\r\n  <string>cloud</string>\r\n  <string>surprise</string>\r\n  <string>quiet</st" +
+            "ring>\r\n  <string>stone</string>\r\n  <string>tiny</string>\r\n  <string>climb</strin" +
+            "g>\r\n  <string>cool</string>\r\n  <string>design</string>\r\n  <string>poor</string>\r" +
+            "\n  <string>lot</string>\r\n  <string>experiment</string>\r\n  <string>bottom</string" +
+            ">\r\n  <string>key</string>\r\n  <string>iron</string>\r\n  <string>single</string>\r\n " +
+            " <string>stick</string>\r\n  <string>flat</string>\r\n  <string>twenty</string>\r\n  <" +
+            "string>skin</string>\r\n  <string>smile</string>\r\n  <string>crease</string>\r\n  <st" +
+            "ring>hole</string>\r\n  <string>trade</string>\r\n  <string>melody</string>\r\n  <stri" +
+            "ng>trip</string>\r\n  <string>office</string>\r\n  <string>receive</string>\r\n  <stri" +
+            "ng>row</string>\r\n  <string>mouth</string>\r\n  <string>exact</string>\r\n  <string>s" +
+            "ymbol</string>\r\n  <string>die</string>\r\n  <string>least</string>\r\n  <string>trou" +
+            "ble</string>\r\n  <string>shout</string>\r\n  <string>except</string>\r\n  <string>wro" +
+            "te</string>\r\n  <string>seed</string>\r\n  <string>tone</string>\r\n  <string>join</s" +
+            "tring>\r\n  <string>suggest</string>\r\n  <string>clean</string>\r\n  <string>break</s" +
+            "tring>\r\n  <string>lady</string>\r\n  <string>yard</string>\r\n  <string>rise</string" +
+            ">\r\n  <string>bad</string>\r\n  <string>blow</string>\r\n  <string>oil</string>\r\n  <s" +
+            "tring>blood</string>\r\n  <string>touch</string>\r\n  <string>grew</string>\r\n  <stri" +
+            "ng>cent</string>\r\n  <string>mix</string>\r\n  <string>team</string>\r\n  <string>wir" +
+            "e</string>\r\n  <string>cost</string>\r\n  <string>lost</string>\r\n  <string>brown</s" +
+            "tring>\r\n  <string>wear</string>\r\n  <string>garden</string>\r\n  <string>equal</str" +
+            "ing>\r\n  <string>sent</string>\r\n  <string>choose</string>\r\n  <string>fell</string" +
+            ">\r\n  <string>fit</string>\r\n  <string>flow</string>\r\n  <string>fair</string>\r\n  <" +
+            "string>bank</string>\r\n  <string>collect</string>\r\n  <string>save</string>\r\n  <st" +
+            "ring>control</string>\r\n  <string>decimal</string>\r\n  <string>gentle</string>\r\n  " +
+            "<string>woman</string>\r\n  <string>captain</string>\r\n  <string>practice</string>\r" +
+            "\n  <string>separate</string>\r\n  <string>difficult</string>\r\n  <string>doctor</st" +
+            "ring>\r\n  <string>please</string>\r\n  <string>protect</string>\r\n  <string>noon</st" +
+            "ring>\r\n  <string>whose</string>\r\n  <string>locate</string>\r\n  <string>ring</stri" +
+            "ng>\r\n  <string>character</string>\r\n  <string>insect</string>\r\n  <string>caught</" +
+            "string>\r\n  <string>period</string>\r\n  <string>indicate</string>\r\n  <string>radio" +
+            "</string>\r\n  <string>spoke</string>\r\n  <string>atom</string>\r\n  <string>human</s" +
+            "tring>\r\n  <string>history</string>\r\n  <string>effect</string>\r\n  <string>electri" +
+            "c</string>\r\n  <string>expect</string>\r\n  <string>crop</string>\r\n  <string>modern" +
+            "</string>\r\n  <string>element</string>\r\n  <string>hit</string>\r\n  <string>student" +
+            "</string>\r\n  <string>corner</string>\r\n  <string>party</string>\r\n  <string>supply" +
+            "</string>\r\n  <string>bone</string>\r\n  <string>rail</string>\r\n  <string>imagine</" +
+            "string>\r\n  <string>provide</string>\r\n  <string>agree</string>\r\n  <string>thus</s" +
+            "tring>\r\n  <string>capital</string>\r\n  <string>chair</string>\r\n  <string>danger</" +
+            "string>\r\n  <string>fruit</string>\r\n  <string>rich</string>\r\n  <string>thick</str" +
+            "ing>\r\n  <string>soldier</string>\r\n  <string>process</string>\r\n  <string>operate<" +
+            "/string>\r\n  <string>guess</string>\r\n  <string>necessary</string>\r\n  <string>shar" +
+            "p</string>\r\n  <string>wing</string>\r\n  <string>create</string>\r\n  <string>neighb" +
+            "or</string>\r\n  <string>wash</string>\r\n  <string>bat</string>\r\n  <string>rather</" +
+            "string>\r\n  <string>crowd</string>\r\n  <string>corn</string>\r\n  <string>compare</s" +
+            "tring>\r\n  <string>poem</string>\r\n  <string>string</string>\r\n  <string>bell</stri" +
+            "ng>\r\n  <string>depend</string>\r\n  <string>meat</string>\r\n  <string>rub</string>\r" +
+            "\n  <string>tube</string>\r\n  <string>famous</string>\r\n  <string>dollar</string>\r\n" +
+            "  <string>stream</string>\r\n  <string>fear</string>\r\n  <string>sight</string>\r\n  " +
+            "<string>thin</string>\r\n  <string>triangle</string>\r\n  <string>planet</string>\r\n " +
+            " <string>hurry</string>\r\n  <string>chief</string>\r\n  <string>colony</string>\r\n  " +
+            "<string>clock</string>\r\n  <string>mine</string>\r\n  <string>tie</string>\r\n  <stri" +
+            "ng>enter</string>\r\n  <string>major</string>\r\n  <string>fresh</string>\r\n  <string" +
+            ">search</string>\r\n  <string>send</string>\r\n  <string>yellow</string>\r\n  <string>" +
+            "gun</string>\r\n  <string>allow</string>\r\n  <string>print</string>\r\n  <string>dead" +
+            "</string>\r\n  <string>spot</string>\r\n  <string>desert</string>\r\n  <string>suit</s" +
+            "tring>\r\n  <string>current</string>\r\n  <string>lift</string>\r\n  <string>rose</str" +
+            "ing>\r\n  <string>continue</string>\r\n  <string>block</string>\r\n  <string>chart</st" +
+            "ring>\r\n  <string>hat</string>\r\n  <string>sell</string>\r\n  <string>success</strin" +
+            "g>\r\n  <string>company</string>\r\n  <string>subtract</string>\r\n  <string>event</st" +
+            "ring>\r\n  <string>particular</string>\r\n  <string>deal</string>\r\n  <string>swim</s" +
+            "tring>\r\n  <string>term</string>\r\n  <string>opposite</string>\r\n  <string>wife</st" +
+            "ring>\r\n  <string>shoe</string>\r\n  <string>shoulder</string>\r\n  <string>spread</s" +
+            "tring>\r\n  <string>arrange</string>\r\n  <string>camp</string>\r\n  <string>invent</s" +
+            "tring>\r\n  <string>cotton</string>\r\n  <string>born</string>\r\n  <string>determine<" +
+            "/string>\r\n  <string>quart</string>\r\n  <string>nine</string>\r\n  <string>truck</st" +
+            "ring>\r\n  <string>noise</string>\r\n  <string>level</string>\r\n  <string>chance</str" +
+            "ing>\r\n  <string>gather</string>\r\n  <string>shop</string>\r\n  <string>stretch</str" +
+            "ing>\r\n  <string>throw</string>\r\n  <string>shine</string>\r\n  <string>property</st" +
+            "ring>\r\n  <string>column</string>\r\n  <string>molecule</string>\r\n  <string>select<" +
+            "/string>\r\n  <string>wrong</string>\r\n  <string>gray</string>\r\n  <string>repeat</s" +
+            "tring>\r\n  <string>require</string>\r\n  <string>broad</string>\r\n  <string>prepare<" +
+            "/string>\r\n  <string>salt</string>\r\n  <string>nose</string>\r\n  <string>plural</st" +
+            "ring>\r\n  <string>anger</string>\r\n  <string>claim</string>\r\n  <string>continent</" +
+            "string>\r\n  <string>oxygen</string>\r\n  <string>sugar</string>\r\n  <string>death</s" +
+            "tring>\r\n  <string>pretty</string>\r\n  <string>skill</string>\r\n  <string>women</st" +
+            "ring>\r\n  <string>season</string>\r\n  <string>solution</string>\r\n  <string>magnet<" +
+            "/string>\r\n  <string>silver</string>\r\n  <string>thank</string>\r\n  <string>branch<" +
+            "/string>\r\n  <string>match</string>\r\n  <string>suffix</string>\r\n  <string>especia" +
+            "lly</string>\r\n  <string>fig</string>\r\n  <string>afraid</string>\r\n  <string>huge<" +
+            "/string>\r\n  <string>sister</string>\r\n  <string>steel</string>\r\n  <string>discuss" +
+            "</string>\r\n  <string>forward</string>\r\n  <string>similar</string>\r\n  <string>gui" +
+            "de</string>\r\n  <string>experience</string>\r\n  <string>score</string>\r\n  <string>" +
+            "apple</string>\r\n  <string>bought</string>\r\n  <string>led</string>\r\n  <string>pit" +
+            "ch</string>\r\n  <string>coat</string>\r\n  <string>mass</string>\r\n  <string>card</s" +
+            "tring>\r\n  <string>band</string>\r\n  <string>rope</string>\r\n  <string>slip</string" +
+            ">\r\n  <string>win</string>\r\n  <string>dream</string>\r\n  <string>evening</string>\r" +
+            "\n  <string>condition</string>\r\n  <string>feed</string>\r\n  <string>tool</string>\r" +
+            "\n  <string>total</string>\r\n  <string>basic</string>\r\n  <string>smell</string>\r\n " +
+            " <string>valley</string>\r\n  <string>nor</string>\r\n  <string>double</string>\r\n  <" +
+            "string>seat</string>\r\n  <string>arrive</string>\r\n  <string>master</string>\r\n  <s" +
+            "tring>track</string>\r\n  <string>parent</string>\r\n  <string>shore</string>\r\n  <st" +
+            "ring>division</string>\r\n  <string>sheet</string>\r\n  <string>substance</string>\r\n" +
+            "  <string>favor</string>\r\n  <string>connect</string>\r\n  <string>post</string>\r\n " +
+            " <string>spend</string>\r\n  <string>chord</string>\r\n  <string>fat</string>\r\n  <st" +
+            "ring>glad</string>\r\n  <string>original</string>\r\n  <string>share</string>\r\n  <st" +
+            "ring>dad</string>\r\n  <string>bread</string>\r\n  <string>charge</string>\r\n  <strin" +
+            "g>proper</string>\r\n  <string>bar</string>\r\n  <string>offer</string>\r\n  <string>s" +
+            "egment</string>\r\n  <string>slave</string>\r\n  <string>duck</string>\r\n  <string>in" +
+            "stant</string>\r\n  <string>market</string>\r\n  <string>degree</string>\r\n  <string>" +
+            "populate</string>\r\n  <string>chick</string>\r\n  <string>dear</string>\r\n  <string>" +
+            "enemy</string>\r\n  <string>reply</string>\r\n  <string>drink</string>\r\n  <string>oc" +
+            "cur</string>\r\n  <string>support</string>\r\n  <string>speech</string>\r\n  <string>n" +
+            "ature</string>\r\n  <string>range</string>\r\n  <string>steam</string>\r\n  <string>mo" +
+            "tion</string>\r\n  <string>path</string>\r\n  <string>liquid</string>\r\n  <string>log" +
+            "</string>\r\n  <string>meant</string>\r\n  <string>quotient</string>\r\n  <string>teet" +
+            "h</string>\r\n  <string>shell</string>\r\n  <string>neck</string>\r\n  <string>odyssey" +
+            "</string>\r\n  <string>mixer</string>\r\n  <string>skadi</string>\r\n  <string>availab" +
+            "le</string>\r\n  <string>chests</string>\r\n  <string>broadcast</string>\r\n  <string>" +
+            "bot</string>\r\n  <string>commands</string>\r\n  <string>httpsscottybotnet</string>\r" +
+            "\n  <string>channel</string>\r\n  <string>currently</string>\r\n  <string>active</str" +
+            "ing>\r\n  <string>drops</string>\r\n  <string>enjoy</string>\r\n  <string>theyll</stri" +
+            "ng>\r\n  <string>lightningbolt</string>\r\n  <string>burned</string>\r\n  <string>toda" +
+            "ys</string>\r\n  <string>matches</string>\r\n  <string>dignitas</string>\r\n  <string>" +
+            "vs</string>\r\n  <string>mousesports</string>\r\n  <string>rival</string>\r\n  <string" +
+            ">obey</string>\r\n  <string>kills</string>\r\n  <string>happening</string>\r\n  <strin" +
+            "g>chat</string>\r\n  <string>skarke</string>\r\n  <string>bothering</string>\r\n  <str" +
+            "ing>guys</string>\r\n  <string>poll</string>\r\n  <string>started</string>\r\n  <strin" +
+            "g>lanimals</string>\r\n  <string>mvp</string>\r\n  <string>results</string>\r\n  <stri" +
+            "ng>progress</string>\r\n  <string>iceicebaby</string>\r\n  <string>votes</string>\r\n " +
+            " <string>going</string>\r\n  <string>lan</string>\r\n  <string>command</string>\r\n  <" +
+            "string>lastdrop</string>\r\n  <string>celebrate</string>\r\n  <string>makeitrain</st" +
+            "ring>\r\n  <string>addedupdated</string>\r\n  <string />\r\n  <string>batmansx</string" +
+            ">\r\n  <string>spamming</string>\r\n  <string>ody</string>\r\n  <string>guy</string>\r\n" +
+            "  <string>wlfy</string>\r\n  <string>havent</string>\r\n  <string>seen</string>\r\n  <" +
+            "string>u</string>\r\n  <string>baskin</string>\r\n  <string>soooooooooo</string>\r\n  " +
+            "<string>weve</string>\r\n  <string>dig</string>\r\n  <string>qualify</string>\r\n  <st" +
+            "ring>tonight</string>\r\n  <string>v</string>\r\n  <string>lets</string>\r\n  <string>" +
+            "asking</string>\r\n  <string>codes</string>\r\n  <string>literally</string>\r\n  <stri" +
+            "ng>schedule</string>\r\n  <string>spl</string>\r\n  <string>eu</string>\r\n  <string>e" +
+            "t</string>\r\n  <string>playing</string>\r\n  <string>today</string>\r\n  <string>hey<" +
+            "/string>\r\n  <string>nerds</string>\r\n  <string>blizzitz</string>\r\n  <string>lawn<" +
+            "/string>\r\n  <string>guyland</string>\r\n  <string>pip</string>\r\n  <string>naw</str" +
+            "ing>\r\n  <string>okay</string>\r\n  <string>breaking</string>\r\n  <string>darktavar<" +
+            "/string>\r\n  <string>dont</string>\r\n  <string>awesome</string>\r\n  <string>youre</" +
+            "string>\r\n  <string>having</string>\r\n  <string>watching</string>\r\n  <string>strea" +
+            "ms</string>\r\n  <string>supportmixercom</string>\r\n  <string>mixercomcontact</stri" +
+            "ng>\r\n  <string>dropped</string>\r\n  <string>dude</string>\r\n  <string>lacrofia</st" +
+            "ring>\r\n  <string>because</string>\r\n  <string>spams</string>\r\n  <string>otherwise" +
+            "</string>\r\n  <string>kegginz</string>\r\n  <string>player</string>\r\n  <string>cams" +
+            "</string>\r\n  <string>pov</string>\r\n  <string>scottybot</string>\r\n  <string>hirez" +
+            "taco</string>\r\n  <string>hirezrude</string>\r\n  <string>expired</string>\r\n  <stri" +
+            "ng>qualifies</string>\r\n  <string>xaliea</string>\r\n  <string>vote</string>\r\n  <st" +
+            "ring>esportssmitegamecomnewsvote</string>\r\n  <string>experiencing</string>\r\n  <s" +
+            "tring>bugs</string>\r\n  <string>smite</string>\r\n  <string>submit</string>\r\n  <str" +
+            "ing>ticket</string>\r\n  <string>mods</string>\r\n  <string>cannot</string>\r\n  <stri" +
+            "ng>fix</string>\r\n  <string>dev</string>\r\n  <string>issues</string>\r\n  <string>hi" +
+            "rezauvey</string>\r\n  <string>hirezhinduman</string>\r\n  <string>hirezvinny</strin" +
+            "g>\r\n  <string>designers</string>\r\n  <string>hirez</string>\r\n  <string>programmer" +
+            "</string>\r\n  <string>moved</string>\r\n  <string>gods</string>\r\n  <string>chiron</" +
+            "string>\r\n  <string>raijin</string>\r\n  <string>appeared</string>\r\n  <string>patch" +
+            "</string>\r\n  <string>notes</string>\r\n  <string>shows</string>\r\n  <string>videos<" +
+            "/string>\r\n  <string>not</string>\r\n  <string>sort</string>\r\n  <string>account</st" +
+            "ring>\r\n  <string>linking</string>\r\n  <string>allows</string>\r\n  <string>automati" +
+            "c</string>\r\n  <string>redemption</string>\r\n  <string>looking</string>\r\n  <string" +
+            ">options</string>\r\n  <string>implementing</string>\r\n  <string>reward</string>\r\n " +
+            " <string>future</string>\r\n  <string>casters</string>\r\n  <string>hinduman</string" +
+            ">\r\n  <string>f</string>\r\n  <string>desk</string>\r\n  <string>analysts</string>\r\n " +
+            " <string>finch</string>\r\n  <string>anatoliy</string>\r\n  <string>aggro</string>\r\n" +
+            "  <string>wanna</string>\r\n  <string>favorite</string>\r\n  <string>its</string>\r\n " +
+            " <string>darkmatter</string>\r\n  <string>khepri</string>\r\n  <string>hint</string>" +
+            "\r\n  <string>tied</string>\r\n  <string>arkkyl</string>\r\n  <string>smitegame</strin" +
+            "g>\r\n  <string>letigress</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection blacklistedWords {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["blacklistedWords"]));
+            }
+            set {
+                this["blacklistedWords"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useAggressiveParser {
+            get {
+                return ((bool)(this["useAggressiveParser"]));
+            }
+            set {
+                this["useAggressiveParser"] = value;
             }
         }
     }

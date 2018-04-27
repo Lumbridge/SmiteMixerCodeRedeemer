@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static DolphinScript.Lib.Backend.WinAPI;
 
 namespace SmiteMixerCodeGrabberGUI.Classes
 {
@@ -21,30 +22,12 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                 SaveSettings();
             }
         }
-        public static bool whitelistOnly
+        public static bool useAggressiveParser
         {
-            get { return Properties.Settings.Default.whitelistOnly; }
+            get { return Properties.Settings.Default.useAggressiveParser; }
             set
             {
-                Properties.Settings.Default.whitelistOnly = value;
-                SaveSettings();
-            }
-        }
-        public static int codeLength
-        {
-            get { return Properties.Settings.Default.codeLength; }
-            set
-            {
-                Properties.Settings.Default.codeLength = value;
-                SaveSettings();
-            }
-        }
-        public static string codesStartWith
-        {
-            get { return Properties.Settings.Default.codesStartWith; }
-            set
-            {
-                Properties.Settings.Default.codesStartWith = value;
+                Properties.Settings.Default.useAggressiveParser = value;
                 SaveSettings();
             }
         }
@@ -54,6 +37,15 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             set
             {
                 Properties.Settings.Default.whitelistedUsernames = value;
+                SaveSettings();
+            }
+        }
+        public static System.Collections.Specialized.StringCollection blacklistedWords
+        {
+            get { return Properties.Settings.Default.blacklistedWords; }
+            set
+            {
+                Properties.Settings.Default.blacklistedWords = value;
                 SaveSettings();
             }
         }
@@ -84,8 +76,30 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                 SaveSettings();
             }
         }
+        public static int killswitchKey
+        {
+            get { return Properties.Settings.Default.killswitchKey; }
+            set
+            {
+                Properties.Settings.Default.killswitchKey = value;
+                SaveSettings();
+            }
+        }
+        public static string killswitchKeyString
+        {
+            get => Enum.GetName(typeof(VirtualKeyStates), killswitchKey); 
+        }
+        public static bool killswitchEnabled
+        {
+            get { return Properties.Settings.Default.killswitchEnabled; }
+            set
+            {
+                Properties.Settings.Default.killswitchEnabled = value;
+                SaveSettings();
+            }
+        }
 
-        private static void SaveSettings()
+        public static void SaveSettings()
         {
             Properties.Settings.Default.Save();
         }

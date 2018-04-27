@@ -20,7 +20,7 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Release\Do
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Release\DolphinScript.pdb
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\DolphinScript.MainForm.resources
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\DolphinScript.Properties.Resources.resources
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csproj.GenerateResource.Cache
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csproj.GenerateResource.cache
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csproj.CoreCompileInputs.cache
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\DolphinScript.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\DolphinScript.pdb
-C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csprojResolveAssemblyReference.cache

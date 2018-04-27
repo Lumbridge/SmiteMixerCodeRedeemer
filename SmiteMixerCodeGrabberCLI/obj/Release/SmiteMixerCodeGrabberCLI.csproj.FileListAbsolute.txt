@@ -49,8 +49,12 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Release\WebSocket4Net.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Release\Newtonsoft.Json.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Release\DolphinScript.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Release\DolphinScript.dll.config
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Release\MixerChat.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Release\MixerChat.dll.config
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Release\Newtonsoft.Json.xml
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Release\SmiteMixerCodeGrabberCLI.csprojResolveAssemblyReference.cache
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Release\SmiteMixerCodeGrabberCLI.csproj.CoreCompileInputs.cache
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Release\SmiteMixerCodeGrabberCLI.csproj.CopyComplete
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Release\SmiteMixerListener.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Release\SmiteMixerListener.pdb

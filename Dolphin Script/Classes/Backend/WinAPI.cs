@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
@@ -40,7 +41,7 @@ namespace DolphinScript.Lib.Backend
 
             public double dHeight { get { return dBottom - dTop; } }
             public double dWidth { get { return dRight - dLeft; } }
-            
+
             /// <summary>
             /// RECT constructor which takes two points (TopLeft & BottomRight points)
             /// </summary>
@@ -197,7 +198,7 @@ namespace DolphinScript.Lib.Backend
         /// <summary>
         /// contains the different keys on the keyboard
         /// </summary>
-        public enum VirtualKeyStates : int
+        public enum VirtualKeyStates : Int32
         {
             VK_BACK = 0x08,
             VK_TAB = 0x09,

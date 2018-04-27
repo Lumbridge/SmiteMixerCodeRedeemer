@@ -16,6 +16,8 @@ using MixerChat.Classes;
 
 using static DolphinScript.Lib.Backend.WinAPI;
 using static DolphinScript.Lib.Backend.Common;
+using System.Collections.Generic;
+using System.IO;
 
 namespace SmiteMixerCodeGrabberGUI
 {
@@ -39,22 +41,33 @@ namespace SmiteMixerCodeGrabberGUI
             // set whether to catch calls on the wrong thread that access a control's handle property when an application is being debugged
             CheckForIllegalCrossThreadCalls = false;
 
+            foreach (var key in Enum.GetNames(typeof(VirtualKeyStates)))
+            {
+                comboBox_vKeys.Items.Add(key);
+            }
+
             // override the console to output console.writeline to our custom console log
             Console.SetOut(new LogWriter(logbox));
             
             // load up all saved properties
             //
             // textboxes
-            textbox_startCharacters.Text = codesStartWith;
-            textbox_whitelistedUsernames.Lines = whitelistedUsernames.Cast<string>().ToArray();
+            textbox_whitelistedUsernames.Lines = whitelistedUsernames.Cast<string>().ToArray(); 
+            textbox_BlacklistedWords.Lines = blacklistedWords.Cast<string>().ToArray();
             textbox_NotificationSound.Text = notificationSoundFilePath;
             // checkboxes
             checkbox_NotificationSound.Checked = notificationSound;
-            checkbox_whiteListOnly.Checked = whitelistOnly;
             checkbox_showNotifications.Checked = notificationSetting;
             checkbox_MinimiseAfterRedeeming.Checked = minimiseAfterRedeeming;
-            // numberboxes
-            numberbox_codeLength.Value = codeLength;
+            checkBox_disableKillswitch.Checked = killswitchEnabled;
+            checkBox_aggressiveParser.Checked = useAggressiveParser;
+            // combo box
+            comboBox_vKeys.SelectedItem = killswitchKeyString;
+            // group boxes
+            groupbox_whitelistedUsernames.Enabled = useAggressiveParser;
+            groupBox_blacklist.Enabled = useAggressiveParser;
+            // label
+            label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
 
             // write the meta info to the console
             Console.Write(MetaInfo.GetMetaInfoConsole());
@@ -62,7 +75,6 @@ namespace SmiteMixerCodeGrabberGUI
             // hook up the mixer API callbacks
             Mixer chat = new Mixer();
             chat.OnMessageReceived += Chat_OnMessageReceived;
-            chat.OnError += Chat_OnError;
             // connect to the smite mixer chat (currently not using the connected boolean...)
             var connected = chat.Connect("SmiteGame");
 
@@ -83,9 +95,7 @@ namespace SmiteMixerCodeGrabberGUI
             CheckSmiteExists.SetApartmentState(ApartmentState.STA);
             CheckSmiteExists.IsBackground = true;
             CheckSmiteExists.Start();
-            // save the whitelist contents to the whitelist static list
-            Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
-            // set is running to true by default
+            // set is running to true by default for the AFK mode to function
             IsRunning = true;
         }
 
@@ -179,46 +189,100 @@ namespace SmiteMixerCodeGrabberGUI
         #region Mixer Chat Handlers
         private static void Chat_OnMessageReceived(ChatMessageEventArgs e)
         {
-            // this branch will run if the user is not using the white list
-            if (!whitelistOnly)
+            if (!useAggressiveParser)
             {
-                // check if the message has the code start in it
-                if (e.Message.Contains(codesStartWith)
-                    && e.Message.Length >= codeLength)
+                if (e.User == "Scottybot" &&
+                    e.Message.Contains("code:") ||
+                    e.Message.Contains("Code:") ||
+                    e.Message.Contains(":"))
                 {
-                    shouldAddCode(e.Message, e.User);
+                    var code = e.Message.Substring(e.Message.IndexOf(':') + 1).Trim();
+                    shouldAddCode(code, e.User);
                 }
             }
-            else // whitelist branch
+            else
             {
-                // check if the message was from a whitelisted user and message contains the start of the code
-                if (isWhitelistedUser(e.User) &&
-                    e.Message.Contains(codesStartWith)
-                    && e.Message.Length >= codeLength)
+                if (isWhitelistedUser(e.User))
                 {
-                    shouldAddCode(e.Message, e.User);
-                }
-                else // code observed from non-whitelist user
-                {
-                    // remove everything before the code start
-                    var lTest = e.Message.Remove(0, e.Message.IndexOf(codesStartWith));
-                    // check that the length of the remaining message is equal to or greater than the length of a code
-                    if (lTest.Length >= codeLength)
+                    var words = GetPotentialCodesFromMessage(e.Message);
+                    foreach (var word in words)
                     {
-                        var m = e.Message;
-                        var code = m.Substring(m.IndexOf(codesStartWith), codeLength);
-                        Write("Code matching specified criteria was observed: " + code + " posted by user: " + e.User);
+                        shouldAddCode(word, e.User);
+                        blacklistedWords.Add(word);
+                        SaveSettings();
                     }
                 }
             }
         }
-        private static void Chat_OnError(ErrorEventArgs e)
+
+        static List<string> GetPotentialCodesFromMessage(string message)
         {
-            //Write(e.Exception.Message);
+            List<string> potentialCodes = new List<string>();
+
+            char[] arr = message.ToLower().ToCharArray();
+
+            arr = Array.FindAll<char>(arr, (c => (char.IsLetter(c)
+                                              || char.IsWhiteSpace(c))));
+
+            var messageNoSymbols = new string(arr);
+
+            string[] words = messageNoSymbols.Split(' ');
+
+            foreach(var word in words)
+            {
+                if (!blacklistedWords.Contains(word))
+                {
+                    potentialCodes.Add(word);
+                }
+            }
+
+            return potentialCodes;
+        }
+
+        // obsolete
+        static string SentenceContainsMultiCapWord(string message)
+        {
+            // get all words in the sentence
+            string[] words = message.Split(' ');
+            // go through all words in sentence
+            foreach (string word in words)
+            {
+                // counter for number of caps in the word
+                int numberOfCapsInWord = 0;
+                // go through all letters in word
+                foreach (var letter in word)
+                {
+                    // check if its a capital
+                    if (char.IsUpper(letter))
+                    {
+                        // letter is a capital
+                        numberOfCapsInWord++;
+                    }
+                }
+                // this word has more than 1 capital letter
+                if (numberOfCapsInWord > 1 &&
+                    word.Length > 3 &&
+                    word.All(Char.IsLetterOrDigit) &&
+                    !word.All(Char.IsUpper))
+                    return word;
+            }
+            // no words contain more than 1 capital letter
+            return null;
         }
         #endregion
 
         #region Main Form Controls
+        private void linkLabel_KeyCodes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
+        }
+
+        private void checkBox_aggressiveParser_CheckedChanged(object sender, EventArgs e)
+        {
+            useAggressiveParser = checkBox_aggressiveParser.Checked;
+            groupbox_whitelistedUsernames.Enabled = useAggressiveParser;
+            groupBox_blacklist.Enabled = useAggressiveParser;
+        }
         private void checkbox_showNotifications_CheckedChanged(object sender, EventArgs e)
         {
             notificationSetting = checkbox_showNotifications.Checked;
@@ -236,15 +300,6 @@ namespace SmiteMixerCodeGrabberGUI
                 Write("Notification sound enabled: " + notificationSound + "; A sound will be played when a new code becomes active.");
             else
                 Write("Notification sound disabled: " + notificationSound + "; A sound will not be played when a new code becomes active.");
-        }
-        private void checkbox_whiteListOnly_CheckedChanged(object sender, EventArgs e)
-        {
-            whitelistOnly = checkbox_whiteListOnly.Checked;
-
-            if (whitelistOnly)
-                Write("Whitelist mode enabled, will only add active codes from whitelisted usernames.");
-            else
-                Write("Whitelist mode disabled, will grab potentially active codes from any username.");
         }
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -265,7 +320,11 @@ namespace SmiteMixerCodeGrabberGUI
             else
                 Write("Minimise after redeeming disabled: " + minimiseAfterRedeeming + "; Will not attempt to minimise the SMITE client after redeeming codes.");
         }
-
+        private void checkBox_disableKillswitch_CheckedChanged(object sender, EventArgs e)
+        {
+            killswitchEnabled = checkBox_disableKillswitch.Checked;
+        }
+        
         private void button_redeemAllActive_Click(object sender, EventArgs e)
         {
             IsRunning = true;
@@ -314,32 +373,31 @@ namespace SmiteMixerCodeGrabberGUI
             }
         }
 
-        private void textbox_startCharacters_TextChanged(object sender, EventArgs e)
-        {
-            codesStartWith = textbox_startCharacters.Text;
-            Write("Will search for codes which start with the characters: " + codesStartWith + ".");
-        }
         private void textbox_whitelistedUsernames_TextChanged(object sender, EventArgs e)
         {
-            Whitelist.SaveWhitelist(textbox_whitelistedUsernames);
             whitelistedUsernames.Clear();
             whitelistedUsernames.AddRange(textbox_whitelistedUsernames.Lines.ToArray());
         }        
+        private void textbox_BlacklistedWords_TextChanged(object sender, EventArgs e)
+        {
+            blacklistedWords.Clear();
+            blacklistedWords.AddRange(textbox_BlacklistedWords.Lines.ToArray());
+        }
         private void textbox_NotificationSound_TextChanged(object sender, EventArgs e)
         {
             notificationSoundFilePath = textbox_NotificationSound.Text;
-        }
-
-        private void numberbox_codeLength_ValueChanged(object sender, EventArgs e)
-        {
-            codeLength = (int)numberbox_codeLength.Value;
-            Write("Will search for codes which are " + codeLength + " characters long.");
         }
 
         private void logbox_TextChanged(object sender, EventArgs e)
         {
             logbox.SelectionStart = logbox.Text.Length;
             logbox.ScrollToCaret();
+        }
+
+        private void comboBox_vKeys_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            killswitchKey = (int)EnumHelper.GetEnumValue<VirtualKeyStates>(comboBox_vKeys.SelectedItem.ToString());
+            label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
         }
         #endregion
 
@@ -382,6 +440,10 @@ namespace SmiteMixerCodeGrabberGUI
         {
             System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
         }
+        private void webVersionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.lumbridge.org/dashboard");
+        }
         private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(MetaInfo.GetMetaInfoMessageBox(), "Smite Mixer Code Grabber Credits");
@@ -399,17 +461,18 @@ namespace SmiteMixerCodeGrabberGUI
         #region Helper Methods
         public static bool isWhitelistedUser(string user)
         {
-            return Whitelist.GetIsWhitelistedUser(user);
+            return whitelistedUsernames.Contains(user);
+            //return Whitelist.GetIsWhitelistedUser(user);
         }
         public static string GenerateRandomSmiteCode()
         {
-            int len = codeLength;
+            int len = 17;
 
             Random random = new Random();
 
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-            return codesStartWith + new string(Enumerable.Repeat(chars, len - 2)
+            return "AP" + new string(Enumerable.Repeat(chars, len - 2)
                 .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         /// <summary>
@@ -418,38 +481,28 @@ namespace SmiteMixerCodeGrabberGUI
         /// </summary>
         /// <param name="message"></param>
         /// <param name="user"></param>
-        static void shouldAddCode(string message, string user)
+        static void shouldAddCode(string code, string user)
         {
-            // remove everything before the code start
-            var lTest = message.Remove(0, message.IndexOf(codesStartWith));
-            // check that the length of the remaining message is equal to or greater than the length of a code
-            if (lTest.Length >= codeLength)
+            // check if the...
+            if (GetActiveCodes().Find(x => x.GetCode() == code) == null &&  // code isn't in the list of active codes
+                GetExpiredCodes().Find(x => x.GetCode() == code) == null && // code isn't in the list of expired codes
+                !code.Contains(" "))                                        // code contains no whitespace
             {
-                // get the message
-                var m = message;
-                // extract the code from the message
-                var code = m.Substring(m.IndexOf(codesStartWith), codeLength);
-                // check if the...
-                if (GetActiveCodes().Find(x => x.GetCode() == code) == null &&  // code isn't in the list of active codes
-                    GetExpiredCodes().Find(x => x.GetCode() == code) == null && // code isn't in the list of expired codes
-                    !code.Contains(" "))                                        // code contains no whitespace
-                {
-                    // add the code to the list of active codes
-                    AddCodeToCodeList(code, true);
-                    // log that a new code was added
-                    Write("Code: " + code + " added to active codes (Grabbed from user: " + user + ").");
-                    // if the notification sound option is enabled then play a sound
-                    if (notificationSound)
-                        PlayNotificationSound();
-                    // if the notification setting is enabled then show a notification
-                    if (notificationSetting)
-                        DisplayNotification("New code added to active codes: \n" + code);
-                }
-                else // code is already in a list or is invalid format
-                {
-                    badCode(code);
-                }
+                // add the code to the list of active codes
+                AddCodeToCodeList(code, true);
+                // log that a new code was added
+                Write("Code: " + code + " added to active codes (Grabbed from user: " + user + ").");
+                // if the notification sound option is enabled then play a sound
+                if (notificationSound)
+                    PlayNotificationSound();
+                // if the notification setting is enabled then show a notification
+                if (notificationSetting)
+                    DisplayNotification("New code added to active codes: \n" + code);
             }
+            //else // code is already in a list or is invalid format
+            //{
+            //    badCode(code);
+            //}
         }
         /// <summary>
         /// Also added to reduce duplicated code, outputs
@@ -458,10 +511,10 @@ namespace SmiteMixerCodeGrabberGUI
         /// <param name="code"></param>
         static void badCode(string code)
         {
-            if (!code.Contains(" "))
-                Write("Code Spotted: " + code + " (Already Redeemed).");
-            else
-                Write("Potential Code Spotted: " + code + " (Invalid Format)");
+            //if (!code.Contains(" "))
+            //    Write("Code Spotted: " + code + " (Already Redeemed).");
+            //else
+            //    Write("Potential Code Spotted: " + code + " (Invalid Format)");
         }
         #endregion
 
@@ -517,15 +570,15 @@ namespace SmiteMixerCodeGrabberGUI
         }
 
         /// <summary>
-        /// This method listens for the F5 killswitch key which disables automation.
+        /// This method listens for the killswitch key which disables automation.
         /// </summary>
         public static void CheckForTerminationKey()
         {
             // runs until application is closed
             while (true)
             {
-                // listen for the F5 key
-                if (GetAsyncKeyState(VirtualKeyStates.VK_F5) < 0)
+                // listen for the killswitch key
+                if (killswitchEnabled && GetAsyncKeyState((VirtualKeyStates)Properties.Settings.Default.killswitchKey) < 0)
                 {
                     // set is running flag to false
                     IsRunning = false;
@@ -534,7 +587,7 @@ namespace SmiteMixerCodeGrabberGUI
                     AFKMode = false;
 
                     // output notification to show afk mode is disabled
-                    DisplayNotification("F5 Key Detected: AFK Mode disabled.");
+                    DisplayNotification("Killswitch Key Detected: AFK Mode disabled.");
                 }
                 // sleep to reduce CPU usage
                 Thread.Sleep(50);
