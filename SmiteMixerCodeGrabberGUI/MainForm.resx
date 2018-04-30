@@ -123,18 +123,14 @@
   <metadata name="timer_MainForm.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>184, 17</value>
   </metadata>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Enabling aggressive parser will enable an experimental
-feature which will take every word written by a
-whitelisted member and attempt to redeem it ONCE,
-then the word will be added to a blacklist; this will
-hopefully result in never missing a code with the new
-code format but will result in many false positives.
-
-Disabling this will instead use a more primitive method
-of finding possible codes.</value>
+  <data name="metroLabel4.Text" xml:space="preserve">
+    <value>The grabber uses a list of phrases known as the "Blacklist",
+phrases on this list will not be detected as a code by the
+redeemer, you can train/build your own Blacklist or use
+the master list which is updated almost every stream.
+</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>59</value>
+    <value>54</value>
   </metadata>
 </root>

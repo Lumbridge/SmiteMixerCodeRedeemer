@@ -21,7 +21,7 @@ using System.IO;
 
 namespace SmiteMixerCodeGrabberGUI
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MetroFramework.Forms.MetroForm
     {
         /// <summary>
         /// Main form initialisation.
@@ -60,7 +60,6 @@ namespace SmiteMixerCodeGrabberGUI
             checkbox_showNotifications.Checked = notificationSetting;
             checkbox_MinimiseAfterRedeeming.Checked = minimiseAfterRedeeming;
             checkBox_disableKillswitch.Checked = killswitchEnabled;
-            checkBox_aggressiveParser.Checked = useAggressiveParser;
             // combo box
             comboBox_vKeys.SelectedItem = killswitchKeyString;
             // group boxes
@@ -272,17 +271,6 @@ namespace SmiteMixerCodeGrabberGUI
         #endregion
 
         #region Main Form Controls
-        private void linkLabel_KeyCodes_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
-        }
-
-        private void checkBox_aggressiveParser_CheckedChanged(object sender, EventArgs e)
-        {
-            useAggressiveParser = checkBox_aggressiveParser.Checked;
-            groupbox_whitelistedUsernames.Enabled = useAggressiveParser;
-            groupBox_blacklist.Enabled = useAggressiveParser;
-        }
         private void checkbox_showNotifications_CheckedChanged(object sender, EventArgs e)
         {
             notificationSetting = checkbox_showNotifications.Checked;
@@ -297,9 +285,9 @@ namespace SmiteMixerCodeGrabberGUI
             notificationSound = checkbox_NotificationSound.Checked;
 
             if (notificationSound)
-                Write("Notification sound enabled: " + notificationSound + "; A sound will be played when a new code becomes active.");
+                Write("Sound notifications enabled.");
             else
-                Write("Notification sound disabled: " + notificationSound + "; A sound will not be played when a new code becomes active.");
+                Write("Sound notifications disabled.");
         }
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -578,7 +566,9 @@ namespace SmiteMixerCodeGrabberGUI
             while (true)
             {
                 // listen for the killswitch key
-                if (killswitchEnabled && GetAsyncKeyState((VirtualKeyStates)Properties.Settings.Default.killswitchKey) < 0)
+                if (killswitchEnabled &&
+                    AFKMode &&
+                    GetAsyncKeyState((VirtualKeyStates)Properties.Settings.Default.killswitchKey) < 0)
                 {
                     // set is running flag to false
                     IsRunning = false;
@@ -614,5 +604,10 @@ namespace SmiteMixerCodeGrabberGUI
             }
         }
         #endregion
+
+        private void metroLink1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
+        }
     }
 }
