@@ -63,7 +63,35 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                 shouldMinimise = false;
             }
         }
-        
+
+        public static void RedeemAllActivePastRedeemTimer()
+        {
+            foreach (var code in GetActiveCodesPastRedeemTimer())
+            {
+                if (code.GetIsRedeemed() == false)
+                {
+                    // get the event list and pass it the code we want it to type
+                    //
+                    var loop = GetRedeemLoop(code.GetCode());
+
+                    foreach (var ev in loop)
+                        if (IsRunning)
+                            ev.DoEvent();
+
+                    if (IsRunning)
+                    {
+                        code.SetIsRedeemed(true);
+                        shouldMinimise = true;
+                    }
+                }
+            }
+            if (minimiseAfterRedeeming && shouldMinimise)
+            {
+                MinimiseSMITEClient();
+                shouldMinimise = false;
+            }
+        }
+
         [STAThread]
         public static List<ScriptEvent> GetRedeemLoop(string code)
         {

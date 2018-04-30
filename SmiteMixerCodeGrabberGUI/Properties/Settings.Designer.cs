@@ -562,5 +562,17 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
                 this["useAggressiveParser"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int redeemDelay {
+            get {
+                return ((int)(this["redeemDelay"]));
+            }
+            set {
+                this["redeemDelay"] = value;
+            }
+        }
     }
 }

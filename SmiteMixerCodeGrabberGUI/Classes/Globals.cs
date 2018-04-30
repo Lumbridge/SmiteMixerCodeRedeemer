@@ -10,6 +10,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
     class Globals
     {
         public static bool AFKMode { get; set; }
+        public static bool shouldUpdateActiveList { get; set; }
         public static bool shouldMinimise { get; set; }
         public static string smiteWindowTitle { get; set; }
 
@@ -28,6 +29,33 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             set
             {
                 Properties.Settings.Default.useAggressiveParser = value;
+                SaveSettings();
+            }
+        }
+        public static bool killswitchEnabled
+        {
+            get { return Properties.Settings.Default.killswitchEnabled; }
+            set
+            {
+                Properties.Settings.Default.killswitchEnabled = value;
+                SaveSettings();
+            }
+        }
+        public static bool notificationSound
+        {
+            get { return Properties.Settings.Default.notificationSound; }
+            set
+            {
+                Properties.Settings.Default.notificationSound = value;
+                SaveSettings();
+            }
+        }
+        public static bool minimiseAfterRedeeming
+        {
+            get { return Properties.Settings.Default.minimiseAfterRedeeming; }
+            set
+            {
+                Properties.Settings.Default.minimiseAfterRedeeming = value;
                 SaveSettings();
             }
         }
@@ -58,23 +86,9 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                 SaveSettings();
             }
         }
-        public static bool notificationSound
+        public static string killswitchKeyString
         {
-            get { return Properties.Settings.Default.notificationSound; }
-            set
-            {
-                Properties.Settings.Default.notificationSound = value;
-                SaveSettings();
-            }
-        }
-        public static bool minimiseAfterRedeeming
-        {
-            get { return Properties.Settings.Default.minimiseAfterRedeeming; }
-            set
-            {
-                Properties.Settings.Default.minimiseAfterRedeeming = value;
-                SaveSettings();
-            }
+            get => Enum.GetName(typeof(VirtualKeyStates), killswitchKey); 
         }
         public static int killswitchKey
         {
@@ -85,16 +99,12 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                 SaveSettings();
             }
         }
-        public static string killswitchKeyString
+        public static int redeemDelay
         {
-            get => Enum.GetName(typeof(VirtualKeyStates), killswitchKey); 
-        }
-        public static bool killswitchEnabled
-        {
-            get { return Properties.Settings.Default.killswitchEnabled; }
+            get { return Properties.Settings.Default.redeemDelay; }
             set
             {
-                Properties.Settings.Default.killswitchEnabled = value;
+                Properties.Settings.Default.redeemDelay = value;
                 SaveSettings();
             }
         }

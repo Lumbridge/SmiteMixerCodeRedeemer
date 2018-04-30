@@ -48,3 +48,6 @@ C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\o
 C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Debug\SmiteMixerCodeGrabberCLI.csproj.CopyComplete
 C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Debug\SmiteMixerListener.dll
 C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\obj\Debug\SmiteMixerListener.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Debug\MetroFramework.Design.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Debug\MetroFramework.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberCLI\bin\Debug\MetroFramework.Fonts.dll

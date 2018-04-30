@@ -38,6 +38,8 @@ namespace SmiteMixerCodeGrabberGUI
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            shouldUpdateActiveList = true;
+
             // set whether to catch calls on the wrong thread that access a control's handle property when an application is being debugged
             CheckForIllegalCrossThreadCalls = false;
 
@@ -62,11 +64,11 @@ namespace SmiteMixerCodeGrabberGUI
             checkBox_disableKillswitch.Checked = killswitchEnabled;
             // combo box
             comboBox_vKeys.SelectedItem = killswitchKeyString;
-            // group boxes
-            groupbox_whitelistedUsernames.Enabled = useAggressiveParser;
-            groupBox_blacklist.Enabled = useAggressiveParser;
             // label
             label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
+            label_redeemDelay.Text = redeemDelay + " Minutes";
+            // trackbar
+            trackbar_RedeemDelay.Value = redeemDelay;
 
             // write the meta info to the console
             Console.Write(MetaInfo.GetMetaInfoConsole());
@@ -105,17 +107,23 @@ namespace SmiteMixerCodeGrabberGUI
         /// <param name="e"></param>
         private void timer_MainForm_Tick(object sender, EventArgs e)
         {
-            // get the selected index of the active codes box
-            var currentlySelectedIndex = listbox_Active.SelectedIndex;
-
-            // clear the contents of the active codes box
-            listbox_Active.Items.Clear();
-            // loop through all active codes
-            foreach (var aCode in GetActiveCodes())
+            if (shouldUpdateActiveList)
             {
-                // add each active code to the active codes box
-                listbox_Active.Items.Add(aCode.GetCode() + " " + aCode.GetTimeLeftString() + " Redeemed: " + aCode.GetIsRedeemed());
+                listView_ActiveCodes.BeginUpdate();
+                listView_ActiveCodes.Items.Clear();
+                foreach (var aCode in GetActiveCodes())
+                {
+                    ListViewItem lvi = new ListViewItem(aCode.Time_GrabbedAt.ToShortTimeString());
+                    lvi.SubItems.Add(aCode.Time_RedeemingAt.ToShortTimeString());
+                    lvi.SubItems.Add(aCode.GetCode());
+                    lvi.SubItems.Add(aCode.isRedeemed.ToString());
+                    listView_ActiveCodes.Items.Add(lvi);
+                }
+                listView_ActiveCodes.EndUpdate();
+                                
+                shouldUpdateActiveList = false;
             }
+
             // clear the contents of the expired codes box
             listbox_Expired.Items.Clear();
             // loop through all expired codes
@@ -124,19 +132,6 @@ namespace SmiteMixerCodeGrabberGUI
                 // add each expired code to the expired codes box
                 listbox_Expired.Items.Add(eCode.GetCode() + " Redeemed: " + eCode.GetIsRedeemed());
             }
-
-            // here we want to reselect the item that was selected by the user in the active codes box
-            //
-            // check that the active codes box isn't empty
-            if (listbox_Active.Items.Count == 0)
-            { /* do nothing */ }
-            // check that the selected index was in the bounds of the array
-            else if (currentlySelectedIndex >= 0 && currentlySelectedIndex < listbox_Active.Items.Count)
-                listbox_Active.SelectedIndex = currentlySelectedIndex;
-            // if the selected index is +1 over the current count then select the last item
-            else if (currentlySelectedIndex == listbox_Active.Items.Count + 1)
-                listbox_Active.SelectedIndex = listbox_Active.Items.Count - 1;
-            else { /* do nothing */ }
 
             // check if AFK mode was disabled by any threads
             if (!AFKMode)
@@ -325,7 +320,7 @@ namespace SmiteMixerCodeGrabberGUI
         {
             IsRunning = true;
             var codes = GetActiveCodes();
-            var selectedIndex = listbox_Active.SelectedIndex;
+            var selectedIndex = listView_ActiveCodes.SelectedIndices[0];
             if (selectedIndex > -1)
                 RedeemSingle(codes[selectedIndex]);
         }
@@ -338,12 +333,12 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void button_CopySelectedToClipboard_Click(object sender, EventArgs e)
         {
-            if(listbox_Active.SelectedIndex >= 0)
+            if(listView_ActiveCodes.SelectedIndices[0] >= 0)
             {
                 try
                 {
-                    Clipboard.SetText(GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
-                    Write("Copied code to clipboard: " + GetActiveCodes()[listbox_Active.SelectedIndex].GetCode());
+                    Clipboard.SetText(listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
+                    Write("Copied code to clipboard: " + listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
                 }
                 catch{ }
             }
@@ -387,6 +382,11 @@ namespace SmiteMixerCodeGrabberGUI
             killswitchKey = (int)EnumHelper.GetEnumValue<VirtualKeyStates>(comboBox_vKeys.SelectedItem.ToString());
             label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
         }
+
+        private void metroLink1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
+        }
         #endregion
 
         #region Menu Bar Controls
@@ -400,11 +400,10 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void activeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(listbox_Active.SelectedIndex >= 0 && listbox_Active.SelectedIndex < listbox_Active.Items.Count)
+            if(listView_ActiveCodes.SelectedIndices[0] >= 0 && listView_ActiveCodes.SelectedIndices[0] < listView_ActiveCodes.Items.Count)
             {
-                var i = listbox_Active.SelectedIndex;
                 var codes = GetActiveCodes();
-                RemoveCodeFromList(codes[i].GetCode());
+                RemoveCodeFromList(codes[listView_ActiveCodes.SelectedIndices[0]].GetCode());
             }
         }
         private void expiredToolStripMenuItem_Click(object sender, EventArgs e)
@@ -418,7 +417,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void activeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now.Subtract(new TimeSpan(0,27,00)));
+            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now);
         }
         private void expiredToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -487,10 +486,6 @@ namespace SmiteMixerCodeGrabberGUI
                 if (notificationSetting)
                     DisplayNotification("New code added to active codes: \n" + code);
             }
-            //else // code is already in a list or is invalid format
-            //{
-            //    badCode(code);
-            //}
         }
         /// <summary>
         /// Also added to reduce duplicated code, outputs
@@ -519,7 +514,7 @@ namespace SmiteMixerCodeGrabberGUI
                 if (AFKMode)
                 {
                     // loop through all active codes
-                    foreach (var code in GetActiveCodes())
+                    foreach (var code in GetActiveCodesPastRedeemTimer())
                     {
                         // check that the current code hasn't already been redeemed & IsRunning is true (user hasn't pressed the killswitch)
                         if (code.GetIsRedeemed() == false && IsRunning)
@@ -605,9 +600,15 @@ namespace SmiteMixerCodeGrabberGUI
         }
         #endregion
 
-        private void metroLink1_Click(object sender, EventArgs e)
+        private void trackbar_RedeemDelay_Scroll(object sender, ScrollEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
+            label_redeemDelay.Text = trackbar_RedeemDelay.Value + " Minutes";
+        }
+
+        private void trackbar_RedeemDelay_MouseUp(object sender, MouseEventArgs e)
+        {
+            redeemDelay = trackbar_RedeemDelay.Value;
+            label_redeemDelay.Text = redeemDelay + " Minutes";
         }
     }
 }

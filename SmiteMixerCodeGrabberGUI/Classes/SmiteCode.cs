@@ -10,10 +10,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 {
     public class SmiteCode
     {
-        private string code { get; set; }
-        private DateTime Time_GrabbedAt { get; set; }
-        private bool isActive { get; set; }
-        private bool isRedeemed { get; set; }
+        public string code { get; set; }
+        public DateTime Time_GrabbedAt { get; set; }
+        public DateTime Time_RedeemingAt { get; set; }
+        public bool isActive { get; set; }
+        public bool isRedeemed { get; set; }
 
         public string GetCode()
         {
@@ -54,18 +55,21 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         {
             this.code = code;
             Time_GrabbedAt = DateTime.Now;
+            Time_RedeemingAt = DateTime.Now.Add(new TimeSpan(0, Globals.redeemDelay, 0));
             isActive = true;
         }
         public SmiteCode(string code, bool isActive)
         {
             this.code = code;
             Time_GrabbedAt = DateTime.Now.Subtract(new TimeSpan(0,30,0));
+            Time_RedeemingAt = DateTime.Now.Add(new TimeSpan(0, Globals.redeemDelay, 0));
             this.isActive = isActive;
         }
         public SmiteCode(string code, bool isActive, DateTime CreationTime)
         {
             this.code = code;
             Time_GrabbedAt = CreationTime;
+            Time_RedeemingAt = DateTime.Now.Add(new TimeSpan(0, Globals.redeemDelay, 0));
             this.isActive = isActive;
         }
     }

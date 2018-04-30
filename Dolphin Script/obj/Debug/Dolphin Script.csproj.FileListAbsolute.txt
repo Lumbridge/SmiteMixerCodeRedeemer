@@ -39,3 +39,7 @@ C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\D
 C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.CopyComplete
 C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.dll
 C:\Users\Ry208444\source\repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\DolphinScript.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\MetroFramework.Design.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\MetroFramework.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Debug\Dolphin Script.csproj.CopyComplete

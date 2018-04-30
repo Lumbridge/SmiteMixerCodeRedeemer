@@ -26,8 +26,8 @@ namespace SmiteMixerCodeGrabberGUI.Classes
                     PlayNotificationSound();
                 if (Properties.Settings.Default.notificationSetting)
                     DisplayNotification("New potential code added to active codes: \n" + code);
-                }
-                else
+            }
+            else
             {
                 Console.WriteLine("Added Expried code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code, isActive));
@@ -40,6 +40,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             {
                 Console.WriteLine("Added Active code: " + code + " to the code list.");
                 _AllCodes.Add(new SmiteCode(code, true, CreationTime));
+                Globals.shouldUpdateActiveList = true;
             }
             else
             {
@@ -57,6 +58,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         public static List<SmiteCode> GetActiveCodes()
         {
             return _AllCodes.Where(x => x.GetIsActive() == true).ToList();
+        }
+
+        public static List<SmiteCode> GetActiveCodesPastRedeemTimer()
+        {
+            return _AllCodes.Where(x => x.GetIsActive() == true && x.Time_RedeemingAt >= DateTime.Now).ToList();
         }
 
         public static List<SmiteCode> GetExpiredCodes()
