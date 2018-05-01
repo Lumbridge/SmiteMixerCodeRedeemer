@@ -38,8 +38,6 @@ namespace SmiteMixerCodeGrabberGUI
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            shouldUpdateActiveList = true;
-
             // set whether to catch calls on the wrong thread that access a control's handle property when an application is being debugged
             CheckForIllegalCrossThreadCalls = false;
 
@@ -96,8 +94,19 @@ namespace SmiteMixerCodeGrabberGUI
             CheckSmiteExists.SetApartmentState(ApartmentState.STA);
             CheckSmiteExists.IsBackground = true;
             CheckSmiteExists.Start();
+
             // set is running to true by default for the AFK mode to function
             IsRunning = true;
+        }
+        /// <summary>
+        /// Callback for when the main form is closing.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // exit when we close the main form (aborts all threads)
+            Application.Exit();
         }
 
         /// <summary>
@@ -168,339 +177,7 @@ namespace SmiteMixerCodeGrabberGUI
                 checkbox_AFKMode.Enabled = true;
             }
         }
-
-        /// <summary>
-        /// Callback for when the main form is closing.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // exit when we close the main form (aborts all threads)
-            Application.Exit();
-        }
-
-        #region Mixer Chat Handlers
-        private static void Chat_OnMessageReceived(ChatMessageEventArgs e)
-        {
-            if (!useAggressiveParser)
-            {
-                if (e.User == "Scottybot" &&
-                    e.Message.Contains("code:") ||
-                    e.Message.Contains("Code:") ||
-                    e.Message.Contains(":"))
-                {
-                    var code = e.Message.Substring(e.Message.IndexOf(':') + 1).Trim();
-                    shouldAddCode(code, e.User);
-                }
-            }
-            else
-            {
-                if (isWhitelistedUser(e.User))
-                {
-                    var words = GetPotentialCodesFromMessage(e.Message);
-                    foreach (var word in words)
-                    {
-                        shouldAddCode(word, e.User);
-                        blacklistedWords.Add(word);
-                        SaveSettings();
-                    }
-                }
-            }
-        }
-
-        static List<string> GetPotentialCodesFromMessage(string message)
-        {
-            List<string> potentialCodes = new List<string>();
-
-            char[] arr = message.ToLower().ToCharArray();
-
-            arr = Array.FindAll<char>(arr, (c => (char.IsLetter(c)
-                                              || char.IsWhiteSpace(c))));
-
-            var messageNoSymbols = new string(arr);
-
-            string[] words = messageNoSymbols.Split(' ');
-
-            foreach(var word in words)
-            {
-                if (!blacklistedWords.Contains(word))
-                {
-                    potentialCodes.Add(word);
-                }
-            }
-
-            return potentialCodes;
-        }
-
-        // obsolete
-        static string SentenceContainsMultiCapWord(string message)
-        {
-            // get all words in the sentence
-            string[] words = message.Split(' ');
-            // go through all words in sentence
-            foreach (string word in words)
-            {
-                // counter for number of caps in the word
-                int numberOfCapsInWord = 0;
-                // go through all letters in word
-                foreach (var letter in word)
-                {
-                    // check if its a capital
-                    if (char.IsUpper(letter))
-                    {
-                        // letter is a capital
-                        numberOfCapsInWord++;
-                    }
-                }
-                // this word has more than 1 capital letter
-                if (numberOfCapsInWord > 1 &&
-                    word.Length > 3 &&
-                    word.All(Char.IsLetterOrDigit) &&
-                    !word.All(Char.IsUpper))
-                    return word;
-            }
-            // no words contain more than 1 capital letter
-            return null;
-        }
-        #endregion
-
-        #region Main Form Controls
-        private void checkbox_showNotifications_CheckedChanged(object sender, EventArgs e)
-        {
-            notificationSetting = checkbox_showNotifications.Checked;
-
-            if (notificationSetting)
-                Write("Visual notifications enabled.");
-            else
-                Write("Visual notifications disabled.");
-        }
-        private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
-        {
-            notificationSound = checkbox_NotificationSound.Checked;
-
-            if (notificationSound)
-                Write("Sound notifications enabled.");
-            else
-                Write("Sound notifications disabled.");
-        }
-        private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
-        {
-            AFKMode = checkbox_AFKMode.Checked;
-            IsRunning = checkbox_AFKMode.Checked;
-
-            if (AFKMode)
-                Write("AFK Mode Enabled, will automatically redeem codes as they become active.");
-            else
-                Write("AFK Mode Disabled, will not automatically redeem codes as they become active.");
-        }
-        private void checkbox_MinimiseAfterRedeeming_CheckedChanged(object sender, EventArgs e)
-        {
-            minimiseAfterRedeeming = checkbox_MinimiseAfterRedeeming.Checked;
-
-            if (minimiseAfterRedeeming)
-                Write("Minimise after redeeming enabled: " + minimiseAfterRedeeming + "; Will attempt to minimise the SMITE client after redeeming codes.");
-            else
-                Write("Minimise after redeeming disabled: " + minimiseAfterRedeeming + "; Will not attempt to minimise the SMITE client after redeeming codes.");
-        }
-        private void checkBox_disableKillswitch_CheckedChanged(object sender, EventArgs e)
-        {
-            killswitchEnabled = checkBox_disableKillswitch.Checked;
-        }
         
-        private void button_redeemAllActive_Click(object sender, EventArgs e)
-        {
-            IsRunning = true;
-            if (GetActiveCodes().Count > 0)
-                RedeemAllActive();
-            else
-                MessageBox.Show("There are no codes currently active.");
-        }
-        private void button_redeemSelected_Click(object sender, EventArgs e)
-        {
-            IsRunning = true;
-            var codes = GetActiveCodes();
-            var selectedIndex = listView_ActiveCodes.SelectedIndices[0];
-            if (selectedIndex > -1)
-                RedeemSingle(codes[selectedIndex]);
-        }
-        private void button_sendTestEmail_Click(object sender, EventArgs e)
-        {
-            if (notificationSound)
-                PlayNotificationSound();
-            if(notificationSetting)
-                DisplayNotification("This is a test notification.");
-        }
-        private void button_CopySelectedToClipboard_Click(object sender, EventArgs e)
-        {
-            if(listView_ActiveCodes.SelectedIndices[0] >= 0)
-            {
-                try
-                {
-                    Clipboard.SetText(listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
-                    Write("Copied code to clipboard: " + listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
-                }
-                catch{ }
-            }
-        }
-        private void button_BrowseNotificationSound_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog o = new OpenFileDialog();
-            o.DefaultExt = ".wav";
-            o.Filter = "wav files (*.wav)|*.wav|All files (*.*)|*.*";
-            var result = o.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                notificationSoundFilePath = o.FileName;
-                textbox_NotificationSound.Text = o.FileName;
-            }
-        }
-
-        private void textbox_whitelistedUsernames_TextChanged(object sender, EventArgs e)
-        {
-            whitelistedUsernames.Clear();
-            whitelistedUsernames.AddRange(textbox_whitelistedUsernames.Lines.ToArray());
-        }        
-        private void textbox_BlacklistedWords_TextChanged(object sender, EventArgs e)
-        {
-            blacklistedWords.Clear();
-            blacklistedWords.AddRange(textbox_BlacklistedWords.Lines.ToArray());
-        }
-        private void textbox_NotificationSound_TextChanged(object sender, EventArgs e)
-        {
-            notificationSoundFilePath = textbox_NotificationSound.Text;
-        }
-
-        private void logbox_TextChanged(object sender, EventArgs e)
-        {
-            logbox.SelectionStart = logbox.Text.Length;
-            logbox.ScrollToCaret();
-        }
-
-        private void comboBox_vKeys_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            killswitchKey = (int)EnumHelper.GetEnumValue<VirtualKeyStates>(comboBox_vKeys.SelectedItem.ToString());
-            label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
-        }
-
-        private void metroLink1_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
-        }
-        #endregion
-
-        #region Menu Bar Controls
-        private void activeListToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClearActiveCodes();
-        }
-        private void expiredListToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ClearExpiredCodes();
-        }
-        private void activeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if(listView_ActiveCodes.SelectedIndices[0] >= 0 && listView_ActiveCodes.SelectedIndices[0] < listView_ActiveCodes.Items.Count)
-            {
-                var codes = GetActiveCodes();
-                RemoveCodeFromList(codes[listView_ActiveCodes.SelectedIndices[0]].GetCode());
-            }
-        }
-        private void expiredToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (listbox_Expired.SelectedIndex >= 0 && listbox_Expired.SelectedIndex < listbox_Expired.Items.Count)
-            {
-                var i = listbox_Expired.SelectedIndex;
-                var codes = GetExpiredCodes();
-                RemoveCodeFromList(codes[i].GetCode());
-            }
-        }
-        private void activeToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now);
-        }
-        private void expiredToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            AddCodeToCodeList(GenerateRandomSmiteCode(), false);
-        }
-        private void wikiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
-        }
-        private void webVersionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.lumbridge.org/dashboard");
-        }
-        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(MetaInfo.GetMetaInfoMessageBox(), "Smite Mixer Code Grabber Credits");
-        }
-        private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/issues");
-        }
-        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
-        }
-        #endregion
-
-        #region Helper Methods
-        public static bool isWhitelistedUser(string user)
-        {
-            return whitelistedUsernames.Contains(user);
-            //return Whitelist.GetIsWhitelistedUser(user);
-        }
-        public static string GenerateRandomSmiteCode()
-        {
-            int len = 17;
-
-            Random random = new Random();
-
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-            return "AP" + new string(Enumerable.Repeat(chars, len - 2)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-        /// <summary>
-        /// Added to reduce duplicated code in OnMessageRecieved handler,
-        /// checks if a message contains a valid code and adds it to the active codes list if it is valid.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="user"></param>
-        static void shouldAddCode(string code, string user)
-        {
-            // check if the...
-            if (GetActiveCodes().Find(x => x.GetCode() == code) == null &&  // code isn't in the list of active codes
-                GetExpiredCodes().Find(x => x.GetCode() == code) == null && // code isn't in the list of expired codes
-                !code.Contains(" "))                                        // code contains no whitespace
-            {
-                // add the code to the list of active codes
-                AddCodeToCodeList(code, true);
-                // log that a new code was added
-                Write("Code: " + code + " added to active codes (Grabbed from user: " + user + ").");
-                // if the notification sound option is enabled then play a sound
-                if (notificationSound)
-                    PlayNotificationSound();
-                // if the notification setting is enabled then show a notification
-                if (notificationSetting)
-                    DisplayNotification("New code added to active codes: \n" + code);
-            }
-        }
-        /// <summary>
-        /// Also added to reduce duplicated code, outputs
-        /// a message to the log if a code is invalid.
-        /// </summary>
-        /// <param name="code"></param>
-        static void badCode(string code)
-        {
-            //if (!code.Contains(" "))
-            //    Write("Code Spotted: " + code + " (Already Redeemed).");
-            //else
-            //    Write("Potential Code Spotted: " + code + " (Invalid Format)");
-        }
-        #endregion
-
         #region Continuous Threads
         /// <summary>
         /// This method controls AFK mode.
@@ -600,15 +277,365 @@ namespace SmiteMixerCodeGrabberGUI
         }
         #endregion
 
+        #region Mixer Chat Handlers
+        private static void Chat_OnMessageReceived(ChatMessageEventArgs e)
+        {
+            if (!useAggressiveParser)
+            {
+                if (e.User == "Scottybot" &&
+                    e.Message.Contains("code:") ||
+                    e.Message.Contains("Code:") ||
+                    e.Message.Contains(":"))
+                {
+                    var code = e.Message.Substring(e.Message.IndexOf(':') + 1).Trim();
+                    shouldAddCode(code, e.User);
+                }
+            }
+            else
+            {
+                if (isWhitelistedUser(e.User))
+                {
+                    var words = GetPotentialCodesFromMessage(e.Message);
+                    foreach (var word in words)
+                    {
+                        shouldAddCode(word, e.User);
+                        blacklistedWords.Add(word);
+                        SaveSettings();
+                    }
+                }
+            }
+        }
+
+        static List<string> GetPotentialCodesFromMessage(string message)
+        {
+            List<string> potentialCodes = new List<string>();
+
+            char[] arr = message.ToLower().ToCharArray();
+
+            arr = Array.FindAll<char>(arr, (c => (char.IsLetter(c)
+                                              || char.IsWhiteSpace(c))));
+
+            var messageNoSymbols = new string(arr);
+
+            string[] words = messageNoSymbols.Split(' ');
+
+            foreach(var word in words)
+            {
+                if (!blacklistedWords.Contains(word))
+                {
+                    potentialCodes.Add(word);
+                }
+            }
+
+            return potentialCodes;
+        }
+
+        // obsolete
+        static string SentenceContainsMultiCapWord(string message)
+        {
+            // get all words in the sentence
+            string[] words = message.Split(' ');
+            // go through all words in sentence
+            foreach (string word in words)
+            {
+                // counter for number of caps in the word
+                int numberOfCapsInWord = 0;
+                // go through all letters in word
+                foreach (var letter in word)
+                {
+                    // check if its a capital
+                    if (char.IsUpper(letter))
+                    {
+                        // letter is a capital
+                        numberOfCapsInWord++;
+                    }
+                }
+                // this word has more than 1 capital letter
+                if (numberOfCapsInWord > 1 &&
+                    word.Length > 3 &&
+                    word.All(Char.IsLetterOrDigit) &&
+                    !word.All(Char.IsUpper))
+                    return word;
+            }
+            // no words contain more than 1 capital letter
+            return null;
+        }
+        #endregion
+
+        #region Helper Methods
+        public static bool isWhitelistedUser(string user)
+        {
+            return whitelistedUsernames.Contains(user);
+            //return Whitelist.GetIsWhitelistedUser(user);
+        }
+        public static string GenerateRandomSmiteCode()
+        {
+            int len = 17;
+
+            Random random = new Random();
+
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            return "AP" + new string(Enumerable.Repeat(chars, len - 2)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        /// <summary>
+        /// Added to reduce duplicated code in OnMessageRecieved handler,
+        /// checks if a message contains a valid code and adds it to the active codes list if it is valid.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="user"></param>
+        static void shouldAddCode(string code, string user)
+        {
+            // check if the...
+            if (GetActiveCodes().Find(x => x.GetCode() == code) == null &&  // code isn't in the list of active codes
+                GetExpiredCodes().Find(x => x.GetCode() == code) == null && // code isn't in the list of expired codes
+                !code.Contains(" "))                                        // code contains no whitespace
+            {
+                // add the code to the list of active codes
+                AddCodeToCodeList(code, true);
+                // log that a new code was added
+                Write("Code: " + code + " added to active codes (Grabbed from user: " + user + ").");
+                // if the notification sound option is enabled then play a sound
+                if (notificationSound)
+                    PlayNotificationSound();
+                // if the notification setting is enabled then show a notification
+                if (notificationSetting)
+                    DisplayNotification("New code added to active codes: \n" + code);
+            }
+        }
+        /// <summary>
+        /// Also added to reduce duplicated code, outputs
+        /// a message to the log if a code is invalid.
+        /// </summary>
+        /// <param name="code"></param>
+        static void badCode(string code)
+        {
+            //if (!code.Contains(" "))
+            //    Write("Code Spotted: " + code + " (Already Redeemed).");
+            //else
+            //    Write("Potential Code Spotted: " + code + " (Invalid Format)");
+        }
+        #endregion
+
+        #region Control Event Handlers
+        #region Logs Tab
+        private void logbox_TextChanged(object sender, EventArgs e)
+        {
+            logbox.SelectionStart = logbox.Text.Length;
+            logbox.ScrollToCaret();
+        }
+        #endregion
+
+        #region Whitelist Tab
+        private void textbox_whitelistedUsernames_TextChanged(object sender, EventArgs e)
+        {
+            whitelistedUsernames.Clear();
+            whitelistedUsernames.AddRange(textbox_whitelistedUsernames.Lines.ToArray());
+        }
+        #endregion
+
+        #region Blacklist Tab
+        private void textbox_BlacklistedWords_TextChanged(object sender, EventArgs e)
+        {
+            blacklistedWords.Clear();
+            blacklistedWords.AddRange(textbox_BlacklistedWords.Lines.ToArray());
+        }
+        #endregion
+        
+        #region Active Tab
+        private void listView_ActiveCodes_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (listView_ActiveCodes.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    metroContextMenu_listViewRightClick.Show(Cursor.Position);
+                }
+            }
+        }
+        private void toolStripMenuItem_RemoveSelected_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_CopySelectedToClipboard_Click(object sender, EventArgs e)
+        {
+            if(listView_ActiveCodes.SelectedIndices[0] >= 0)
+            {
+                try
+                {
+                    Clipboard.SetText(listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
+                    Write("Copied code to clipboard: " + listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
+                }
+                catch{ }
+            }
+        }
+        private void button_redeemAllActive_Click(object sender, EventArgs e)
+        {
+            IsRunning = true;
+            if (GetActiveCodes().Count > 0)
+                RedeemAllActive();
+            else
+                MessageBox.Show("There are no codes currently active.");
+        }
+        private void button_redeemSelected_Click(object sender, EventArgs e)
+        {
+            IsRunning = true;
+            var codes = GetActiveCodes();
+            var selectedIndex = listView_ActiveCodes.SelectedIndices[0];
+            if (selectedIndex > -1)
+                RedeemSingle(codes[selectedIndex]);
+        }
+        #endregion
+
+        #region Menu Bar Control Events
+        private void activeListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearActiveCodes();
+        }
+        private void expiredListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearExpiredCodes();
+        }
+        private void activeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView_ActiveCodes.SelectedItems.Count > 0)
+            {
+                var codes = GetActiveCodes();
+                RemoveCodeFromList(codes[listView_ActiveCodes.SelectedIndices[0]].GetCode());
+                shouldUpdateActiveList = true;
+            }
+        }
+        private void expiredToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listbox_Expired.SelectedIndex >= 0 && listbox_Expired.SelectedIndex < listbox_Expired.Items.Count)
+            {
+                var i = listbox_Expired.SelectedIndex;
+                var codes = GetExpiredCodes();
+                RemoveCodeFromList(codes[i].GetCode());
+            }
+        }
+        private void activeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now);
+        }
+        private void expiredToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            AddCodeToCodeList(GenerateRandomSmiteCode(), false);
+        }
+        private void wikiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
+        }
+        private void webVersionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.lumbridge.org/dashboard");
+        }
+        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(MetaInfo.GetMetaInfoMessageBox(), "Smite Mixer Code Grabber Credits");
+        }
+        private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/issues");
+        }
+        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
+        }
+        #endregion
+
+        #region Settings Tab
+        // killswitch
+        private void comboBox_vKeys_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            killswitchKey = (int)EnumHelper.GetEnumValue<VirtualKeyStates>(comboBox_vKeys.SelectedItem.ToString());
+            label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
+        }
+        private void checkBox_disableKillswitch_CheckedChanged(object sender, EventArgs e)
+        {
+            killswitchEnabled = checkBox_disableKillswitch.Checked;
+        }
+        // notification stuff
+        private void button_sendTestNotification_Click(object sender, EventArgs e)
+        {
+            if (notificationSound)
+                PlayNotificationSound();
+            if (notificationSetting)
+                DisplayNotification("This is a test notification.");
+        }
+        private void button_BrowseNotificationSound_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog o = new OpenFileDialog();
+            o.DefaultExt = ".wav";
+            o.Filter = "wav files (*.wav)|*.wav|All files (*.*)|*.*";
+            var result = o.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                notificationSoundFilePath = o.FileName;
+                textbox_NotificationSound.Text = o.FileName;
+            }
+        }
+        private void textbox_NotificationSound_TextChanged(object sender, EventArgs e)
+        {
+            notificationSoundFilePath = textbox_NotificationSound.Text;
+        }
+        private void checkbox_showNotifications_CheckedChanged(object sender, EventArgs e)
+        {
+            notificationSetting = checkbox_showNotifications.Checked;
+
+            if (notificationSetting)
+                Write("Visual notifications enabled.");
+            else
+                Write("Visual notifications disabled.");
+        }
+        private void checkbox_NotificationSound_CheckedChanged(object sender, EventArgs e)
+        {
+            notificationSound = checkbox_NotificationSound.Checked;
+
+            if (notificationSound)
+                Write("Sound notifications enabled.");
+            else
+                Write("Sound notifications disabled.");
+        }
+        // key code help
+        private void metroLink_KeyCodeHelp_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
+        }
+        // redeem delay stuff
         private void trackbar_RedeemDelay_Scroll(object sender, ScrollEventArgs e)
         {
             label_redeemDelay.Text = trackbar_RedeemDelay.Value + " Minutes";
         }
-
         private void trackbar_RedeemDelay_MouseUp(object sender, MouseEventArgs e)
         {
             redeemDelay = trackbar_RedeemDelay.Value;
             label_redeemDelay.Text = redeemDelay + " Minutes";
         }
+        // afk mode 
+        private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
+        {
+            AFKMode = checkbox_AFKMode.Checked;
+            IsRunning = checkbox_AFKMode.Checked;
+
+            if (AFKMode)
+                Write("AFK Mode Enabled, will automatically redeem codes as they become active.");
+            else
+                Write("AFK Mode Disabled, will not automatically redeem codes as they become active.");
+        }
+        // misc
+        private void checkbox_MinimiseAfterRedeeming_CheckedChanged(object sender, EventArgs e)
+        {
+            minimiseAfterRedeeming = checkbox_MinimiseAfterRedeeming.Checked;
+
+            if (minimiseAfterRedeeming)
+                Write("Minimise after redeeming enabled: " + minimiseAfterRedeeming + "; Will minimise the SMITE client after redeeming codes.");
+            else
+                Write("Minimise after redeeming disabled: " + minimiseAfterRedeeming + "; Will not minimise the SMITE client after redeeming codes.");
+        }
+        #endregion
+        #endregion
     }
 }
