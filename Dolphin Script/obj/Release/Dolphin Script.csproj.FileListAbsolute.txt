@@ -24,3 +24,8 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Do
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csproj.CoreCompileInputs.cache
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\DolphinScript.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\DolphinScript.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Release\MetroFramework.Design.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Release\MetroFramework.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\bin\Release\MetroFramework.Fonts.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csprojResolveAssemblyReference.cache
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\Dolphin Script\obj\Release\Dolphin Script.csproj.CopyComplete

@@ -67,6 +67,7 @@
     <Compile Include="Classes\Common.cs" />
     <Compile Include="Classes\EnumHelper.cs" />
     <Compile Include="Classes\Globals.cs" />
+    <Compile Include="Classes\MessageBoxManager.cs" />
     <Compile Include="Classes\MetaInfo.cs" />
     <Compile Include="Classes\LogWriter.cs" />
     <Compile Include="Classes\ProcessInfo.cs" />

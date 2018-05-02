@@ -3,21 +3,20 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
+using MixerChat;
+using MixerChat.Classes;
 using SmiteMixerCodeGrabberGUI.Classes;
+
 using static SmiteMixerListener.Classes.Common;
 using static SmiteMixerCodeGrabberGUI.Classes.Common;
 using static SmiteMixerCodeGrabberGUI.Classes.AllCodes;
 using static SmiteMixerCodeGrabberGUI.Classes.Automation;
 using static SmiteMixerCodeGrabberGUI.Classes.Globals;
 
-using MixerChat;
-using MixerChat.Classes;
-
 using static DolphinScript.Lib.Backend.WinAPI;
 using static DolphinScript.Lib.Backend.Common;
-using System.Collections.Generic;
-using System.IO;
 
 namespace SmiteMixerCodeGrabberGUI
 {
@@ -43,7 +42,16 @@ namespace SmiteMixerCodeGrabberGUI
 
             foreach (var key in Enum.GetNames(typeof(VirtualKeyStates)))
             {
-                comboBox_vKeys.Items.Add(key);
+                if(key != "VK_CONTROL" &&
+                    key != "VK_LCONTROL" && 
+                    key != "VK_RCONTROL" && 
+                    key != "VK_ESCAPE" && 
+                    key != "VK_RETURN" &&
+                    key != "VK_KEY_C" &&
+                    key != "VK_KEY_V")
+                {
+                    comboBox_vKeys.Items.Add(key);
+                }
             }
 
             // override the console to output console.writeline to our custom console log
@@ -64,9 +72,11 @@ namespace SmiteMixerCodeGrabberGUI
             comboBox_vKeys.SelectedItem = killswitchKeyString;
             // label
             label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
-            label_redeemDelay.Text = redeemDelay + " Minutes";
+            label_redeemDelay.Text = redeemDelay + " Minutes.";
+            label_minWordLength.Text = wordSearchLength + " Characters.";
             // trackbar
             trackbar_RedeemDelay.Value = redeemDelay;
+            metroTrackBar_wordLength.Value = wordSearchLength;
 
             // write the meta info to the console
             Console.Write(MetaInfo.GetMetaInfoConsole());
@@ -98,6 +108,26 @@ namespace SmiteMixerCodeGrabberGUI
             // set is running to true by default for the AFK mode to function
             IsRunning = true;
         }
+
+        /// <summary>
+        /// Run when UI is displayed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            if (firstLaunch)
+            {
+                var result = MetroFramework.MetroMessageBox.Show(this,
+                    "\nIf you have any issues/bugs you can submit them on the help tab!\nCheck out the Settings tab to configure the program!\n\n" +
+                    "You can add me on SMITE @ RyanSensei (PC Client EU)\n" +
+                    "Would you like to see this notification the next time you launch the program?", "Welcome to SMCR v2.0.0!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.No)
+                    firstLaunch = false;
+            }
+        }
+
         /// <summary>
         /// Callback for when the main form is closing.
         /// </summary>
@@ -116,6 +146,12 @@ namespace SmiteMixerCodeGrabberGUI
         /// <param name="e"></param>
         private void timer_MainForm_Tick(object sender, EventArgs e)
         {
+            foreach(var c in GetAllCodes())
+            {
+                if (c.GetIsActive() == false && c.currentList == SmiteCode.Lists.Active)
+                    c.SwitchList();
+            }
+
             if (shouldUpdateActiveList)
             {
                 listView_ActiveCodes.BeginUpdate();
@@ -126,6 +162,7 @@ namespace SmiteMixerCodeGrabberGUI
                     lvi.SubItems.Add(aCode.Time_RedeemingAt.ToShortTimeString());
                     lvi.SubItems.Add(aCode.GetCode());
                     lvi.SubItems.Add(aCode.isRedeemed.ToString());
+                    lvi.SubItems.Add(aCode.Time_GrabbedAt.Add(new TimeSpan(0, 30, 0)).ToShortTimeString());
                     listView_ActiveCodes.Items.Add(lvi);
                 }
                 listView_ActiveCodes.EndUpdate();
@@ -133,13 +170,21 @@ namespace SmiteMixerCodeGrabberGUI
                 shouldUpdateActiveList = false;
             }
 
-            // clear the contents of the expired codes box
-            listbox_Expired.Items.Clear();
-            // loop through all expired codes
-            foreach (var eCode in GetExpiredCodes())
+            if (shouldUpdateExpiredList)
             {
-                // add each expired code to the expired codes box
-                listbox_Expired.Items.Add(eCode.GetCode() + " Redeemed: " + eCode.GetIsRedeemed());
+                listView_ExpiredCodes.BeginUpdate();
+                listView_ExpiredCodes.Items.Clear();
+                foreach (var eCode in GetExpiredCodes())
+                {
+                    ListViewItem lvi = new ListViewItem(eCode.Time_GrabbedAt.ToShortTimeString());
+                    lvi.SubItems.Add(eCode.Time_GrabbedAt.Add(new TimeSpan(0, 30, 0)).ToShortTimeString());
+                    lvi.SubItems.Add(eCode.GetCode());
+                    lvi.SubItems.Add(eCode.isRedeemed.ToString());
+                    listView_ExpiredCodes.Items.Add(lvi);
+                }
+                listView_ExpiredCodes.EndUpdate();
+
+                shouldUpdateExpiredList = false;
             }
 
             // check if AFK mode was disabled by any threads
@@ -214,6 +259,7 @@ namespace SmiteMixerCodeGrabberGUI
                             if (IsRunning)
                             {
                                 code.SetIsRedeemed(true);
+                                shouldUpdateActiveList = true;
                                 shouldMinimise = true;
                             }
                         }
@@ -221,6 +267,7 @@ namespace SmiteMixerCodeGrabberGUI
                     if (minimiseAfterRedeeming && shouldMinimise)
                     {
                         MinimiseSMITEClient();
+                        shouldUpdateActiveList = true;
                         shouldMinimise = false;
                     }
                 }
@@ -302,6 +349,7 @@ namespace SmiteMixerCodeGrabberGUI
                         blacklistedWords.Add(word);
                         SaveSettings();
                     }
+                    shouldUpdateActiveList = true;
                 }
             }
         }
@@ -321,7 +369,7 @@ namespace SmiteMixerCodeGrabberGUI
 
             foreach(var word in words)
             {
-                if (!blacklistedWords.Contains(word))
+                if (!blacklistedWords.Contains(word) && word.Length > wordSearchLength)
                 {
                     potentialCodes.Add(word);
                 }
@@ -419,6 +467,7 @@ namespace SmiteMixerCodeGrabberGUI
         #endregion
 
         #region Control Event Handlers
+
         #region Logs Tab
         private void logbox_TextChanged(object sender, EventArgs e)
         {
@@ -441,22 +490,26 @@ namespace SmiteMixerCodeGrabberGUI
             blacklistedWords.Clear();
             blacklistedWords.AddRange(textbox_BlacklistedWords.Lines.ToArray());
         }
+        private void metroButton_GOTOBlacklistGist_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://gist.github.com/Lumbridge/c574bcafeb286867b0eda09e85b62380");
+        }
         #endregion
-        
+
         #region Active Tab
         private void listView_ActiveCodes_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (listView_ActiveCodes.FocusedItem.Bounds.Contains(e.Location) == true)
+                try
                 {
-                    metroContextMenu_listViewRightClick.Show(Cursor.Position);
+                    if (listView_ActiveCodes.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        metroContextMenu_listViewRightClick.Show(Cursor.Position);
+                    }
                 }
+                catch { }
             }
-        }
-        private void toolStripMenuItem_RemoveSelected_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button_CopySelectedToClipboard_Click(object sender, EventArgs e)
@@ -477,7 +530,7 @@ namespace SmiteMixerCodeGrabberGUI
             if (GetActiveCodes().Count > 0)
                 RedeemAllActive();
             else
-                MessageBox.Show("There are no codes currently active.");
+                MetroFramework.MetroMessageBox.Show(this, "There are no codes currently active.");
         }
         private void button_redeemSelected_Click(object sender, EventArgs e)
         {
@@ -487,18 +540,17 @@ namespace SmiteMixerCodeGrabberGUI
             if (selectedIndex > -1)
                 RedeemSingle(codes[selectedIndex]);
         }
-        #endregion
-
-        #region Menu Bar Control Events
-        private void activeListToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroButton_RemoveAllActive_Click(object sender, EventArgs e)
         {
             ClearActiveCodes();
+            shouldUpdateActiveList = true;
         }
-        private void expiredListToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void metroButton_AddTestCode_Click(object sender, EventArgs e)
         {
-            ClearExpiredCodes();
+            AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now.Subtract(new TimeSpan(0,29,0)));
         }
-        private void activeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void metroButton_RemoveSelectedActiveCode_Click(object sender, EventArgs e)
         {
             if (listView_ActiveCodes.SelectedItems.Count > 0)
             {
@@ -507,42 +559,42 @@ namespace SmiteMixerCodeGrabberGUI
                 shouldUpdateActiveList = true;
             }
         }
-        private void expiredToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void toolStripMenuItem_RemoveSelected_Click(object sender, EventArgs e)
         {
-            if (listbox_Expired.SelectedIndex >= 0 && listbox_Expired.SelectedIndex < listbox_Expired.Items.Count)
+            if (listView_ActiveCodes.SelectedItems.Count > 0)
             {
-                var i = listbox_Expired.SelectedIndex;
-                var codes = GetExpiredCodes();
-                RemoveCodeFromList(codes[i].GetCode());
+                var codes = GetActiveCodes();
+                RemoveCodeFromList(codes[listView_ActiveCodes.SelectedIndices[0]].GetCode());
+                shouldUpdateActiveList = true;
             }
         }
-        private void activeToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void copySelectedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView_ActiveCodes.SelectedIndices[0] >= 0)
+            {
+                try
+                {
+                    Clipboard.SetText(listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
+                    Write("Copied code to clipboard: " + listView_ActiveCodes.SelectedItems[0].SubItems[2].Text);
+                }
+                catch { }
+            }
+        }
+        private void addTestCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddCodeToCodeListDebug(GenerateRandomSmiteCode(), true, DateTime.Now);
+        }
+        #endregion
+
+        #region Menu Bar Control Events
+        private void expiredListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearExpiredCodes();
         }
         private void expiredToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             AddCodeToCodeList(GenerateRandomSmiteCode(), false);
-        }
-        private void wikiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
-        }
-        private void webVersionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://www.lumbridge.org/dashboard");
-        }
-        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(MetaInfo.GetMetaInfoMessageBox(), "Smite Mixer Code Grabber Credits");
-        }
-        private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/issues");
-        }
-        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
         }
         #endregion
 
@@ -551,7 +603,11 @@ namespace SmiteMixerCodeGrabberGUI
         private void comboBox_vKeys_SelectedIndexChanged(object sender, EventArgs e)
         {
             killswitchKey = (int)EnumHelper.GetEnumValue<VirtualKeyStates>(comboBox_vKeys.SelectedItem.ToString());
-            label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
+
+            if (killswitchKeyString == "None")
+                label_ksNote.Text = "No killswitch key selected.";
+            else
+                label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
         }
         private void checkBox_disableKillswitch_CheckedChanged(object sender, EventArgs e)
         {
@@ -599,21 +655,35 @@ namespace SmiteMixerCodeGrabberGUI
             else
                 Write("Sound notifications disabled.");
         }
+
         // key code help
         private void metroLink_KeyCodeHelp_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx");
         }
+
         // redeem delay stuff
         private void trackbar_RedeemDelay_Scroll(object sender, ScrollEventArgs e)
         {
-            label_redeemDelay.Text = trackbar_RedeemDelay.Value + " Minutes";
+            label_redeemDelay.Text = trackbar_RedeemDelay.Value + " Minutes.";
         }
         private void trackbar_RedeemDelay_MouseUp(object sender, MouseEventArgs e)
         {
             redeemDelay = trackbar_RedeemDelay.Value;
-            label_redeemDelay.Text = redeemDelay + " Minutes";
+            label_redeemDelay.Text = redeemDelay + " Minutes.";
         }
+
+        // min word length stuff
+        private void metroTrackBar_wordLength_Scroll(object sender, ScrollEventArgs e)
+        {
+            label_minWordLength.Text = metroTrackBar_wordLength.Value + " Characters.";
+        }
+        private void metroTrackBar_wordLength_MouseUp(object sender, MouseEventArgs e)
+        {
+            wordSearchLength = metroTrackBar_wordLength.Value;
+            label_minWordLength.Text = wordSearchLength + " Characters.";
+        }
+
         // afk mode 
         private void checkbox_AFKMode_CheckedChanged(object sender, EventArgs e)
         {
@@ -636,6 +706,34 @@ namespace SmiteMixerCodeGrabberGUI
                 Write("Minimise after redeeming disabled: " + minimiseAfterRedeeming + "; Will not minimise the SMITE client after redeeming codes.");
         }
         #endregion
+
+        #region Help Tab
+        private void metroTile_Wiki_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
+        }
+
+        private void metroTile_Credits_Click(object sender, EventArgs e)
+        {
+            MetroFramework.MetroMessageBox.Show(this, MetaInfo.GetMetaInfoMessageBox(), "Smite Mixer Code Grabber Credits");
+        }
+
+        private void metroTile_ReportBug_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/issues");
+        }
+
+        private void metroTile_UserGuide_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Lumbridge/SmiteMixerCodeRedeemer/blob/master/README.md");
+        }
+
+        private void metroTile_Donate_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.paypal.me/RyanSainty");
+        }
+        #endregion
+
         #endregion
     }
 }

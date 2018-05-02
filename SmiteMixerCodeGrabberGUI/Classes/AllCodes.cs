@@ -55,6 +55,11 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             _AllCodes.Remove(_AllCodes.Where(x => x.GetCode() == code).First());
         }
 
+        public static List<SmiteCode> GetAllCodes()
+        {
+            return _AllCodes;
+        }
+
         public static List<SmiteCode> GetActiveCodes()
         {
             return _AllCodes.Where(x => x.GetIsActive() == true).ToList();
@@ -62,7 +67,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
 
         public static List<SmiteCode> GetActiveCodesPastRedeemTimer()
         {
-            return _AllCodes.Where(x => x.GetIsActive() == true && x.Time_RedeemingAt >= DateTime.Now).ToList();
+            return _AllCodes.Where(x => x.GetIsActive() == true && x.Time_RedeemingAt <= DateTime.Now).ToList();
         }
 
         public static List<SmiteCode> GetExpiredCodes()

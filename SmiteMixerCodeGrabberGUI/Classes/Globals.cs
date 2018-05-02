@@ -11,15 +11,34 @@ namespace SmiteMixerCodeGrabberGUI.Classes
     {
         public static bool AFKMode { get; set; }
         public static bool shouldUpdateActiveList { get; set; }
+        public static bool shouldUpdateExpiredList { get; set; }
         public static bool shouldMinimise { get; set; }
         public static string smiteWindowTitle { get; set; }
 
+        public static int wordSearchLength
+        {
+            get { return Properties.Settings.Default.wordSearchLength; }
+            set
+            {
+                Properties.Settings.Default.wordSearchLength = value;
+                SaveSettings();
+            }
+        }
         public static bool notificationSetting
         {
             get { return Properties.Settings.Default.notificationSetting; }
             set
             {
                 Properties.Settings.Default.notificationSetting = value;
+                SaveSettings();
+            }
+        }
+        public static bool firstLaunch
+        {
+            get { return Properties.Settings.Default.firstLaunch; }
+            set
+            {
+                Properties.Settings.Default.firstLaunch = value;
                 SaveSettings();
             }
         }

@@ -14,7 +14,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
     {
         public static void DisplayNotification(string msg)
         {
-            MessageBox.Show(msg, "Smite Code Grabber Notification", MessageBoxButtons.OK);
+            MetroFramework.MetroMessageBox.Show(MainForm.ActiveForm, msg, "Smite Code Grabber Notification", MessageBoxButtons.OK);
         }
 
         public static void PlayNotificationSound()

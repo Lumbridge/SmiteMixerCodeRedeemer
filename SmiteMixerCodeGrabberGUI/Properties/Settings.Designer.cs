@@ -574,5 +574,29 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
                 this["redeemDelay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int wordSearchLength {
+            get {
+                return ((int)(this["wordSearchLength"]));
+            }
+            set {
+                this["wordSearchLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool firstLaunch {
+            get {
+                return ((bool)(this["firstLaunch"]));
+            }
+            set {
+                this["firstLaunch"] = value;
+            }
+        }
     }
 }

@@ -32,6 +32,7 @@ namespace SmiteMixerCodeGrabberGUI.Classes
             if (minimiseAfterRedeeming && shouldMinimise)
             {
                 MinimiseSMITEClient();
+                shouldUpdateActiveList = true;
                 shouldMinimise = false;
             }
         }

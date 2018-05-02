@@ -28,3 +28,5 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\Mixe
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.dll
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChat.pdb
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\obj\Release\MixerChatAPI.csprojResolveAssemblyReference.cache
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\MetroFramework.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\MixerChatAPI\bin\Release\MetroFramework.Fonts.dll

@@ -62,3 +62,5 @@ C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\SmiteMixerCodeGrabberGUI.csproj.CopyComplete
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\Smite Mixer Code Grabber.exe
 C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\obj\Release\Smite Mixer Code Grabber.pdb
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\MetroFramework.dll
+C:\Users\ryans\Source\Repos\SmiteMixerCodeRedeemer\SmiteMixerCodeGrabberGUI\bin\Release\MetroFramework.Fonts.dll
