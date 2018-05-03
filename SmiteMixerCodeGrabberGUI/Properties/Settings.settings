@@ -1216,11 +1216,17 @@
     <Setting Name="redeemDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="wordSearchLength" Type="System.Int32" Scope="User">
+    <Setting Name="minWordLength" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="firstLaunch" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="maxWordLength" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">18</Value>
+    </Setting>
+    <Setting Name="useDarkTheme" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

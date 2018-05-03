@@ -36,6 +36,7 @@
             this.textbox_BlacklistedWords = new System.Windows.Forms.RichTextBox();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage_Active = new MetroFramework.Controls.MetroTabPage();
+            this.metroButton_RemoveAllActive = new MetroFramework.Controls.MetroButton();
             this.metroButton_RemoveSelectedActiveCode = new MetroFramework.Controls.MetroButton();
             this.metroButton_AddTestCode = new MetroFramework.Controls.MetroButton();
             this.button_CopySelectedToClipboard = new MetroFramework.Controls.MetroButton();
@@ -46,6 +47,7 @@
             this.col_RedeemingAt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_Code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.col_Redeemed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.col_ExpiringAt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.metroTabPage_Expired = new MetroFramework.Controls.MetroTabPage();
             this.listView_ExpiredCodes = new MetroFramework.Controls.MetroListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,11 +63,25 @@
             this.metroTabPage_Logs = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage_Whitelist = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage_Settings = new MetroFramework.Controls.MetroTabPage();
+            this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
+            this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
+            this.metroComboBox_Theme = new MetroFramework.Controls.MetroComboBox();
+            this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
+            this.metroLabel87 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel_maxWordLength = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
+            this.metroTrackBar_maxWordLength = new MetroFramework.Controls.MetroTrackBar();
+            this.label_minWordLength = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
+            this.metroTrackBar_minWordLength = new MetroFramework.Controls.MetroTrackBar();
+            this.label_redeemDelay = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.trackbar_RedeemDelay = new MetroFramework.Controls.MetroTrackBar();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
+            this.comboBox_vKeys = new MetroFramework.Controls.MetroComboBox();
             this.checkBox_disableKillswitch = new MetroFramework.Controls.MetroCheckBox();
             this.metroLink_KeyCodeHelp = new MetroFramework.Controls.MetroLink();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.comboBox_vKeys = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.button_sendTestNotification = new MetroFramework.Controls.MetroButton();
@@ -74,6 +90,7 @@
             this.checkbox_NotificationSound = new MetroFramework.Controls.MetroCheckBox();
             this.checkbox_showNotifications = new MetroFramework.Controls.MetroCheckBox();
             this.metroTabPage_Help = new MetroFramework.Controls.MetroTabPage();
+            this.metroTile_Donate = new MetroFramework.Controls.MetroTile();
             this.metroTile_ReportBug = new MetroFramework.Controls.MetroTile();
             this.metroTile_UserGuide = new MetroFramework.Controls.MetroTile();
             this.metroTile_Credits = new MetroFramework.Controls.MetroTile();
@@ -85,20 +102,11 @@
             this.addTestCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label_ksNote = new MetroFramework.Controls.MetroLabel();
             this.label_SmiteClientVersion = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel_AFKMode = new MetroFramework.Controls.MetroLabel();
             this.checkbox_AFKMode = new MetroFramework.Controls.MetroToggle();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel_MinimiseSmiteAfterRedeeming = new MetroFramework.Controls.MetroLabel();
             this.checkbox_MinimiseAfterRedeeming = new MetroFramework.Controls.MetroToggle();
-            this.metroButton_RemoveAllActive = new MetroFramework.Controls.MetroButton();
-            this.col_ExpiringAt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.metroTile_Donate = new MetroFramework.Controls.MetroTile();
-            this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
-            this.label_redeemDelay = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.trackbar_RedeemDelay = new MetroFramework.Controls.MetroTrackBar();
-            this.metroTrackBar_wordLength = new MetroFramework.Controls.MetroTrackBar();
-            this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.label_minWordLength = new MetroFramework.Controls.MetroLabel();
+            this.metroStyleManager = new MetroFramework.Components.MetroStyleManager(this.components);
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage_Active.SuspendLayout();
             this.metroTabPage_Expired.SuspendLayout();
@@ -107,11 +115,13 @@
             this.metroTabPage_Logs.SuspendLayout();
             this.metroTabPage_Whitelist.SuspendLayout();
             this.metroTabPage_Settings.SuspendLayout();
+            this.metroPanel4.SuspendLayout();
+            this.metroPanel5.SuspendLayout();
             this.metroPanel2.SuspendLayout();
             this.metroPanel1.SuspendLayout();
             this.metroTabPage_Help.SuspendLayout();
             this.metroContextMenu_listViewRightClick.SuspendLayout();
-            this.metroPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).BeginInit();
             this.SuspendLayout();
             // 
             // textbox_whitelistedUsernames
@@ -171,7 +181,7 @@
             this.metroTabControl1.Controls.Add(this.metroTabPage_Help);
             this.metroTabControl1.Location = new System.Drawing.Point(23, 63);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(804, 417);
             this.metroTabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.metroTabControl1.TabIndex = 20;
@@ -197,6 +207,17 @@
             this.metroTabPage_Active.VerticalScrollbarBarColor = true;
             this.metroTabPage_Active.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage_Active.VerticalScrollbarSize = 10;
+            // 
+            // metroButton_RemoveAllActive
+            // 
+            this.metroButton_RemoveAllActive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroButton_RemoveAllActive.Location = new System.Drawing.Point(713, 349);
+            this.metroButton_RemoveAllActive.Name = "metroButton_RemoveAllActive";
+            this.metroButton_RemoveAllActive.Size = new System.Drawing.Size(80, 23);
+            this.metroButton_RemoveAllActive.TabIndex = 15;
+            this.metroButton_RemoveAllActive.Text = "Clear Active";
+            this.metroButton_RemoveAllActive.UseSelectable = true;
+            this.metroButton_RemoveAllActive.Click += new System.EventHandler(this.metroButton_RemoveAllActive_Click);
             // 
             // metroButton_RemoveSelectedActiveCode
             // 
@@ -265,9 +286,11 @@
             this.col_Code,
             this.col_Redeemed,
             this.col_ExpiringAt});
+            this.listView_ActiveCodes.ContextMenuStrip = this.metroContextMenu_listViewRightClick;
             this.listView_ActiveCodes.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.listView_ActiveCodes.FullRowSelect = true;
             this.listView_ActiveCodes.GridLines = true;
+            this.listView_ActiveCodes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView_ActiveCodes.Location = new System.Drawing.Point(4, 13);
             this.listView_ActiveCodes.MultiSelect = false;
             this.listView_ActiveCodes.Name = "listView_ActiveCodes";
@@ -275,6 +298,7 @@
             this.listView_ActiveCodes.Size = new System.Drawing.Size(789, 330);
             this.listView_ActiveCodes.TabIndex = 0;
             this.listView_ActiveCodes.UseCompatibleStateImageBehavior = false;
+            this.listView_ActiveCodes.UseCustomBackColor = true;
             this.listView_ActiveCodes.UseSelectable = true;
             this.listView_ActiveCodes.View = System.Windows.Forms.View.Details;
             this.listView_ActiveCodes.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listView_ActiveCodes_MouseClick);
@@ -282,22 +306,27 @@
             // col_GrabbedAt
             // 
             this.col_GrabbedAt.Text = "Grabbed At";
-            this.col_GrabbedAt.Width = 150;
+            this.col_GrabbedAt.Width = 158;
             // 
             // col_RedeemingAt
             // 
             this.col_RedeemingAt.Text = "Redeeming At";
-            this.col_RedeemingAt.Width = 150;
+            this.col_RedeemingAt.Width = 158;
             // 
             // col_Code
             // 
             this.col_Code.Text = "Code";
-            this.col_Code.Width = 150;
+            this.col_Code.Width = 158;
             // 
             // col_Redeemed
             // 
             this.col_Redeemed.Text = "Redeemed";
-            this.col_Redeemed.Width = 150;
+            this.col_Redeemed.Width = 158;
+            // 
+            // col_ExpiringAt
+            // 
+            this.col_ExpiringAt.Text = "Expiring At";
+            this.col_ExpiringAt.Width = 157;
             // 
             // metroTabPage_Expired
             // 
@@ -337,27 +366,28 @@
             this.listView_ExpiredCodes.TabIndex = 12;
             this.listView_ExpiredCodes.UseCompatibleStateImageBehavior = false;
             this.listView_ExpiredCodes.UseSelectable = true;
+            this.listView_ExpiredCodes.UseStyleColors = true;
             this.listView_ExpiredCodes.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Grabbed At";
-            this.columnHeader1.Width = 150;
+            this.columnHeader1.Width = 197;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Expired At";
-            this.columnHeader2.Width = 150;
+            this.columnHeader2.Width = 197;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Code";
-            this.columnHeader3.Width = 150;
+            this.columnHeader3.Width = 197;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Was Redeemed";
-            this.columnHeader4.Width = 150;
+            this.columnHeader4.Width = 196;
             // 
             // metroButton3
             // 
@@ -464,6 +494,7 @@
             // 
             // metroTabPage_Settings
             // 
+            this.metroTabPage_Settings.Controls.Add(this.metroPanel4);
             this.metroTabPage_Settings.Controls.Add(this.metroPanel5);
             this.metroTabPage_Settings.Controls.Add(this.metroPanel2);
             this.metroTabPage_Settings.Controls.Add(this.metroPanel1);
@@ -478,6 +509,175 @@
             this.metroTabPage_Settings.VerticalScrollbarBarColor = true;
             this.metroTabPage_Settings.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage_Settings.VerticalScrollbarSize = 10;
+            // 
+            // metroPanel4
+            // 
+            this.metroPanel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.metroPanel4.Controls.Add(this.metroLabel10);
+            this.metroPanel4.Controls.Add(this.metroComboBox_Theme);
+            this.metroPanel4.HorizontalScrollbarBarColor = true;
+            this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.HorizontalScrollbarSize = 10;
+            this.metroPanel4.Location = new System.Drawing.Point(380, 175);
+            this.metroPanel4.Name = "metroPanel4";
+            this.metroPanel4.Size = new System.Drawing.Size(406, 197);
+            this.metroPanel4.TabIndex = 37;
+            this.metroPanel4.VerticalScrollbarBarColor = true;
+            this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.VerticalScrollbarSize = 10;
+            // 
+            // metroLabel10
+            // 
+            this.metroLabel10.AutoSize = true;
+            this.metroLabel10.Location = new System.Drawing.Point(19, 17);
+            this.metroLabel10.Name = "metroLabel10";
+            this.metroLabel10.Size = new System.Drawing.Size(49, 19);
+            this.metroLabel10.TabIndex = 3;
+            this.metroLabel10.Text = "Theme";
+            // 
+            // metroComboBox_Theme
+            // 
+            this.metroComboBox_Theme.FormattingEnabled = true;
+            this.metroComboBox_Theme.ItemHeight = 23;
+            this.metroComboBox_Theme.Items.AddRange(new object[] {
+            "Light",
+            "Dark"});
+            this.metroComboBox_Theme.Location = new System.Drawing.Point(19, 39);
+            this.metroComboBox_Theme.Name = "metroComboBox_Theme";
+            this.metroComboBox_Theme.Size = new System.Drawing.Size(139, 29);
+            this.metroComboBox_Theme.TabIndex = 2;
+            this.metroComboBox_Theme.UseSelectable = true;
+            this.metroComboBox_Theme.SelectedIndexChanged += new System.EventHandler(this.metroComboBox_Theme_SelectedIndexChanged);
+            // 
+            // metroPanel5
+            // 
+            this.metroPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.metroPanel5.Controls.Add(this.metroLabel87);
+            this.metroPanel5.Controls.Add(this.metroLabel_maxWordLength);
+            this.metroPanel5.Controls.Add(this.metroLabel9);
+            this.metroPanel5.Controls.Add(this.metroTrackBar_maxWordLength);
+            this.metroPanel5.Controls.Add(this.label_minWordLength);
+            this.metroPanel5.Controls.Add(this.metroLabel7);
+            this.metroPanel5.Controls.Add(this.metroTrackBar_minWordLength);
+            this.metroPanel5.Controls.Add(this.label_redeemDelay);
+            this.metroPanel5.Controls.Add(this.metroLabel5);
+            this.metroPanel5.Controls.Add(this.trackbar_RedeemDelay);
+            this.metroPanel5.HorizontalScrollbarBarColor = true;
+            this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.HorizontalScrollbarSize = 10;
+            this.metroPanel5.Location = new System.Drawing.Point(4, 124);
+            this.metroPanel5.Name = "metroPanel5";
+            this.metroPanel5.Size = new System.Drawing.Size(340, 248);
+            this.metroPanel5.TabIndex = 29;
+            this.metroPanel5.VerticalScrollbarBarColor = true;
+            this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.VerticalScrollbarSize = 10;
+            // 
+            // metroLabel87
+            // 
+            this.metroLabel87.AutoSize = true;
+            this.metroLabel87.Location = new System.Drawing.Point(8, 201);
+            this.metroLabel87.Name = "metroLabel87";
+            this.metroLabel87.Size = new System.Drawing.Size(321, 38);
+            this.metroLabel87.TabIndex = 36;
+            this.metroLabel87.Text = "Note: The longest code to date was 17 characters and\r\nthe shortest was 8 characte" +
+    "rs.";
+            // 
+            // metroLabel_maxWordLength
+            // 
+            this.metroLabel_maxWordLength.AutoSize = true;
+            this.metroLabel_maxWordLength.Location = new System.Drawing.Point(231, 179);
+            this.metroLabel_maxWordLength.Name = "metroLabel_maxWordLength";
+            this.metroLabel_maxWordLength.Size = new System.Drawing.Size(92, 19);
+            this.metroLabel_maxWordLength.TabIndex = 35;
+            this.metroLabel_maxWordLength.Text = "{x} Characters.";
+            // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.Location = new System.Drawing.Point(8, 131);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(196, 19);
+            this.metroLabel9.TabIndex = 34;
+            this.metroLabel9.Text = "Only pick up words shorter than";
+            // 
+            // metroTrackBar_maxWordLength
+            // 
+            this.metroTrackBar_maxWordLength.BackColor = System.Drawing.Color.Transparent;
+            this.metroTrackBar_maxWordLength.Location = new System.Drawing.Point(10, 153);
+            this.metroTrackBar_maxWordLength.Maximum = 30;
+            this.metroTrackBar_maxWordLength.Minimum = 10;
+            this.metroTrackBar_maxWordLength.MouseWheelBarPartitions = 1;
+            this.metroTrackBar_maxWordLength.Name = "metroTrackBar_maxWordLength";
+            this.metroTrackBar_maxWordLength.Size = new System.Drawing.Size(310, 23);
+            this.metroTrackBar_maxWordLength.TabIndex = 33;
+            this.metroTrackBar_maxWordLength.Text = "metroTrackBar1";
+            this.metroTrackBar_maxWordLength.Value = 17;
+            this.metroTrackBar_maxWordLength.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar_maxWordLength_Scroll);
+            this.metroTrackBar_maxWordLength.MouseUp += new System.Windows.Forms.MouseEventHandler(this.metroTrackBar_maxWordLength_MouseUp);
+            // 
+            // label_minWordLength
+            // 
+            this.label_minWordLength.AutoSize = true;
+            this.label_minWordLength.Location = new System.Drawing.Point(231, 116);
+            this.label_minWordLength.Name = "label_minWordLength";
+            this.label_minWordLength.Size = new System.Drawing.Size(92, 19);
+            this.label_minWordLength.TabIndex = 32;
+            this.label_minWordLength.Text = "{x} Characters.";
+            // 
+            // metroLabel7
+            // 
+            this.metroLabel7.AutoSize = true;
+            this.metroLabel7.Location = new System.Drawing.Point(8, 68);
+            this.metroLabel7.Name = "metroLabel7";
+            this.metroLabel7.Size = new System.Drawing.Size(192, 19);
+            this.metroLabel7.TabIndex = 31;
+            this.metroLabel7.Text = "Only pick up words longer than";
+            // 
+            // metroTrackBar_minWordLength
+            // 
+            this.metroTrackBar_minWordLength.BackColor = System.Drawing.Color.Transparent;
+            this.metroTrackBar_minWordLength.Location = new System.Drawing.Point(10, 90);
+            this.metroTrackBar_minWordLength.Maximum = 20;
+            this.metroTrackBar_minWordLength.MouseWheelBarPartitions = 1;
+            this.metroTrackBar_minWordLength.Name = "metroTrackBar_minWordLength";
+            this.metroTrackBar_minWordLength.Size = new System.Drawing.Size(310, 23);
+            this.metroTrackBar_minWordLength.TabIndex = 30;
+            this.metroTrackBar_minWordLength.Text = "metroTrackBar_wordLength";
+            this.metroTrackBar_minWordLength.Value = 5;
+            this.metroTrackBar_minWordLength.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar_wordLength_Scroll);
+            this.metroTrackBar_minWordLength.MouseUp += new System.Windows.Forms.MouseEventHandler(this.metroTrackBar_wordLength_MouseUp);
+            // 
+            // label_redeemDelay
+            // 
+            this.label_redeemDelay.AutoSize = true;
+            this.label_redeemDelay.Location = new System.Drawing.Point(248, 55);
+            this.label_redeemDelay.Name = "label_redeemDelay";
+            this.label_redeemDelay.Size = new System.Drawing.Size(75, 19);
+            this.label_redeemDelay.TabIndex = 4;
+            this.label_redeemDelay.Text = "{x} Minutes.";
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(8, 7);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(171, 19);
+            this.metroLabel5.TabIndex = 3;
+            this.metroLabel5.Text = "Delay Code Redemption by";
+            // 
+            // trackbar_RedeemDelay
+            // 
+            this.trackbar_RedeemDelay.BackColor = System.Drawing.Color.Transparent;
+            this.trackbar_RedeemDelay.Location = new System.Drawing.Point(10, 29);
+            this.trackbar_RedeemDelay.Maximum = 20;
+            this.trackbar_RedeemDelay.MouseWheelBarPartitions = 1;
+            this.trackbar_RedeemDelay.Name = "trackbar_RedeemDelay";
+            this.trackbar_RedeemDelay.Size = new System.Drawing.Size(310, 23);
+            this.trackbar_RedeemDelay.TabIndex = 2;
+            this.trackbar_RedeemDelay.Text = "Delay Code Redemption";
+            this.trackbar_RedeemDelay.Value = 5;
+            this.trackbar_RedeemDelay.Scroll += new System.Windows.Forms.ScrollEventHandler(this.trackbar_RedeemDelay_Scroll);
             // 
             // metroPanel2
             // 
@@ -498,6 +698,17 @@
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel2.VerticalScrollbarSize = 10;
+            // 
+            // comboBox_vKeys
+            // 
+            this.comboBox_vKeys.FormattingEnabled = true;
+            this.comboBox_vKeys.ItemHeight = 23;
+            this.comboBox_vKeys.Location = new System.Drawing.Point(19, 94);
+            this.comboBox_vKeys.Name = "comboBox_vKeys";
+            this.comboBox_vKeys.Size = new System.Drawing.Size(371, 29);
+            this.comboBox_vKeys.TabIndex = 3;
+            this.comboBox_vKeys.UseSelectable = true;
+            this.comboBox_vKeys.SelectedIndexChanged += new System.EventHandler(this.comboBox_vKeys_SelectedIndexChanged);
             // 
             // checkBox_disableKillswitch
             // 
@@ -528,17 +739,6 @@
             this.metroLabel3.Size = new System.Drawing.Size(83, 19);
             this.metroLabel3.TabIndex = 4;
             this.metroLabel3.Text = "Killswitch Key";
-            // 
-            // comboBox_vKeys
-            // 
-            this.comboBox_vKeys.FormattingEnabled = true;
-            this.comboBox_vKeys.ItemHeight = 23;
-            this.comboBox_vKeys.Location = new System.Drawing.Point(19, 94);
-            this.comboBox_vKeys.Name = "comboBox_vKeys";
-            this.comboBox_vKeys.Size = new System.Drawing.Size(371, 29);
-            this.comboBox_vKeys.TabIndex = 3;
-            this.comboBox_vKeys.UseSelectable = true;
-            this.comboBox_vKeys.SelectedIndexChanged += new System.EventHandler(this.comboBox_vKeys_SelectedIndexChanged);
             // 
             // metroLabel2
             // 
@@ -662,6 +862,20 @@
             this.metroTabPage_Help.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage_Help.VerticalScrollbarSize = 10;
             // 
+            // metroTile_Donate
+            // 
+            this.metroTile_Donate.ActiveControl = null;
+            this.metroTile_Donate.Location = new System.Drawing.Point(583, 3);
+            this.metroTile_Donate.Name = "metroTile_Donate";
+            this.metroTile_Donate.Size = new System.Drawing.Size(139, 65);
+            this.metroTile_Donate.TabIndex = 6;
+            this.metroTile_Donate.Text = "Donate";
+            this.metroTile_Donate.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.metroTile_Donate.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.metroTile_Donate.UseSelectable = true;
+            this.metroTile_Donate.UseStyleColors = true;
+            this.metroTile_Donate.Click += new System.EventHandler(this.metroTile_Donate_Click);
+            // 
             // metroTile_ReportBug
             // 
             this.metroTile_ReportBug.ActiveControl = null;
@@ -673,6 +887,7 @@
             this.metroTile_ReportBug.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile_ReportBug.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.metroTile_ReportBug.UseSelectable = true;
+            this.metroTile_ReportBug.UseStyleColors = true;
             this.metroTile_ReportBug.Click += new System.EventHandler(this.metroTile_ReportBug_Click);
             // 
             // metroTile_UserGuide
@@ -686,6 +901,7 @@
             this.metroTile_UserGuide.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile_UserGuide.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.metroTile_UserGuide.UseSelectable = true;
+            this.metroTile_UserGuide.UseStyleColors = true;
             this.metroTile_UserGuide.Click += new System.EventHandler(this.metroTile_UserGuide_Click);
             // 
             // metroTile_Credits
@@ -699,6 +915,7 @@
             this.metroTile_Credits.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile_Credits.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.metroTile_Credits.UseSelectable = true;
+            this.metroTile_Credits.UseStyleColors = true;
             this.metroTile_Credits.Click += new System.EventHandler(this.metroTile_Credits_Click);
             // 
             // metroTile_Wiki
@@ -712,6 +929,7 @@
             this.metroTile_Wiki.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.metroTile_Wiki.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.metroTile_Wiki.UseSelectable = true;
+            this.metroTile_Wiki.UseStyleColors = true;
             this.metroTile_Wiki.Click += new System.EventHandler(this.metroTile_Wiki_Click);
             // 
             // metroTabPage5
@@ -734,7 +952,8 @@
             this.copySelectedToolStripMenuItem,
             this.addTestCodeToolStripMenuItem});
             this.metroContextMenu_listViewRightClick.Name = "metroContextMenu_listViewRightClick";
-            this.metroContextMenu_listViewRightClick.Size = new System.Drawing.Size(183, 70);
+            this.metroContextMenu_listViewRightClick.Size = new System.Drawing.Size(183, 92);
+            this.metroContextMenu_listViewRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.metroContextMenu_listViewRightClick_Opening);
             // 
             // toolStripMenuItem_RemoveSelected
             // 
@@ -777,15 +996,15 @@
             this.label_SmiteClientVersion.TabIndex = 26;
             this.label_SmiteClientVersion.Text = "SMITE Client Not Found (Automation Disabled).";
             // 
-            // metroLabel1
+            // metroLabel_AFKMode
             // 
-            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(663, 489);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(71, 19);
-            this.metroLabel1.TabIndex = 29;
-            this.metroLabel1.Text = "AFK Mode";
+            this.metroLabel_AFKMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroLabel_AFKMode.AutoSize = true;
+            this.metroLabel_AFKMode.Location = new System.Drawing.Point(663, 489);
+            this.metroLabel_AFKMode.Name = "metroLabel_AFKMode";
+            this.metroLabel_AFKMode.Size = new System.Drawing.Size(71, 19);
+            this.metroLabel_AFKMode.TabIndex = 29;
+            this.metroLabel_AFKMode.Text = "AFK Mode";
             // 
             // checkbox_AFKMode
             // 
@@ -799,15 +1018,15 @@
             this.checkbox_AFKMode.UseSelectable = true;
             this.checkbox_AFKMode.CheckedChanged += new System.EventHandler(this.checkbox_AFKMode_CheckedChanged);
             // 
-            // metroLabel6
+            // metroLabel_MinimiseSmiteAfterRedeeming
             // 
-            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(536, 514);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(203, 19);
-            this.metroLabel6.TabIndex = 32;
-            this.metroLabel6.Text = "Minimise SMITE after Redeeming";
+            this.metroLabel_MinimiseSmiteAfterRedeeming.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroLabel_MinimiseSmiteAfterRedeeming.AutoSize = true;
+            this.metroLabel_MinimiseSmiteAfterRedeeming.Location = new System.Drawing.Point(536, 514);
+            this.metroLabel_MinimiseSmiteAfterRedeeming.Name = "metroLabel_MinimiseSmiteAfterRedeeming";
+            this.metroLabel_MinimiseSmiteAfterRedeeming.Size = new System.Drawing.Size(203, 19);
+            this.metroLabel_MinimiseSmiteAfterRedeeming.TabIndex = 32;
+            this.metroLabel_MinimiseSmiteAfterRedeeming.Text = "Minimise SMITE after Redeeming";
             // 
             // checkbox_MinimiseAfterRedeeming
             // 
@@ -821,128 +1040,20 @@
             this.checkbox_MinimiseAfterRedeeming.UseSelectable = true;
             this.checkbox_MinimiseAfterRedeeming.CheckedChanged += new System.EventHandler(this.checkbox_MinimiseAfterRedeeming_CheckedChanged);
             // 
-            // metroButton_RemoveAllActive
+            // metroStyleManager
             // 
-            this.metroButton_RemoveAllActive.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroButton_RemoveAllActive.Location = new System.Drawing.Point(713, 349);
-            this.metroButton_RemoveAllActive.Name = "metroButton_RemoveAllActive";
-            this.metroButton_RemoveAllActive.Size = new System.Drawing.Size(80, 23);
-            this.metroButton_RemoveAllActive.TabIndex = 15;
-            this.metroButton_RemoveAllActive.Text = "Clear Active";
-            this.metroButton_RemoveAllActive.UseSelectable = true;
-            this.metroButton_RemoveAllActive.Click += new System.EventHandler(this.metroButton_RemoveAllActive_Click);
-            // 
-            // col_ExpiringAt
-            // 
-            this.col_ExpiringAt.Text = "Expiring At";
-            this.col_ExpiringAt.Width = 150;
-            // 
-            // metroTile_Donate
-            // 
-            this.metroTile_Donate.ActiveControl = null;
-            this.metroTile_Donate.Location = new System.Drawing.Point(583, 3);
-            this.metroTile_Donate.Name = "metroTile_Donate";
-            this.metroTile_Donate.Size = new System.Drawing.Size(139, 65);
-            this.metroTile_Donate.TabIndex = 6;
-            this.metroTile_Donate.Text = "Dontate";
-            this.metroTile_Donate.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.metroTile_Donate.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.metroTile_Donate.UseSelectable = true;
-            this.metroTile_Donate.Click += new System.EventHandler(this.metroTile_Donate_Click);
-            // 
-            // metroPanel5
-            // 
-            this.metroPanel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metroPanel5.Controls.Add(this.label_minWordLength);
-            this.metroPanel5.Controls.Add(this.metroLabel7);
-            this.metroPanel5.Controls.Add(this.metroTrackBar_wordLength);
-            this.metroPanel5.Controls.Add(this.label_redeemDelay);
-            this.metroPanel5.Controls.Add(this.metroLabel5);
-            this.metroPanel5.Controls.Add(this.trackbar_RedeemDelay);
-            this.metroPanel5.HorizontalScrollbarBarColor = true;
-            this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel5.HorizontalScrollbarSize = 10;
-            this.metroPanel5.Location = new System.Drawing.Point(4, 142);
-            this.metroPanel5.Name = "metroPanel5";
-            this.metroPanel5.Size = new System.Drawing.Size(340, 181);
-            this.metroPanel5.TabIndex = 29;
-            this.metroPanel5.VerticalScrollbarBarColor = true;
-            this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel5.VerticalScrollbarSize = 10;
-            // 
-            // label_redeemDelay
-            // 
-            this.label_redeemDelay.AutoSize = true;
-            this.label_redeemDelay.Location = new System.Drawing.Point(248, 60);
-            this.label_redeemDelay.Name = "label_redeemDelay";
-            this.label_redeemDelay.Size = new System.Drawing.Size(75, 19);
-            this.label_redeemDelay.TabIndex = 4;
-            this.label_redeemDelay.Text = "{x} Minutes.";
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(8, 12);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(171, 19);
-            this.metroLabel5.TabIndex = 3;
-            this.metroLabel5.Text = "Delay Code Redemption by";
-            // 
-            // trackbar_RedeemDelay
-            // 
-            this.trackbar_RedeemDelay.BackColor = System.Drawing.Color.Transparent;
-            this.trackbar_RedeemDelay.Location = new System.Drawing.Point(10, 34);
-            this.trackbar_RedeemDelay.Maximum = 20;
-            this.trackbar_RedeemDelay.MouseWheelBarPartitions = 1;
-            this.trackbar_RedeemDelay.Name = "trackbar_RedeemDelay";
-            this.trackbar_RedeemDelay.Size = new System.Drawing.Size(310, 23);
-            this.trackbar_RedeemDelay.TabIndex = 2;
-            this.trackbar_RedeemDelay.Text = "Delay Code Redemption";
-            this.trackbar_RedeemDelay.Value = 5;
-            this.trackbar_RedeemDelay.Scroll += new System.Windows.Forms.ScrollEventHandler(this.trackbar_RedeemDelay_Scroll);
-            // 
-            // metroTrackBar_wordLength
-            // 
-            this.metroTrackBar_wordLength.BackColor = System.Drawing.Color.Transparent;
-            this.metroTrackBar_wordLength.Location = new System.Drawing.Point(10, 123);
-            this.metroTrackBar_wordLength.Maximum = 20;
-            this.metroTrackBar_wordLength.MouseWheelBarPartitions = 1;
-            this.metroTrackBar_wordLength.Name = "metroTrackBar_wordLength";
-            this.metroTrackBar_wordLength.Size = new System.Drawing.Size(310, 23);
-            this.metroTrackBar_wordLength.TabIndex = 30;
-            this.metroTrackBar_wordLength.Text = "metroTrackBar_wordLength";
-            this.metroTrackBar_wordLength.Value = 5;
-            this.metroTrackBar_wordLength.Scroll += new System.Windows.Forms.ScrollEventHandler(this.metroTrackBar_wordLength_Scroll);
-            this.metroTrackBar_wordLength.MouseUp += new System.Windows.Forms.MouseEventHandler(this.metroTrackBar_wordLength_MouseUp);
-            // 
-            // metroLabel7
-            // 
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(8, 101);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(192, 19);
-            this.metroLabel7.TabIndex = 31;
-            this.metroLabel7.Text = "Only pick up words longer than";
-            // 
-            // label_minWordLength
-            // 
-            this.label_minWordLength.AutoSize = true;
-            this.label_minWordLength.Location = new System.Drawing.Point(231, 149);
-            this.label_minWordLength.Name = "label_minWordLength";
-            this.label_minWordLength.Size = new System.Drawing.Size(92, 19);
-            this.label_minWordLength.TabIndex = 32;
-            this.label_minWordLength.Text = "{x} Characters.";
+            this.metroStyleManager.Owner = null;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(850, 556);
-            this.Controls.Add(this.metroLabel6);
+            this.Controls.Add(this.metroLabel_MinimiseSmiteAfterRedeeming);
             this.Controls.Add(this.checkbox_MinimiseAfterRedeeming);
             this.Controls.Add(this.label_ksNote);
             this.Controls.Add(this.label_SmiteClientVersion);
-            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.metroLabel_AFKMode);
             this.Controls.Add(this.checkbox_AFKMode);
             this.Controls.Add(this.metroTabControl1);
             this.Name = "MainForm";
@@ -959,14 +1070,17 @@
             this.metroTabPage_Logs.ResumeLayout(false);
             this.metroTabPage_Whitelist.ResumeLayout(false);
             this.metroTabPage_Settings.ResumeLayout(false);
+            this.metroPanel4.ResumeLayout(false);
+            this.metroPanel4.PerformLayout();
+            this.metroPanel5.ResumeLayout(false);
+            this.metroPanel5.PerformLayout();
             this.metroPanel2.ResumeLayout(false);
             this.metroPanel2.PerformLayout();
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
             this.metroTabPage_Help.ResumeLayout(false);
             this.metroContextMenu_listViewRightClick.ResumeLayout(false);
-            this.metroPanel5.ResumeLayout(false);
-            this.metroPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1026,9 +1140,9 @@
         private MetroFramework.Controls.MetroButton metroButton3;
         private MetroFramework.Controls.MetroLabel label_ksNote;
         private MetroFramework.Controls.MetroLabel label_SmiteClientVersion;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel metroLabel_AFKMode;
         public MetroFramework.Controls.MetroToggle checkbox_AFKMode;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroLabel metroLabel_MinimiseSmiteAfterRedeeming;
         public MetroFramework.Controls.MetroToggle checkbox_MinimiseAfterRedeeming;
         private System.Windows.Forms.ToolStripMenuItem copySelectedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addTestCodeToolStripMenuItem;
@@ -1041,7 +1155,15 @@
         private MetroFramework.Controls.MetroTrackBar trackbar_RedeemDelay;
         private MetroFramework.Controls.MetroLabel label_minWordLength;
         private MetroFramework.Controls.MetroLabel metroLabel7;
-        private MetroFramework.Controls.MetroTrackBar metroTrackBar_wordLength;
+        private MetroFramework.Controls.MetroTrackBar metroTrackBar_minWordLength;
+        private MetroFramework.Controls.MetroLabel metroLabel87;
+        private MetroFramework.Controls.MetroLabel metroLabel_maxWordLength;
+        private MetroFramework.Controls.MetroLabel metroLabel9;
+        private MetroFramework.Controls.MetroTrackBar metroTrackBar_maxWordLength;
+        private MetroFramework.Components.MetroStyleManager metroStyleManager;
+        private MetroFramework.Controls.MetroPanel metroPanel4;
+        private MetroFramework.Controls.MetroLabel metroLabel10;
+        private MetroFramework.Controls.MetroComboBox metroComboBox_Theme;
     }
 }
 

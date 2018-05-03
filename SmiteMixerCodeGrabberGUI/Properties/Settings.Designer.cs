@@ -578,12 +578,12 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
-        public int wordSearchLength {
+        public int minWordLength {
             get {
-                return ((int)(this["wordSearchLength"]));
+                return ((int)(this["minWordLength"]));
             }
             set {
-                this["wordSearchLength"] = value;
+                this["minWordLength"] = value;
             }
         }
         
@@ -596,6 +596,30 @@ namespace SmiteMixerCodeGrabberGUI.Properties {
             }
             set {
                 this["firstLaunch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("18")]
+        public int maxWordLength {
+            get {
+                return ((int)(this["maxWordLength"]));
+            }
+            set {
+                this["maxWordLength"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useDarkTheme {
+            get {
+                return ((bool)(this["useDarkTheme"]));
+            }
+            set {
+                this["useDarkTheme"] = value;
             }
         }
     }

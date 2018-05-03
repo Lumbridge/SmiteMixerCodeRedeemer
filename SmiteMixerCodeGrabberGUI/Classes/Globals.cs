@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static DolphinScript.Lib.Backend.WinAPI;
 
 namespace SmiteMixerCodeGrabberGUI.Classes
@@ -15,12 +16,30 @@ namespace SmiteMixerCodeGrabberGUI.Classes
         public static bool shouldMinimise { get; set; }
         public static string smiteWindowTitle { get; set; }
 
-        public static int wordSearchLength
+        public static int minWordLength
         {
-            get { return Properties.Settings.Default.wordSearchLength; }
+            get { return Properties.Settings.Default.minWordLength; }
             set
             {
-                Properties.Settings.Default.wordSearchLength = value;
+                Properties.Settings.Default.minWordLength = value;
+                SaveSettings();
+            }
+        }
+        public static int maxWordLength
+        {
+            get { return Properties.Settings.Default.maxWordLength; }
+            set
+            {
+                Properties.Settings.Default.maxWordLength = value;
+                SaveSettings();
+            }
+        }
+        public static bool useDarkTheme
+        {
+            get { return Properties.Settings.Default.useDarkTheme; }
+            set
+            {
+                Properties.Settings.Default.useDarkTheme = value;
                 SaveSettings();
             }
         }

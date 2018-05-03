@@ -17,6 +17,7 @@ using static SmiteMixerCodeGrabberGUI.Classes.Globals;
 
 using static DolphinScript.Lib.Backend.WinAPI;
 using static DolphinScript.Lib.Backend.Common;
+using MetroFramework;
 
 namespace SmiteMixerCodeGrabberGUI
 {
@@ -37,6 +38,71 @@ namespace SmiteMixerCodeGrabberGUI
         /// <param name="e"></param>
         private void MainForm_Load(object sender, EventArgs e)
         {
+            if (useDarkTheme)
+            {
+                metroStyleManager.Theme = MetroThemeStyle.Dark;
+                ManualControlColours(System.Drawing.Color.DarkGray);
+                metroComboBox_Theme.SelectedIndex = 1;
+            }
+            else
+            {
+                metroStyleManager.Theme = MetroThemeStyle.Light;
+                ManualControlColours(System.Drawing.Color.White);
+                metroComboBox_Theme.SelectedIndex = 0;
+            }
+
+            this.StyleManager = metroStyleManager;
+            metroTabControl1.StyleManager = metroStyleManager;
+
+            listView_ActiveCodes.StyleManager = metroStyleManager;
+            listView_ExpiredCodes.StyleManager = metroStyleManager;
+
+            metroContextMenu_listViewRightClick.StyleManager = metroStyleManager;
+
+            metroTabPage_Active.StyleManager = metroStyleManager;
+            metroTabPage_Blacklist.StyleManager = metroStyleManager;
+            metroTabPage_Whitelist.StyleManager = metroStyleManager;
+            metroTabPage_Expired.StyleManager = metroStyleManager;
+            metroTabPage_Logs.StyleManager = metroStyleManager;
+            metroTabPage_Help.StyleManager = metroStyleManager;
+            metroTabPage_Settings.StyleManager = metroStyleManager;
+
+            metroPanel1.StyleManager = metroStyleManager;
+            metroPanel2.StyleManager = metroStyleManager;
+            metroPanel3.StyleManager = metroStyleManager;
+            metroPanel4.StyleManager = metroStyleManager;
+            metroPanel5.StyleManager = metroStyleManager;
+
+            trackbar_RedeemDelay.StyleManager = metroStyleManager;
+            metroTrackBar_minWordLength.StyleManager = metroStyleManager;
+            metroTrackBar_maxWordLength.StyleManager = metroStyleManager;
+
+            metroLabel2.StyleManager = metroStyleManager;
+            metroLabel3.StyleManager = metroStyleManager;
+            metroLabel4.StyleManager = metroStyleManager;
+            metroLabel5.StyleManager = metroStyleManager;
+            metroLabel7.StyleManager = metroStyleManager;
+            metroLabel87.StyleManager = metroStyleManager;
+            metroLabel9.StyleManager = metroStyleManager;
+            metroLabel10.StyleManager = metroStyleManager;
+            metroLink_KeyCodeHelp.StyleManager = metroStyleManager;
+
+            label_ksNote.StyleManager = metroStyleManager;
+            label_SmiteClientVersion.StyleManager = metroStyleManager;
+            label_redeemDelay.StyleManager = metroStyleManager;
+            label_minWordLength.StyleManager = metroStyleManager;
+
+            metroLabel_AFKMode.StyleManager = metroStyleManager;
+            metroLabel_maxWordLength.StyleManager = metroStyleManager;
+            metroLabel_MinimiseSmiteAfterRedeeming.StyleManager = metroStyleManager;
+
+            checkbox_NotificationSound.StyleManager = metroStyleManager;
+            checkbox_showNotifications.StyleManager = metroStyleManager;
+            checkbox_AFKMode.StyleManager = metroStyleManager;
+            checkBox_disableKillswitch.StyleManager = metroStyleManager;
+            checkbox_MinimiseAfterRedeeming.StyleManager = metroStyleManager;
+
+
             // set whether to catch calls on the wrong thread that access a control's handle property when an application is being debugged
             CheckForIllegalCrossThreadCalls = false;
 
@@ -73,10 +139,11 @@ namespace SmiteMixerCodeGrabberGUI
             // label
             label_ksNote.Text = $"Note: Press {killswitchKeyString} to stop automation script.";
             label_redeemDelay.Text = redeemDelay + " Minutes.";
-            label_minWordLength.Text = wordSearchLength + " Characters.";
+            label_minWordLength.Text = minWordLength + " Characters.";
+            metroLabel_maxWordLength.Text = maxWordLength + " Characters.";
             // trackbar
             trackbar_RedeemDelay.Value = redeemDelay;
-            metroTrackBar_wordLength.Value = wordSearchLength;
+            metroTrackBar_minWordLength.Value = minWordLength;
 
             // write the meta info to the console
             Console.Write(MetaInfo.GetMetaInfoConsole());
@@ -163,6 +230,7 @@ namespace SmiteMixerCodeGrabberGUI
                     lvi.SubItems.Add(aCode.GetCode());
                     lvi.SubItems.Add(aCode.isRedeemed.ToString());
                     lvi.SubItems.Add(aCode.Time_GrabbedAt.Add(new TimeSpan(0, 30, 0)).ToShortTimeString());
+                    lvi.ForeColor = System.Drawing.Color.White;
                     listView_ActiveCodes.Items.Add(lvi);
                 }
                 listView_ActiveCodes.EndUpdate();
@@ -369,7 +437,7 @@ namespace SmiteMixerCodeGrabberGUI
 
             foreach(var word in words)
             {
-                if (!blacklistedWords.Contains(word) && word.Length > wordSearchLength)
+                if (!blacklistedWords.Contains(word) && word.Length > minWordLength)
                 {
                     potentialCodes.Add(word);
                 }
@@ -571,7 +639,7 @@ namespace SmiteMixerCodeGrabberGUI
         }
         private void copySelectedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView_ActiveCodes.SelectedIndices[0] >= 0)
+            if (listView_ActiveCodes.SelectedItems.Count > 0)
             {
                 try
                 {
@@ -676,12 +744,22 @@ namespace SmiteMixerCodeGrabberGUI
         // min word length stuff
         private void metroTrackBar_wordLength_Scroll(object sender, ScrollEventArgs e)
         {
-            label_minWordLength.Text = metroTrackBar_wordLength.Value + " Characters.";
+            label_minWordLength.Text = metroTrackBar_minWordLength.Value + " Characters.";
         }
         private void metroTrackBar_wordLength_MouseUp(object sender, MouseEventArgs e)
         {
-            wordSearchLength = metroTrackBar_wordLength.Value;
-            label_minWordLength.Text = wordSearchLength + " Characters.";
+            minWordLength = metroTrackBar_minWordLength.Value;
+            label_minWordLength.Text = minWordLength + " Characters.";
+        }
+        // max word length stuff
+        private void metroTrackBar_maxWordLength_Scroll(object sender, ScrollEventArgs e)
+        {
+            metroLabel_maxWordLength.Text = metroTrackBar_maxWordLength.Value + " Characters.";
+        }
+        private void metroTrackBar_maxWordLength_MouseUp(object sender, MouseEventArgs e)
+        {
+            maxWordLength = metroTrackBar_maxWordLength.Value;
+            metroLabel_maxWordLength.Text = maxWordLength + " Characters.";
         }
 
         // afk mode 
@@ -735,5 +813,54 @@ namespace SmiteMixerCodeGrabberGUI
         #endregion
 
         #endregion
+
+        private void metroComboBox_Theme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedTheme = metroComboBox_Theme.SelectedItem.ToString();
+            if (selectedTheme == "Light")
+            {
+                useDarkTheme = false;
+
+                metroStyleManager.Theme = MetroThemeStyle.Light;
+
+                ManualControlColours(System.Drawing.Color.White);
+            }
+            else
+            {
+                useDarkTheme = true;
+
+                metroStyleManager.Theme = MetroThemeStyle.Dark;
+
+                ManualControlColours(System.Drawing.Color.DarkGray);
+            }
+
+            this.Refresh();
+        }
+
+        void ManualControlColours(System.Drawing.Color col)
+        {
+            listView_ActiveCodes.BackColor = col;
+            listView_ExpiredCodes.BackColor = col;
+            textbox_BlacklistedWords.BackColor = col;
+            textbox_whitelistedUsernames.BackColor = col;
+            textbox_NotificationSound.BackColor = col;
+            logbox.BackColor = col;
+        }
+
+        private void metroContextMenu_listViewRightClick_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (listView_ActiveCodes.SelectedItems.Count != 1)
+            {
+                toolStripMenuItem_RemoveSelected.Visible = false;
+                copySelectedToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                toolStripMenuItem_RemoveSelected.Visible = true;
+                copySelectedToolStripMenuItem.Visible = true;
+            }
+
+            metroContextMenu_listViewRightClick.Refresh();
+        }
     }
 }
